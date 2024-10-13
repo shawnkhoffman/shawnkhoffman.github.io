@@ -1,0 +1,11 @@
+{
+    "welcome": "Welcome to My Portfolio",
+    "builtWith": "Built in React",
+    "viewSource": "View Source Code",
+    "about": "About Me",
+    "skills": "Skills",
+    "careerTimeline": "Career Timeline",
+    "notFound": "404 - Page Not Found",
+    "goHome": "Go back Home",
+    "nextMeme": "Next Meme"
+  }
