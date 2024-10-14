@@ -76,7 +76,7 @@ const Skills: React.FC = () => {
             During my time at the University of Texas at Austin, I was involved in a NASA research project, where I independently programmed the controllers for an unmanned space exploration vehicle using C/C++. This gave me early exposure to problem-solving at scale and shaped my approach to systems engineering.
           </p>
           <p>
-            Professionally, I got my start at Rackspace, working across projects involving Java, JavaScript, C#, and Python. Specializing in Python and JavaScript, my work ranged from full-stack web development to system-level programming. My experience has since evolved, focusing on scalable software solutions at Disney and Crunchyroll.
+            Professionally, I got my start at Rackspace, working across projects involving Java, JavaScript, C#, and Python. First specializing in Python and JavaScript, my work ranged from full-stack web development to system-level programming. My experience has since evolved into using Go, React, and Node, building scalable software solutions at Disney and Crunchyroll.
           </p>
         </>
       )
