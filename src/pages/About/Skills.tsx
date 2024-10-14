@@ -8,63 +8,25 @@ import {
   FaDatabase,
   FaChevronLeft,
   FaChevronRight,
-  FaChevronDown,
-  FaTimes
+  FaChevronDown
 } from 'react-icons/fa';
-
-const NavigationHint: React.FC<{ isMobile: boolean; onClose: () => void }> = ({ isMobile, onClose }) => {
-  const message = isMobile
-    ? "Swipe left or right to navigate"
-    : "Use ← → arrow keys to navigate";
-
-  return (
-    <div className="fixed bottom-4 sm:bottom-24 md:bottom-24 left-1/2 transform -translate-x-1/2 z-50">
-      <div className="bg-base-200 text-base-content p-2 text-sm rounded-lg shadow-lg flex items-center">
-        <span className="mr-4">{message}</span>
-        <button
-          onClick={onClose}
-          className="text-base-content hover:text-error"
-          aria-label="Close hint"
-        >
-          <FaTimes />
-        </button>
-      </div>
-    </div>
-  );
-};
 
 const Skills: React.FC = () => {
   const [currentModalIndex, setCurrentModalIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showNavigationHint, setShowNavigationHint] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [navigationStarted, setNavigationStarted] = useState(false);
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+  const [showNavigationHint, setShowNavigationHint] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const checkIfMobile = () => {
-      setIsMobile('ontouchstart' in window);
+      setIsMobile('ontouchstart' in window || window.innerWidth <= 640);
     };
     checkIfMobile();
   }, []);
-
-  useEffect(() => {
-    if (isModalOpen && !navigationStarted) {
-      setShowNavigationHint(true);
-    }
-  }, [isModalOpen, navigationStarted]);
-
-  useEffect(() => {
-    if (navigationStarted) {
-      const timer = setTimeout(() => {
-        setShowNavigationHint(false);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [navigationStarted]);
 
   const modals = [
     {
@@ -80,7 +42,7 @@ const Skills: React.FC = () => {
             During my time at the University of Texas at Austin, I was involved in a NASA research project, where I independently programmed the controllers for an unmanned space exploration vehicle using C/C++. This gave me early exposure to problem-solving at scale and shaped my approach to systems engineering.
           </p>
           <p>
-            Professionally, I got my start at Rackspace, working across projects involving Java, JavaScript, C#, and Python. First specializing in Python and JavaScript, my work ranged from full-stack web development to system-level programming. My experience has since evolved into using Go, React, and Node, building scalable software solutions at Disney and Crunchyroll.
+            Professionally, I got my start at Rackspace, working across projects involving Java, JavaScript, C#, and Python. My work ranged from full-stack web development to system-level programming. My experience has since evolved, focusing on scalable software solutions at Disney and Crunchyroll.
           </p>
         </>
       )
@@ -98,7 +60,7 @@ const Skills: React.FC = () => {
             At HPE, I led cloud platform projects involving infrastructure as code and microservices on AWS and Azure. At Disney and Crunchyroll, I built large-scale, cloud-native applications that provide resilience and performance for millions of users globally.
           </p>
           <p>
-            As part of ensuring these systems were highly reliable and observable, I gained significant experience in observability and monitoring, primarily using tools like DataDog, OpenTelemetry, and cloud-native monitoring solutions. Additionally, I've utilized OpsGenie and PagerDuty for incident response, ensuring quick and efficient recovery during critical outages.
+            I gained significant experience in observability and monitoring, primarily using tools like DataDog, OpenTelemetry, and cloud-native monitoring solutions. Additionally, I've utilized OpsGenie and PagerDuty for incident response, ensuring quick recovery during critical outages.
           </p>
         </>
       )
@@ -165,16 +127,16 @@ const Skills: React.FC = () => {
   const showModal = (index: number) => {
     setCurrentModalIndex(index);
     setIsModalOpen(true);
-    setNavigationStarted(false);
     setTimeout(checkContentOverflow, 100);
     setShowScrollIndicator(true);
+    if (!isMobile) setShowNavigationHint(true);
   };
 
   const closeModal = () => {
     setCurrentModalIndex(null);
     setIsModalOpen(false);
-    setShowNavigationHint(false);
     setShowScrollIndicator(false);
+    setShowNavigationHint(false);
   };
 
   const checkContentOverflow = () => {
@@ -184,18 +146,22 @@ const Skills: React.FC = () => {
     }
   };
 
+  const handleUserInteraction = () => {
+    setShowScrollIndicator(false);
+    setShowNavigationHint(false);
+  };
+
   const handleScroll = () => {
     if (contentRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = contentRef.current;
       if (scrollTop > 0 || scrollTop + clientHeight >= scrollHeight) {
-        setShowScrollIndicator(false);
+        handleUserInteraction();
       }
     }
   };
 
   const handleNext = () => {
     setCurrentModalIndex((prevIndex) => {
-      setNavigationStarted(true);
       if (prevIndex === null) return 0;
       return (prevIndex + 1) % modals.length;
     });
@@ -204,7 +170,6 @@ const Skills: React.FC = () => {
 
   const handlePrevious = () => {
     setCurrentModalIndex((prevIndex) => {
-      setNavigationStarted(true);
       if (prevIndex === null) return modals.length - 1;
       return (prevIndex - 1 + modals.length) % modals.length;
     });
@@ -218,31 +183,6 @@ const Skills: React.FC = () => {
   };
 
   useEffect(() => {
-    if (!isMobile) return;
-
-    const handleTouchStart = (e: TouchEvent) => {
-      if (currentModalIndex !== null) {
-        const touchStartX = e.touches[0].clientX;
-        const handleTouchEnd = (endEvent: TouchEvent) => {
-          const touchEndX = endEvent.changedTouches[0].clientX;
-          const diffX = touchStartX - touchEndX;
-
-          if (diffX > 50) handleNext();
-          if (diffX < -50) handlePrevious();
-
-          document.removeEventListener('touchend', handleTouchEnd);
-        };
-        document.addEventListener('touchend', handleTouchEnd);
-      }
-    };
-
-    document.addEventListener('touchstart', handleTouchStart);
-    return () => {
-      document.removeEventListener('touchstart', handleTouchStart);
-    };
-  }, [currentModalIndex, isMobile]);
-
-  useEffect(() => {
     if (isMobile) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -252,6 +192,7 @@ const Skills: React.FC = () => {
         } else if (e.key === 'ArrowLeft') {
           handlePrevious();
         }
+        handleUserInteraction();
       }
     };
 
@@ -283,23 +224,27 @@ const Skills: React.FC = () => {
       {isModalOpen && currentModalIndex !== null && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={handleOutsideClick}>
           <div className="relative w-full max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw] xl:max-w-[50vw] h-[80vh] sm:h-[70vh] md:h-[60vh] flex flex-col bg-base-100 rounded-lg shadow-xl">
-            {/* Navigation Arrows */}
-            <button
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block tooltip tooltip-left"
-              data-tip="Previous"
-              onClick={(e) => { e.stopPropagation(); handlePrevious(); }}
-              aria-label="Previous skill"
-            >
-              <FaChevronLeft className="text-5xl" />
-            </button>
-            <button
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block tooltip tooltip-right"
-              data-tip="Next"
-              onClick={(e) => { e.stopPropagation(); handleNext(); }}
-              aria-label="Next skill"
-            >
-              <FaChevronRight className="text-5xl" />
-            </button>
+            {/* Navigation Arrows (only on desktop) */}
+            {!isMobile && (
+              <>
+                <button
+                  className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block tooltip tooltip-left"
+                  data-tip="Previous"
+                  onClick={(e) => { e.stopPropagation(); handlePrevious(); }}
+                  aria-label="Previous skill"
+                >
+                  <FaChevronLeft className="text-5xl" />
+                </button>
+                <button
+                  className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block tooltip tooltip-right"
+                  data-tip="Next"
+                  onClick={(e) => { e.stopPropagation(); handleNext(); }}
+                  aria-label="Next skill"
+                >
+                  <FaChevronRight className="text-5xl" />
+                </button>
+              </>
+            )}
 
             {/* Modal Content */}
             <div ref={modalRef} className="flex flex-col h-full">
@@ -314,6 +259,13 @@ const Skills: React.FC = () => {
                   <div className="absolute bottom-2 right-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2">
                     <FaChevronDown className="animate-bounce text-xl text-info" />
                     <span className="text-sm text-info">Scroll down to see more</span>
+                  </div>
+                )}
+
+                {/* Navigation Hint (desktop only) */}
+                {!isMobile && showNavigationHint && (
+                  <div className="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2">
+                    <span className="text-sm text-info">Hint: You can use ← → arrow keys to navigate</span>
                   </div>
                 )}
               </div>
@@ -337,13 +289,6 @@ const Skills: React.FC = () => {
             </div>
           </div>
         </div>
-      )}
-
-      {showNavigationHint && (
-        <NavigationHint
-          isMobile={isMobile}
-          onClose={() => setShowNavigationHint(false)}
-        />
       )}
     </div>
   );
