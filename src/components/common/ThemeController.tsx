@@ -57,11 +57,23 @@ const ThemeController: React.FC = () => {
     }
   };
 
+  const getTooltipLabel = () => {
+    switch (theme) {
+      case 'light':
+        return 'Light';
+      case 'dark':
+        return 'Dark';
+      default:
+        return 'System';
+    }
+  };
+
   return (
     <button
-      className="bg-transparent hover:bg-base-200 p-0 w-9 h-9 flex items-center justify-center rounded-full"
+      className="bg-transparent hover:bg-base-200 p-0 w-9 h-9 flex items-center justify-center rounded-full tooltip tooltip-bottom"
       onClick={toggleTheme}
       aria-label={getAriaLabel()}
+      data-tip={getTooltipLabel()}
     >
       {renderIcon()}
     </button>
