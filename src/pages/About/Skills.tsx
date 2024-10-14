@@ -8,6 +8,7 @@ import {
   FaDatabase,
   FaChevronLeft,
   FaChevronRight,
+  FaChevronDown,
   FaTimes
 } from 'react-icons/fa';
 
@@ -38,7 +39,10 @@ const Skills: React.FC = () => {
   const [showNavigationHint, setShowNavigationHint] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [navigationStarted, setNavigationStarted] = useState(false);
+  const [isContentOverflowing, setIsContentOverflowing] = useState(false);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -162,12 +166,31 @@ const Skills: React.FC = () => {
     setCurrentModalIndex(index);
     setIsModalOpen(true);
     setNavigationStarted(false);
+    setTimeout(checkContentOverflow, 100);
+    setShowScrollIndicator(true);
   };
 
   const closeModal = () => {
     setCurrentModalIndex(null);
     setIsModalOpen(false);
     setShowNavigationHint(false);
+    setShowScrollIndicator(false);
+  };
+
+  const checkContentOverflow = () => {
+    if (contentRef.current) {
+      const isOverflowing = contentRef.current.scrollHeight > contentRef.current.clientHeight;
+      setIsContentOverflowing(isOverflowing);
+    }
+  };
+
+  const handleScroll = () => {
+    if (contentRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = contentRef.current;
+      if (scrollTop > 0 || scrollTop + clientHeight >= scrollHeight) {
+        setShowScrollIndicator(false);
+      }
+    }
   };
 
   const handleNext = () => {
@@ -176,6 +199,7 @@ const Skills: React.FC = () => {
       if (prevIndex === null) return 0;
       return (prevIndex + 1) % modals.length;
     });
+    setTimeout(checkContentOverflow, 100);
   };
 
   const handlePrevious = () => {
@@ -184,6 +208,7 @@ const Skills: React.FC = () => {
       if (prevIndex === null) return modals.length - 1;
       return (prevIndex - 1 + modals.length) % modals.length;
     });
+    setTimeout(checkContentOverflow, 100);
   };
 
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -278,29 +303,37 @@ const Skills: React.FC = () => {
 
             {/* Modal Content */}
             <div ref={modalRef} className="flex flex-col h-full">
-              <div className="p-6 flex-grow overflow-y-auto">
+              <div ref={contentRef} className="p-6 flex-grow overflow-y-auto relative" onScroll={handleScroll}>
                 <h2 className="text-2xl font-semibold mb-4">{modals[currentModalIndex].category}</h2>
                 <div className="space-y-4 text-base-content leading-relaxed">
                   {modals[currentModalIndex].content}
                 </div>
+
+                {/* Scroll Indicator */}
+                {isContentOverflowing && showScrollIndicator && (
+                  <div className="absolute bottom-2 right-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2">
+                    <FaChevronDown className="animate-bounce text-xl text-info" />
+                    <span className="text-sm text-info">Scroll down to see more</span>
+                  </div>
+                )}
               </div>
               <div className="p-4 border-t border-base-300 flex justify-between items-center">
                 <button className="btn btn-sm md:hidden tooltip tooltip-bottom" data-tip="Previous" onClick={handlePrevious}>Previous</button>
                 <button className="btn btn-sm" onClick={closeModal}>Close</button>
                 <button className="btn btn-sm md:hidden tooltip tooltip-bottom" data-tip="Next" onClick={handleNext}>Next</button>
               </div>
-            </div>
 
-            {/* Pagination Dots */}
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-8 flex space-x-2">
-              {modals.map((_, index) => (
-                <div
-                  key={index}
-                  className={`w-3 h-3 rounded-full ${
-                    currentModalIndex === index ? 'bg-info' : 'bg-neutral-content'
-                  }`}
-                />
-              ))}
+              {/* Pagination Dots */}
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-8 flex space-x-2">
+                {modals.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`w-3 h-3 rounded-full ${
+                      currentModalIndex === index ? 'bg-info' : 'bg-neutral-content'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
