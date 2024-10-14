@@ -16,10 +16,11 @@ const Skills: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
-  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [showNavigationHint, setShowNavigationHint] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const touchStartXRef = useRef<number | null>(null);
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -127,8 +128,8 @@ const Skills: React.FC = () => {
   const showModal = (index: number) => {
     setCurrentModalIndex(index);
     setIsModalOpen(true);
-    setTimeout(checkContentOverflow, 100);
     setShowScrollIndicator(true);
+    setTimeout(checkContentOverflow, 100);
     if (!isMobile) setShowNavigationHint(true);
   };
 
@@ -165,6 +166,7 @@ const Skills: React.FC = () => {
       if (prevIndex === null) return 0;
       return (prevIndex + 1) % modals.length;
     });
+    setShowScrollIndicator(true);
     setTimeout(checkContentOverflow, 100);
   };
 
@@ -173,6 +175,7 @@ const Skills: React.FC = () => {
       if (prevIndex === null) return modals.length - 1;
       return (prevIndex - 1 + modals.length) % modals.length;
     });
+    setShowScrollIndicator(true);
     setTimeout(checkContentOverflow, 100);
   };
 
@@ -183,24 +186,29 @@ const Skills: React.FC = () => {
   };
 
   useEffect(() => {
-    if (isMobile) return;
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartXRef.current = e.touches[0].clientX;
+    };
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (isModalOpen) {
-        if (e.key === 'ArrowRight') {
-          handleNext();
-        } else if (e.key === 'ArrowLeft') {
-          handlePrevious();
-        }
-        handleUserInteraction();
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (touchStartXRef.current !== null) {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diffX = touchStartXRef.current - touchEndX;
+        if (diffX > 50) handleNext();
+        if (diffX < -50) handlePrevious();
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    if (isMobile && isModalOpen) {
+      document.addEventListener('touchstart', handleTouchStart);
+      document.addEventListener('touchend', handleTouchEnd);
+    }
+
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [isModalOpen, isMobile]);
+  }, [isMobile, isModalOpen]);
 
   return (
     <div className="w-full max-w-5xl mb-10 p-6 bg-base-100 rounded-lg shadow-lg relative">
@@ -211,10 +219,7 @@ const Skills: React.FC = () => {
           <div key={modal.id} className="flex flex-col items-center text-center">
             {modal.icon}
             <h3 className="text-2xl font-semibold mb-2">{modal.category}</h3>
-            <button
-              className="btn btn-sm mt-4"
-              onClick={() => showModal(index)}
-            >
+            <button className="btn btn-sm mt-4" onClick={() => showModal(index)}>
               Learn More
             </button>
           </div>
@@ -222,7 +227,10 @@ const Skills: React.FC = () => {
       </div>
 
       {isModalOpen && currentModalIndex !== null && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={handleOutsideClick}>
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          onClick={handleOutsideClick}
+        >
           <div className="relative w-full max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw] xl:max-w-[50vw] h-[80vh] sm:h-[70vh] md:h-[60vh] flex flex-col bg-base-100 rounded-lg shadow-xl">
             {/* Navigation Arrows (only on desktop) */}
             {!isMobile && (
@@ -248,8 +256,14 @@ const Skills: React.FC = () => {
 
             {/* Modal Content */}
             <div ref={modalRef} className="flex flex-col h-full">
-              <div ref={contentRef} className="p-6 flex-grow overflow-y-auto relative" onScroll={handleScroll}>
-                <h2 className="text-2xl font-semibold mb-4">{modals[currentModalIndex].category}</h2>
+              <div
+                ref={contentRef}
+                className="p-6 flex-grow overflow-y-auto relative"
+                onScroll={handleScroll}
+              >
+                <h2 className="text-2xl font-semibold mb-4">
+                  {modals[currentModalIndex].category}
+                </h2>
                 <div className="space-y-4 text-base-content leading-relaxed">
                   {modals[currentModalIndex].content}
                 </div>
@@ -265,14 +279,20 @@ const Skills: React.FC = () => {
                 {/* Navigation Hint (desktop only) */}
                 {!isMobile && showNavigationHint && (
                   <div className="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2">
-                    <span className="text-sm text-info">Hint: You can use ← → arrow keys to navigate</span>
+                    <span className="text-sm text-info">Use ← → arrow keys to navigate</span>
                   </div>
                 )}
               </div>
               <div className="p-4 border-t border-base-300 flex justify-between items-center">
-                <button className="btn btn-sm md:hidden tooltip tooltip-bottom" data-tip="Previous" onClick={handlePrevious}>Previous</button>
-                <button className="btn btn-sm" onClick={closeModal}>Close</button>
-                <button className="btn btn-sm md:hidden tooltip tooltip-bottom" data-tip="Next" onClick={handleNext}>Next</button>
+                <button className="btn btn-sm md:hidden" onClick={handlePrevious}>
+                  Previous
+                </button>
+                <button className="btn btn-sm" onClick={closeModal}>
+                  Close
+                </button>
+                <button className="btn btn-sm md:hidden" onClick={handleNext}>
+                  Next
+                </button>
               </div>
 
               {/* Pagination Dots */}

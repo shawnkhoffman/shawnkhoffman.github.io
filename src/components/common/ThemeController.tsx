@@ -1,12 +1,27 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { useTheme } from '../../context/ThemeContext';
-import { FaSun, FaMoon, FaDesktop } from 'react-icons/fa';
+import { FaSun, FaMoon, FaDesktop, FaMobileAlt, FaTabletAlt } from 'react-icons/fa';
 
 type Theme = 'light' | 'dark' | 'system';
 
 const ThemeController: React.FC = () => {
   const { theme, setTheme } = useTheme();
   const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [deviceType, setDeviceType] = useState<'desktop' | 'mobile' | 'tablet'>('desktop');
+
+  useEffect(() => {
+    const userAgent = window.navigator.userAgent;
+    const isMobile = /Mobi|Android/i.test(userAgent);
+    const isTablet = /iPad|Tablet|Android(?!.*Mobile)/i.test(userAgent);
+
+    if (isTablet) {
+      setDeviceType('tablet');
+    } else if (isMobile) {
+      setDeviceType('mobile');
+    } else {
+      setDeviceType('desktop');
+    }
+  }, []);
 
   const toggleTheme = () => {
     setShouldAnimate(true);
@@ -17,7 +32,7 @@ const ThemeController: React.FC = () => {
       system: 'light',
     }[currentTheme];
     setTheme(nextTheme);
-    
+
     setTimeout(() => setShouldAnimate(false), 200);
   };
 
@@ -30,8 +45,15 @@ const ThemeController: React.FC = () => {
         return <FaSun className={`text-content ${baseClasses} ${animationClass}`} />;
       case 'dark':
         return <FaMoon className={`text-content ${baseClasses} ${animationClass}`} />;
+      case 'system':
       default:
-        return <FaDesktop className={`text-info ${baseClasses}`} />;
+        return deviceType === 'mobile' ? (
+          <FaMobileAlt className={`text-info ${baseClasses}`} />
+        ) : deviceType === 'tablet' ? (
+          <FaTabletAlt className={`text-info ${baseClasses}`} />
+        ) : (
+          <FaDesktop className={`text-info ${baseClasses}`} />
+        );
     }
   };
 
