@@ -150,7 +150,7 @@ const AboutThisSite: React.FC = () => {
           onClick={() => window.open('https://github.com/shawnkhoffman/shawnkhoffman.github.io', '_blank')}
         >
           <FaGithub className="mr-2" />
-          View Source Code on GitHub
+          View Source Code
         </button>
       </section>
     </div>

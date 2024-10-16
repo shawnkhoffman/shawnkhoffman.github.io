@@ -1,5 +1,5 @@
 import React, { memo, useState, useEffect } from 'react';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../hooks/useTheme';
 import { FaSun, FaMoon, FaDesktop, FaMobileAlt, FaTabletAlt } from 'react-icons/fa';
 
 type Theme = 'light' | 'dark' | 'system';

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { FaChevronLeft, FaChevronRight, FaChevronDown } from 'react-icons/fa';
 
 interface ModalProps {
@@ -58,18 +58,21 @@ const Modal: React.FC<ModalProps> = ({
     touchStartX.current = e.touches[0].clientX;
   };
 
-  const handleTouchEnd = (e: TouchEvent) => {
-    if (touchStartX.current !== null) {
-      const touchEndX = e.changedTouches[0].clientX;
-      const diffX = touchStartX.current - touchEndX;
-      if (diffX > 50) {
-        onNext && onNext();
-      } else if (diffX < -50) {
-        onPrevious && onPrevious();
+  const handleTouchEnd = useCallback(
+    (e: TouchEvent) => {
+      if (touchStartX.current !== null) {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diffX = touchStartX.current - touchEndX;
+        if (diffX > 50 && onNext) {
+          onNext();
+        } else if (diffX < -50 && onPrevious) {
+          onPrevious();
+        }
+        touchStartX.current = null;
       }
-      touchStartX.current = null;
-    }
-  };
+    },
+    [onNext, onPrevious]
+  );
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -108,7 +111,7 @@ const Modal: React.FC<ModalProps> = ({
         document.removeEventListener('touchend', handleTouchEnd);
       }
     };
-  }, [isOpen, isMobile]);
+  }, [isOpen, isMobile, handleTouchEnd]);
 
   if (!isOpen) return null;
 
@@ -131,8 +134,10 @@ const Modal: React.FC<ModalProps> = ({
               className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
               onClick={(e) => {
                 e.stopPropagation();
-                onPrevious && onPrevious();
-                setShowNavigationHint(false);
+                if (onPrevious) {
+                  onPrevious();
+                  setShowNavigationHint(false);
+                }
               }}
               aria-label="Previous"
             >
@@ -142,8 +147,10 @@ const Modal: React.FC<ModalProps> = ({
               className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
               onClick={(e) => {
                 e.stopPropagation();
-                onNext && onNext();
-                setShowNavigationHint(false);
+                if (onNext) {
+                  onNext();
+                  setShowNavigationHint(false);
+                }
               }}
               aria-label="Next"
             >

@@ -28,9 +28,9 @@ const NotFound: React.FC = () => {
         "Never gonna give you up, never gonna let you down... but this page will.",
         "Open sesame! Open... says a me? No, that's not right.",
         "Five stars? You're still not getting in."
-      ];
-    
-      const gifs = [
+    ];
+
+    const gifs = [
         'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGZmamRkbmkzM292OHdramZ4eHhhdjdvajN4NHMwdzRiMGtwMnFzNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bGgsc5mWoryfgKBx1u/giphy.gif', // Coding
         'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3Z4aXp1anhqcWE2YWZwcHExenZ0Zzgxamgxczh1bnp5aXdtcWszYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l2JJKs3I69qfaQleE/giphy.gif', // Star Wars - Not the droids
         'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjg1NGprbWkzb3hueWg1NXNrZm9ocGJ3NGp0NXJkdTh6YThlOXpjZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3N2ML3tw4c4uc/giphy.gif', // Headshot - Baseball bat
@@ -57,40 +57,40 @@ const NotFound: React.FC = () => {
         'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExM29sdWlqb2E0ZnV1azJkcnVtaW9wdHE3czN2dmp0NGsxaXR4Z3EyNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ju7l5y9osyymQ/giphy.gif', // Rick Rolled
         'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2g1Mm5kcnk0bGFoNnNzdWlqYmFxaW53YmhpN2w5NDM2bmlpczg3ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/owRSsSHHoVYFa/giphy.gif', // Jurassic Park - Didn't say the magic word
         'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnc3ODkybTNhZGo0NDNldms0N2F5YjY2cjZjOTRmN2YyamYyMXZqMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/48LX0GTHQc68oIFEIY/giphy.gif' // GTA5 - Parachute fail
-      ];
+    ];
 
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+    const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * messages.length);
-    setCurrentIndex(randomIndex);
-  }, []);
+    useEffect(() => {
+        const randomIndex = Math.floor(Math.random() * messages.length);
+        setCurrentIndex(randomIndex);
+    }, [messages.length]);
 
-  const handleNextMeme = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % messages.length);
-  };
+    const handleNextMeme = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % messages.length);
+    };
 
-  return (
-    <div className="flex flex-col justify-center items-center text-center bg-base-200 p-4">
-      {gifs[currentIndex] && (
-        <img
-          src={gifs[currentIndex]}
-          alt="Funny 404 gif"
-          className="w-full max-w-xs sm:max-w-md rounded-lg shadow-lg mb-4"
-        />
-      )}
-      <h1 className="text-2xl sm:text-4xl font-bold mb-4">404 - Page Not Found</h1>
-      <p className="text-base sm:text-lg mb-6">{messages[currentIndex]}</p>
-      <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-        <a href="/" className="btn btn-primary w-full sm:w-auto">
-          Go back Home
-        </a>
-        <button className="btn btn-secondary w-full sm:w-auto" onClick={handleNextMeme}>
-          Next Meme
-        </button>
-      </div>
-    </div>
-  );
+    return (
+        <div className="flex flex-col justify-center items-center text-center bg-base-200 p-4">
+            {gifs[currentIndex] && (
+                <img
+                    src={gifs[currentIndex]}
+                    alt="Funny 404 gif"
+                    className="w-full max-w-xs sm:max-w-md rounded-lg shadow-lg mb-4"
+                />
+            )}
+            <h1 className="text-2xl sm:text-4xl font-bold mb-4">404 - Page Not Found</h1>
+            <p className="text-base sm:text-lg mb-6">{messages[currentIndex]}</p>
+            <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
+                <a href="/" className="btn btn-primary w-full sm:w-auto">
+                    Go back Home
+                </a>
+                <button className="btn btn-secondary w-full sm:w-auto" onClick={handleNextMeme}>
+                    Next Meme
+                </button>
+            </div>
+        </div>
+    );
 };
 
 export default NotFound;
