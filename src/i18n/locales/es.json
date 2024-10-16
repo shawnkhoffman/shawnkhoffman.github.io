@@ -1,0 +1,11 @@
+{
+    "welcome": "Bienvenido a Mi Portafolio",
+    "builtWith": "Construido en React",
+    "viewSource": "Ver Código Fuente",
+    "about": "Sobre Mí",
+    "skills": "Habilidades",
+    "careerTimeline": "Trayectoria Profesional",
+    "notFound": "404 - Página No Encontrada",
+    "goHome": "Volver al Inicio",
+    "nextMeme": "Siguiente Meme"
+  }

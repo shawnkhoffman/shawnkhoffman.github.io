@@ -3,57 +3,76 @@ import { useTheme } from '../../context/ThemeContext';
 import { FaSun, FaMoon, FaDesktop, FaMobileAlt, FaTabletAlt } from 'react-icons/fa';
 
 type Theme = 'light' | 'dark' | 'system';
+type DeviceType = 'desktop' | 'mobile' | 'tablet';
 
-const ThemeController: React.FC = () => {
+interface ThemeControllerProps {
+  showLabel?: boolean;
+}
+
+const ThemeController: React.FC<ThemeControllerProps> = ({ showLabel = false }) => {
   const { theme, setTheme } = useTheme();
   const [shouldAnimate, setShouldAnimate] = useState(false);
-  const [deviceType, setDeviceType] = useState<'desktop' | 'mobile' | 'tablet'>('desktop');
+  const [deviceType, setDeviceType] = useState<DeviceType>('desktop');
 
-  useEffect(() => {
-    const userAgent = window.navigator.userAgent;
-    const isMobile = /Mobi|Android/i.test(userAgent);
-    const isTablet = /iPad|Tablet|Android(?!.*Mobile)/i.test(userAgent);
-
-    if (isTablet) {
-      setDeviceType('tablet');
-    } else if (isMobile) {
+  const updateDeviceType = () => {
+    const width = window.innerWidth;
+    if (width < 768) {
       setDeviceType('mobile');
+    } else if (width >= 768 && width < 1024) {
+      setDeviceType('tablet');
     } else {
       setDeviceType('desktop');
     }
+  };
+
+  useEffect(() => {
+    updateDeviceType();
+
+    window.addEventListener('resize', updateDeviceType);
+
+    return () => {
+      window.removeEventListener('resize', updateDeviceType);
+    };
   }, []);
 
   const toggleTheme = () => {
     setShouldAnimate(true);
-    const currentTheme: Theme = theme as Theme;
     const nextTheme = {
       light: 'dark',
       dark: 'system',
       system: 'light',
-    }[currentTheme];
+    }[theme as Theme] as Theme;
     setTheme(nextTheme);
 
-    setTimeout(() => setShouldAnimate(false), 200);
+    setTimeout(() => {
+      setShouldAnimate(false);
+    }, 200);
   };
 
   const renderIcon = () => {
-    const baseClasses = "w-5 h-5";
+    const baseClasses = "w-5 h-5 transition-transform";
     const animationClass = shouldAnimate ? getAnimationClass(theme as Theme) : "";
+    const combinedClasses = `${baseClasses} ${animationClass}`;
 
     switch (theme) {
       case 'light':
-        return <FaSun className={`text-content ${baseClasses} ${animationClass}`} />;
+        return <FaSun className={`text-content ${combinedClasses}`} />;
       case 'dark':
-        return <FaMoon className={`text-content ${baseClasses} ${animationClass}`} />;
+        return <FaMoon className={`text-content ${combinedClasses}`} />;
       case 'system':
       default:
-        return deviceType === 'mobile' ? (
-          <FaMobileAlt className={`text-info ${baseClasses}`} />
-        ) : deviceType === 'tablet' ? (
-          <FaTabletAlt className={`text-info ${baseClasses}`} />
-        ) : (
-          <FaDesktop className={`text-info ${baseClasses}`} />
-        );
+        return renderSystemIcon(combinedClasses);
+    }
+  };
+
+  const renderSystemIcon = (combinedClasses: string) => {
+    switch (deviceType) {
+      case 'mobile':
+        return <FaMobileAlt className={`text-info ${combinedClasses}`} />;
+      case 'tablet':
+        return <FaTabletAlt className={`text-info ${combinedClasses}`} />;
+      default:
+        return <FaDesktop className={`text-info ${combinedClasses}`} />;
     }
   };
 
@@ -63,41 +82,22 @@ const ThemeController: React.FC = () => {
         return 'animate-rotate-sun';
       case 'dark':
         return 'animate-rotate-moon';
+      case 'system':
+        return 'animate-rotate-system';
       default:
         return '';
     }
   };
 
-  const getAriaLabel = () => {
-    switch (theme) {
-      case 'light':
-        return 'Switch to dark theme';
-      case 'dark':
-        return 'Switch to system theme';
-      default:
-        return 'Switch to light theme';
-    }
-  };
-
-  const getTooltipLabel = () => {
-    switch (theme) {
-      case 'light':
-        return 'Light';
-      case 'dark':
-        return 'Dark';
-      default:
-        return 'System';
-    }
-  };
-
   return (
-    <button
-      className="bg-transparent hover:bg-base-200 p-0 w-9 h-9 flex items-center justify-center rounded-full tooltip tooltip-bottom"
+    <button 
+      className="flex items-center justify-center p-2 rounded-full hover:bg-base-200"
       onClick={toggleTheme}
-      aria-label={getAriaLabel()}
-      data-tip={getTooltipLabel()}
     >
-      {renderIcon()}
+      <div className="flex items-center justify-center space-x-1">
+        {renderIcon()}
+        {showLabel && <span className="text-md">Theme</span>}
+      </div>
     </button>
   );
 };

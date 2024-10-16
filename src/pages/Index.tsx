@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../assets/images/react.svg';
+import { FaGithub } from 'react-icons/fa';
 
 const Index: React.FC = () => {
   const handleLinkClick = () => {
@@ -29,6 +30,7 @@ const Index: React.FC = () => {
         className="btn btn-sm btn-ghost mt-4"
         onClick={handleLinkClick}
       >
+        <FaGithub />
         View Source Code
       </a>
     </div>

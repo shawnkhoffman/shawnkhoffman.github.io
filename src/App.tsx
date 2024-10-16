@@ -4,6 +4,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import MainLayout from './layouts/MainLayout';
 import { Suspense, lazy } from 'react';
 import LoadingSpinner from './components/common/LoadingSpinner';
+import AboutThisSite from './pages/AboutThisSite/AboutThisSite';
 
 const Index = lazy(() => import('./pages/Index'));
 const NotFound = lazy(() => import('./pages/404'));
@@ -32,7 +33,8 @@ function App() {
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/about" element={<About />} />
+              <Route path="/about-me" element={<About />} />
+              <Route path="/about-this-site" element={<AboutThisSite />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
