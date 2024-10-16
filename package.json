@@ -16,7 +16,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
-    "react-router-dom": "^6.27.0"
+    "react-router-dom": "^6.27.0",
+    "vite-plugin-sitemap": "^0.7.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
@@ -38,7 +39,6 @@
     "i18next": "^23.16.0",
     "postcss": "^8.4.47",
     "react-i18next": "^15.0.3",
-    "sitemap": "^8.0.0",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.7.0",
