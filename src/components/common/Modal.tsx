@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { FaChevronLeft, FaChevronRight, FaChevronDown } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaChevronDown, FaExpand, FaCompress } from 'react-icons/fa';
 
 interface ModalProps {
   isOpen: boolean;
@@ -32,11 +32,16 @@ const Modal: React.FC<ModalProps> = ({
   const touchStartX = useRef<number | null>(null);
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const [showNavigationHint, setShowNavigationHint] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
       onClose();
     }
+  };
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
   };
 
   const checkContentOverflow = () => {
@@ -122,10 +127,19 @@ const Modal: React.FC<ModalProps> = ({
     >
       <div
         ref={modalRef}
-        className="relative w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl h-[70vh] md:h-[60vh] lg:h-[50vh] flex flex-col bg-base-100 rounded-lg shadow-xl"
+        className={`relative w-full ${
+          isExpanded ? 'max-w-4xl h-[90vh]' : 'max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh]'
+        } flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300`}
       >
-        <div className="p-4 border-b border-base-300">
-          <h2 className="text-xl sm:text-2xl font-semibold text-center">{title}</h2>
+        <div className="p-4 border-b border-base-300 flex justify-between items-center">
+          <h2 className="text-xl sm:text-2xl font-semibold text-center flex-grow">{title}</h2>
+          <button
+            onClick={toggleExpand}
+            className="text-xl p-2 hover:text-info focus:outline-none"
+            aria-label={isExpanded ? 'Compress' : 'Expand'}
+          >
+            {isExpanded ? <FaCompress /> : <FaExpand />}
+          </button>
         </div>
 
         {showNavigation && totalPages > 1 && (
