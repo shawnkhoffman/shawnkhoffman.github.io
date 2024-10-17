@@ -12,47 +12,53 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="footer p-4 bg-base-100 text-base-content">
-      <div className="items-center grid-flow-col">
-        <p>© {new Date().getFullYear()} Shawn Hoffman. All rights reserved.</p>
-      </div>
-      <div className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-        <a
-          href="https://shawnkhoffman.medium.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-transparent hover:bg-base-200 p-0 w-9 h-9 flex items-center justify-center rounded-full"
-          onClick={() => handleLinkClick('Medium')}
-        >
-          <FaMedium className="w-6 h-6" />
-        </a>
-        <a
-          href="https://github.com/shawnkhoffman"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-transparent hover:bg-base-200 p-0 w-9 h-9 flex items-center justify-center rounded-full"
-          onClick={() => handleLinkClick('GitHub')}
-        >
-          <FaGithub className="w-6 h-6" />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/shawnkhoffman"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-transparent hover:bg-base-200 p-0 w-9 h-9 flex items-center justify-center rounded-full"
-          onClick={() => handleLinkClick('LinkedIn')}
-        >
-          <FaLinkedin className="w-6 h-6" />
-        </a>
-        <a
-          href="https://x.com/shawnkhoffman"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-transparent hover:bg-base-200 p-0 w-9 h-9 flex items-center justify-center rounded-full"
-          onClick={() => handleLinkClick('X')}
-        >
-          <FaXTwitter className="w-6 h-6" />
-        </a>
+    <footer className="bg-base-100 shadow-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="py-4 sm:py-6 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+          <div className="text-center sm:text-left">
+            <p className="text-sm text-base-content">
+              © {new Date().getFullYear()} Shawn Hoffman. All rights reserved.
+            </p>
+          </div>
+          <div className="flex items-center space-x-4">
+            <a
+              href="https://shawnkhoffman.medium.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-base-content hover:text-primary transition-colors duration-200"
+              onClick={() => handleLinkClick('Medium')}
+            >
+              <FaMedium className="w-5 h-5" />
+            </a>
+            <a
+              href="https://github.com/shawnkhoffman"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-base-content hover:text-primary transition-colors duration-200"
+              onClick={() => handleLinkClick('GitHub')}
+            >
+              <FaGithub className="w-5 h-5" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/shawnkhoffman"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-base-content hover:text-primary transition-colors duration-200"
+              onClick={() => handleLinkClick('LinkedIn')}
+            >
+              <FaLinkedin className="w-5 h-5" />
+            </a>
+            <a
+              href="https://x.com/shawnkhoffman"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-base-content hover:text-primary transition-colors duration-200"
+              onClick={() => handleLinkClick('X')}
+            >
+              <FaXTwitter className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );

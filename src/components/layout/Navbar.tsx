@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ThemeController from '../common/ThemeController';
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaCaretDown } from 'react-icons/fa';
+import logo from '../../assets/images/react.svg';
 
 const links = [
   { href: '/', label: 'Home' },
@@ -11,7 +12,6 @@ const links = [
       { href: '/about-this-site', label: 'About This Site' },
     ],
   },
-  // { href: '#projects', label: 'Projects' },
 ];
 
 const Navbar: React.FC = () => {
@@ -76,105 +76,121 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <div className="navbar bg-base-100">
-      <div className="flex-1">
-        <a
-          href="/"
-          className="btn btn-ghost normal-case text-xl bg-transparent hover:bg-transparent focus:outline-none"
-          onClick={() => handleLinkClick('Home')}
-        >
-          My Portfolio
-        </a>
-      </div>
+    <nav className="bg-base-100 shadow-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex-shrink-0 flex items-center">
+            <a
+              href="/"
+              className={`text-xl font-bold transform transition-all duration-300 ${
+                isDrawerOpen ? 'translate-x-[-100%] opacity-0' : 'translate-x-0 opacity-100'
+              }`}
+              onClick={() => handleLinkClick('Home')}
+            >
+              My Portfolio
+            </a>
+          </div>
 
-      <div className="hidden lg:flex flex-none items-center">
-        <ul className="menu menu-horizontal px-1" role="navigation">
-          {links.map((link, index) => (
-            <li key={index}>
-              {link.submenu ? (
-                <details
-                  ref={aboutRef}
-                  className="relative"
-                  open={isAboutOpen}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <summary
-                    className="flex items-center cursor-pointer"
-                    onClick={toggleAboutMenu}
+          <div className="hidden lg:flex items-center space-x-4">
+            {links.map((link, index) => (
+              <div key={index} className="relative">
+                {link.submenu ? (
+                  <details
+                    ref={aboutRef}
+                    className="group list-none"
+                    open={isAboutOpen}
+                    onToggle={(e) => setIsAboutOpen((e.target as HTMLDetailsElement).open)}
+                  >
+                    <summary
+                      className="flex items-center w-full px-3 py-2 text-base font-medium rounded-md hover:bg-base-200 cursor-pointer"
+                      onClick={toggleAboutMenu}
+                    >
+                      {link.label}
+                      <FaCaretDown
+                        className={`ml-1 transition-transform duration-300 ${
+                          isAboutOpen ? 'rotate-180' : ''
+                        } hidden lg:inline`}
+                      />
+                    </summary>
+                    <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-base-100 ring-1 ring-black ring-opacity-5 overflow-hidden transition-all duration-300 origin-top-right">
+                      <div className="py-1" role="menu" aria-orientation="vertical">
+                        {link.submenu.map((submenuItem, subIndex) => (
+                          <a
+                            key={`${index}-${subIndex}`}
+                            href={submenuItem.href}
+                            className="block px-4 py-2 text-sm text-base-content hover:bg-base-200"
+                            onClick={() => handleLinkClick(submenuItem.label)}
+                          >
+                            {submenuItem.label}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </details>
+                ) : (
+                  <a
+                    href={link.href}
+                    className="px-3 py-2 rounded-md text-base font-medium hover:bg-base-200"
+                    onClick={() => handleLinkClick(link.label)}
                   >
                     {link.label}
-                  </summary>
-                  <ul className="bg-base-100 rounded-lg p-2 shadow-lg mt-1">
-                    {link.submenu.map((submenuItem, subIndex) => (
-                      <li key={`${index}-${subIndex}`}>
-                        <a
-                          href={submenuItem.href}
-                          className="text-sm text-base-content hover:text-primary whitespace-nowrap"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleLinkClick(submenuItem.label);
-                          }}
-                        >
-                          {submenuItem.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </details>
-              ) : (
-                <a
-                  href={link.href}
-                  className="text-sm text-base-content hover:text-primary"
-                  onClick={() => handleLinkClick(link.label)}
-                >
-                  {link.label}
-                </a>
-              )}
-            </li>
-          ))}
-        </ul>
-        <ThemeController />
+                  </a>
+                )}
+              </div>
+            ))}
+            <ThemeController />
+          </div>
+
+          <div className="flex items-center lg:hidden">
+            <button
+              className="inline-flex items-center justify-center p-2 rounded-md text-base-content hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+              onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+            >
+              <FaBars className="block h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div className="flex-none lg:hidden">
-        <button
-          className="btn btn-ghost"
-          onClick={() => setIsDrawerOpen(true)}
+      <div
+        className={`lg:hidden fixed inset-0 z-50 transition-opacity duration-300 ${
+          isDrawerOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div
+          ref={drawerRef}
+          className={`fixed inset-y-0 right-0 w-full max-w-xs bg-base-100 shadow-lg transform transition-transform duration-300 ease-in-out ${
+            isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
         >
-          <FaBars className="text-xl" />
-        </button>
-
-        {isDrawerOpen && (
-          <div
-            className="fixed inset-0 z-50 bg-base-200 bg-opacity-90 transition-opacity"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            <div
-              ref={drawerRef}
-              className="absolute top-0 right-0 w-64 h-full bg-base-100 shadow-lg flex flex-col"
-            >
-              <button
-                className="btn btn-ghost absolute top-2 right-2"
-                onClick={() => setIsDrawerOpen(false)}
-              >
-                Close
-              </button>
-              <ul className="menu bg-base-200 text-base-content p-4 flex-grow">
+          <div className="h-full flex flex-col">
+            <div className="px-4 pt-5 pb-4 flex items-center border-b border-base-300">
+              <span className="text-xl font-bold mr-3">My Portfolio</span>
+              <img
+                src={logo}
+                className="animate-spinSlow w-6 h-6"
+                alt="React Logo"
+                loading="lazy"
+              />
+            </div>
+            <div className="flex-grow px-4 pt-5 pb-4 space-y-4">
+              <nav className="space-y-2">
                 {links.map((link, index) => (
-                  <li key={`drawer-${index}`}>
+                  <div key={`mobile-${index}`}>
                     {link.submenu ? (
-                      <details className="relative">
-                        <summary className="flex items-center cursor-pointer">
-                          {link.label}
+                      <details className="group list-none">
+                        <summary className="flex items-center w-full px-3 py-2 text-base font-medium rounded-md hover:bg-base-200 cursor-pointer">
+                          <span>{link.label}</span>
                         </summary>
-                        <ul className="p-2">
+                        <ul className="pl-4 mt-2 space-y-1">
                           {link.submenu.map((submenuItem, subIndex) => (
-                            <li key={`drawer-${index}-${subIndex}`}>
+                            <li key={`mobile-${index}-${subIndex}`}>
                               <a
                                 href={submenuItem.href}
-                                className="text-sm text-base-content hover:text-primary"
+                                className="block px-3 py-2 text-sm font-medium rounded-md hover:bg-base-200"
                                 onClick={() => handleLinkClick(submenuItem.label)}
                               >
                                 {submenuItem.label}
@@ -186,23 +202,28 @@ const Navbar: React.FC = () => {
                     ) : (
                       <a
                         href={link.href}
-                        className="text-sm text-base-content hover:text-primary"
+                        className="block px-3 py-2 text-base font-medium rounded-md hover:bg-base-200"
                         onClick={() => handleLinkClick(link.label)}
                       >
                         {link.label}
                       </a>
                     )}
-                  </li>
+                  </div>
                 ))}
-              </ul>
-              <div className="p-4 border-t border-base-300 flex items-center">
-                <ThemeController showLabel={true} />
+              </nav>
+            </div>
+            <div className="mt-auto px-4 py-4 border-t border-base-300">
+              <div className="w-full">
+                <ThemeController
+                  showLabel={true}
+                  className="block px-3 py-2 text-base font-medium rounded-md hover:bg-base-200 w-full"
+                />
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

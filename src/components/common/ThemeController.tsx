@@ -7,9 +7,10 @@ type DeviceType = 'desktop' | 'mobile' | 'tablet';
 
 interface ThemeControllerProps {
   showLabel?: boolean;
+  className?: string;
 }
 
-const ThemeController: React.FC<ThemeControllerProps> = ({ showLabel = false }) => {
+const ThemeController: React.FC<ThemeControllerProps> = ({ showLabel = false, className = '' }) => {
   const { theme, setTheme } = useTheme();
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [deviceType, setDeviceType] = useState<DeviceType>('desktop');
@@ -91,7 +92,7 @@ const ThemeController: React.FC<ThemeControllerProps> = ({ showLabel = false }) 
 
   return (
     <button 
-      className="flex items-center justify-center p-2 rounded-full hover:bg-base-200"
+      className={`flex items-center justify-center p-2 rounded-full hover:bg-base-200 ${className}`}
       onClick={toggleTheme}
     >
       <div className="flex items-center justify-center space-x-1">
