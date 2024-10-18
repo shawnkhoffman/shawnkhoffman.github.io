@@ -128,8 +128,10 @@ const Modal: React.FC<ModalProps> = ({
       <div
         ref={modalRef}
         className={`relative w-full ${
-          isExpanded ? 'max-w-4xl h-[90vh]' : 'max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh]'
-        } flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300`}
+          isExpanded
+            ? 'max-w-4xl h-[90vh]'
+            : 'max-w-[90vw] md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh]'
+        } flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8`}
       >
         <div className="p-4 border-b border-base-300 flex justify-between items-center">
           <h2 className="text-xl sm:text-2xl font-semibold text-center flex-grow">{title}</h2>
