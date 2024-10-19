@@ -13,7 +13,7 @@ const CareerTimeline: React.FC = () => {
     {
       date: '2024 - Present',
       title: 'Senior Software Engineer - Crunchyroll',
-      description: 'Developing next generation video transcoding and streaming services for millions of concurrent users.',
+      description: 'Developing next generation video streaming experience for millions of concurrent users.',
       position: 'start',
     },
     {

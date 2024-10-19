@@ -27,8 +27,9 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="text-base-content hover:text-primary transition-colors duration-200"
               onClick={() => handleLinkClick('Medium')}
+              aria-label="Visit my Medium profile"
             >
-              <FaMedium className="w-5 h-5" />
+              <FaMedium className="w-5 h-5" aria-hidden="true" />
             </a>
             <a
               href="https://github.com/shawnkhoffman"
@@ -36,8 +37,9 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="text-base-content hover:text-primary transition-colors duration-200"
               onClick={() => handleLinkClick('GitHub')}
+              aria-label="Visit my GitHub profile"
             >
-              <FaGithub className="w-5 h-5" />
+              <FaGithub className="w-5 h-5" aria-hidden="true" />
             </a>
             <a
               href="https://www.linkedin.com/in/shawnkhoffman"
@@ -45,8 +47,9 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="text-base-content hover:text-primary transition-colors duration-200"
               onClick={() => handleLinkClick('LinkedIn')}
+              aria-label="Visit my LinkedIn profile"
             >
-              <FaLinkedin className="w-5 h-5" />
+              <FaLinkedin className="w-5 h-5" aria-hidden="true" />
             </a>
             <a
               href="https://x.com/shawnkhoffman"
@@ -54,8 +57,9 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="text-base-content hover:text-primary transition-colors duration-200"
               onClick={() => handleLinkClick('X')}
+              aria-label="Visit my X (formerly Twitter) profile"
             >
-              <FaXTwitter className="w-5 h-5" />
+              <FaXTwitter className="w-5 h-5" aria-hidden="true" />
             </a>
           </div>
         </div>

@@ -18,7 +18,6 @@ const Index: React.FC = () => {
         src={logo}
         className="animate-spinSlow w-32 h-32 mb-8 dark:shadow-none"
         alt="React Logo"
-        loading="lazy"
       />
       <h1 className="text-3xl font-bold mb-2">Welcome to My Portfolio</h1>
       <p className="text-lg mb-6">Built in React</p>
@@ -29,9 +28,11 @@ const Index: React.FC = () => {
         rel="noopener noreferrer"
         className="btn btn-sm btn-ghost mt-4"
         onClick={handleLinkClick}
+        aria-label="View the source code of this portfolio on GitHub"
       >
-        <FaGithub />
+        <FaGithub aria-hidden="true" />
         View Source Code
+        <span className="sr-only">View Source Code</span>
       </a>
     </div>
   );

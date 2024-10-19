@@ -16,7 +16,16 @@ jobs:
         with:
           node-version: '22'
       - run: npm ci
-      - run: npm run test
+      - run: npm run test -- --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/*.json
+          flags: unittests
+          verbose: true
 
   lint:
     runs-on: ubuntu-latest

@@ -21,13 +21,21 @@ export default {
         'rotate-moon': 'rotate-counterclockwise 0.1s ease-in-out forwards',
         spinSlow: 'spin 20s linear infinite',
       },
+      fontFamily: {
+        sans: ['system-ui', 'sans-serif'],
+      },
     },
   },
   plugins: [
     require('daisyui'),
   ],
   daisyui: {
-    themes: ["light", "dark"],
-    darkTheme: "dark",
+    themes: ['light', 'dark'],
+    darkTheme: 'dark',
+    styled: true,
+    base: true,
+    utils: true,
+    logs: false,
+    rtl: false,
   },
 }

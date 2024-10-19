@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight, FaChevronDown, FaExpand, FaCompress } from 'react-icons/fa';
 
 interface ModalProps {
@@ -11,8 +11,10 @@ interface ModalProps {
   totalPages?: number;
   currentPage?: number;
   showNavigation?: boolean;
-  showScrollIndicator?: boolean;
   isMobile?: boolean;
+  isExpanded: boolean;
+  onToggleExpand: () => void;
+  triggerOverflowCheck: number;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -26,13 +28,32 @@ const Modal: React.FC<ModalProps> = ({
   currentPage = 0,
   showNavigation = true,
   isMobile = false,
+  isExpanded,
+  onToggleExpand,
+  triggerOverflowCheck,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const touchStartX = useRef<number | null>(null);
-  const [isContentOverflowing, setIsContentOverflowing] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const [showNavigationHint, setShowNavigationHint] = useState(true);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isContentOverflowing, setIsContentOverflowing] = useState(false);
+  const [scrollIndicatorVisible, setScrollIndicatorVisible] = useState(true);
+
+  const checkContentOverflow = () => {
+    if (contentRef.current) {
+      const isOverflowing = contentRef.current.scrollHeight > contentRef.current.clientHeight;
+      setIsContentOverflowing(isOverflowing);
+    }
+  };
+
+  const handleScroll = () => {
+    if (contentRef.current) {
+      const { scrollTop } = contentRef.current;
+      if (scrollTop > 0) {
+        setScrollIndicatorVisible(false);
+      }
+    }
+  };
 
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
@@ -40,44 +61,21 @@ const Modal: React.FC<ModalProps> = ({
     }
   };
 
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
+  const focusTrap = (e: KeyboardEvent) => {
+    const focusableElements = modalRef.current?.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const firstElement = focusableElements?.[0] as HTMLElement;
+    const lastElement = focusableElements?.[focusableElements.length - 1] as HTMLElement;
 
-  const checkContentOverflow = () => {
-    if (contentRef.current) {
-      setIsContentOverflowing(contentRef.current.scrollHeight > contentRef.current.clientHeight);
-    }
-  };
-
-  const handleScroll = () => {
-    if (contentRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = contentRef.current;
-      if (scrollTop > 0 || scrollTop + clientHeight >= scrollHeight) {
-        setIsContentOverflowing(false);
+    if (e.key === 'Tab') {
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
       }
     }
   };
-
-  const handleTouchStart = (e: TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = useCallback(
-    (e: TouchEvent) => {
-      if (touchStartX.current !== null) {
-        const touchEndX = e.changedTouches[0].clientX;
-        const diffX = touchStartX.current - touchEndX;
-        if (diffX > 50 && onNext) {
-          onNext();
-        } else if (diffX < -50 && onPrevious) {
-          onPrevious();
-        }
-        touchStartX.current = null;
-      }
-    },
-    [onNext, onPrevious]
-  );
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -87,60 +85,84 @@ const Modal: React.FC<ModalProps> = ({
       } else if (e.key === 'ArrowLeft' && onPrevious) {
         onPrevious();
         setShowNavigationHint(false);
+      } else if (e.key === 'Escape') {
+        onClose();
       }
     };
 
     if (isOpen) {
       document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener('keydown', focusTrap);
+      closeButtonRef.current?.focus();
+      checkContentOverflow();
+
+      document.body.classList.add('overflow-hidden');
     }
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keydown', focusTrap);
+
+      document.body.classList.remove('overflow-hidden');
     };
-  }, [isOpen, onNext, onPrevious]);
+  }, [isOpen, onNext, onPrevious, onClose]);
 
   useEffect(() => {
     if (isOpen) {
-      setTimeout(checkContentOverflow, 100);
-      setShowNavigationHint(true);
+      checkContentOverflow();
+    }
+  }, [isOpen, currentPage, isExpanded, triggerOverflowCheck]);
 
-      if (isMobile) {
-        document.addEventListener('touchstart', handleTouchStart);
-        document.addEventListener('touchend', handleTouchEnd);
-      }
+  useEffect(() => {
+    const currentContent = contentRef.current;
+    
+    const observer = new ResizeObserver(() => {
+      checkContentOverflow();
+    });
+
+    if (currentContent) {
+      observer.observe(currentContent);
     }
 
     return () => {
-      if (isMobile) {
-        document.removeEventListener('touchstart', handleTouchStart);
-        document.removeEventListener('touchend', handleTouchEnd);
+      if (currentContent) {
+        observer.unobserve(currentContent);
       }
     };
-  }, [isOpen, isMobile, handleTouchEnd]);
+  }, [isOpen, isExpanded, currentPage, triggerOverflowCheck]);
 
   if (!isOpen) return null;
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
       onClick={handleOutsideClick}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      tabIndex={-1}
     >
       <div
         ref={modalRef}
         className={`relative w-full ${
           isExpanded
-            ? 'max-w-4xl h-[90vh]'
+            ? 'max-w-[95vw] md:max-w-4xl lg:max-w-5xl h-[85vh]'
             : 'max-w-[90vw] md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh]'
         } flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8`}
+        onClick={(e) => e.stopPropagation()}
+        tabIndex={-1}
       >
         <div className="p-4 border-b border-base-300 flex justify-between items-center">
-          <h2 className="text-xl sm:text-2xl font-semibold text-center flex-grow">{title}</h2>
+          <h2 id="modal-title" className="text-xl sm:text-2xl font-semibold text-center flex-grow">
+            {title}
+          </h2>
           <button
-            onClick={toggleExpand}
+            ref={closeButtonRef}
+            onClick={onToggleExpand}
             className="text-xl p-2 hover:text-info focus:outline-none"
-            aria-label={isExpanded ? 'Compress' : 'Expand'}
+            aria-label={isExpanded ? 'Compress modal' : 'Expand modal'}
           >
-            {isExpanded ? <FaCompress /> : <FaExpand />}
+            {isExpanded ? <FaCompress aria-hidden="true" /> : <FaExpand aria-hidden="true" />}
           </button>
         </div>
 
@@ -155,9 +177,9 @@ const Modal: React.FC<ModalProps> = ({
                   setShowNavigationHint(false);
                 }
               }}
-              aria-label="Previous"
+              aria-label="Go to the previous page"
             >
-              <FaChevronLeft className="text-5xl" />
+              <FaChevronLeft className="text-5xl" aria-hidden="true" />
             </button>
             <button
               className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
@@ -168,35 +190,46 @@ const Modal: React.FC<ModalProps> = ({
                   setShowNavigationHint(false);
                 }
               }}
-              aria-label="Next"
+              aria-label="Go to the next page"
             >
-              <FaChevronRight className="text-5xl" />
+              <FaChevronRight className="text-5xl" aria-hidden="true" />
             </button>
           </>
         )}
 
-        <div ref={contentRef} className="p-6 flex-grow overflow-y-auto relative" onScroll={handleScroll}>
+        <div
+          ref={contentRef}
+          className="p-6 pb-10 flex-grow overflow-y-auto relative"
+          onScroll={handleScroll}
+        >
           {content}
 
-          {isContentOverflowing && (
+          {isContentOverflowing && scrollIndicatorVisible && (
             <div className="absolute bottom-2 right-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2">
-              <FaChevronDown className="animate-bounce text-xl text-info" />
+              <FaChevronDown className="animate-bounce text-xl text-info" aria-hidden="true" />
               <span className="text-sm text-info">Scroll down to see more</span>
             </div>
           )}
         </div>
 
-        {showNavigation && showNavigationHint && totalPages > 1 && !isMobile && (
-          <div className="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2">
-            <span className="text-sm text-info">Use ← → arrow keys to navigate</span>
-          </div>
-        )}
-
         <div className="p-4 border-t border-base-300 flex justify-end">
-          <button className="btn btn-sm" onClick={onClose}>
+          <button
+            ref={closeButtonRef}
+            className="btn btn-sm"
+            onClick={onClose}
+            aria-label="Close modal"
+          >
             Close
           </button>
         </div>
+
+        {showNavigation && showNavigationHint && totalPages > 1 && (
+          <div className="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2">
+            <span className="text-sm text-info">
+              {isMobile ? 'Swipe left or right to navigate' : 'Use ← → arrow keys to navigate'}
+            </span>
+          </div>
+        )}
 
         {totalPages > 1 && (
           <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2">
@@ -204,6 +237,7 @@ const Modal: React.FC<ModalProps> = ({
               <div
                 key={index}
                 className={`w-3 h-3 rounded-full ${currentPage === index ? 'bg-info' : 'bg-neutral-content'}`}
+                aria-label={`Page ${index + 1} of ${totalPages}`}
               />
             ))}
           </div>

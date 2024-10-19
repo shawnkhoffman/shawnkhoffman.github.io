@@ -16,6 +16,7 @@ const CareerTimelineItem: React.FC<CareerTimelineItemProps> = ({ date, title, de
           viewBox="0 0 20 20"
           fill="currentColor"
           className="h-5 w-5"
+          aria-hidden="true"
         >
           <path
             fillRule="evenodd"
@@ -25,8 +26,8 @@ const CareerTimelineItem: React.FC<CareerTimelineItemProps> = ({ date, title, de
         </svg>
       </div>
       <div className={`timeline-${position} mb-10 md:text-${position === 'start' ? 'end' : 'start'}`}>
-        <time className="font-mono italic">{date}</time>
-        <div className="text-lg font-black">{title}</div>
+        <time className="font-mono italic" aria-label={`Date: ${date}`}>{date}</time>
+        <h3 className="text-lg font-black" aria-label={`Title: ${title}`}>{title}</h3>
         <p>{description}</p>
       </div>
       <hr />

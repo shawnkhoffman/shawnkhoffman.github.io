@@ -13,12 +13,16 @@ const Skills: React.FC = () => {
     const [currentModalIndex, setCurrentModalIndex] = useState<number | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [isModalExpanded, setIsModalExpanded] = useState(true);
+    const [triggerOverflowCheck, setTriggerOverflowCheck] = useState(0);
 
     useEffect(() => {
         const checkIfMobile = () => {
             setIsMobile('ontouchstart' in window || window.innerWidth <= 640);
         };
         checkIfMobile();
+        window.addEventListener('resize', checkIfMobile);
+        return () => window.removeEventListener('resize', checkIfMobile);
     }, []);
 
     const modals = [
@@ -50,7 +54,7 @@ const Skills: React.FC = () => {
                     </p>
                     <h4 className="font-bold text-lg mb-3">Crunchyroll</h4>
                     <p className="leading-relaxed mb-6">
-                        Currently, I specialize in full-stack web development and media engineering at scale. I’ve built media transcoding pipelines and video playback services and am leading efforts to create self-service infrastructure platforms using Backstage, empowering teams to independently manage and deploy services, driving operational efficiency.
+                        Currently, I specialize in full-stack web development and media engineering at scale. I've built media transcoding pipelines and video playback services and am leading efforts to create self-service infrastructure platforms using Backstage, empowering teams to independently manage and deploy services, driving operational efficiency.
                     </p>
                 </>
             ),
@@ -199,6 +203,11 @@ const Skills: React.FC = () => {
         );
     };
 
+    const toggleModalExpand = () => {
+        setIsModalExpanded(!isModalExpanded);
+        setTriggerOverflowCheck(prev => prev + 1);
+    };
+
     return (
         <div className="w-full max-w-5xl mb-10 p-6 bg-base-100 rounded-lg shadow-lg">
             <h2 className="text-2xl font-semibold mb-6 text-center">Skills</h2>
@@ -226,6 +235,9 @@ const Skills: React.FC = () => {
                     totalPages={modals.length}
                     currentPage={currentModalIndex}
                     isMobile={isMobile}
+                    isExpanded={isModalExpanded}
+                    onToggleExpand={toggleModalExpand}
+                    triggerOverflowCheck={triggerOverflowCheck}
                 />
             )}
         </div>

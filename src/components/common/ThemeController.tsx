@@ -57,9 +57,9 @@ const ThemeController: React.FC<ThemeControllerProps> = ({ showLabel = false, cl
 
     switch (theme) {
       case 'light':
-        return <FaSun className={`text-content ${combinedClasses}`} />;
+        return <FaSun className={`text-content ${combinedClasses}`} aria-hidden="true" />;
       case 'dark':
-        return <FaMoon className={`text-content ${combinedClasses}`} />;
+        return <FaMoon className={`text-content ${combinedClasses}`} aria-hidden="true" />;
       case 'system':
       default:
         return renderSystemIcon(combinedClasses);
@@ -69,11 +69,11 @@ const ThemeController: React.FC<ThemeControllerProps> = ({ showLabel = false, cl
   const renderSystemIcon = (combinedClasses: string) => {
     switch (deviceType) {
       case 'mobile':
-        return <FaMobileAlt className={`text-info ${combinedClasses}`} />;
+        return <FaMobileAlt className={`text-info ${combinedClasses}`} aria-hidden="true" />;
       case 'tablet':
-        return <FaTabletAlt className={`text-info ${combinedClasses}`} />;
+        return <FaTabletAlt className={`text-info ${combinedClasses}`} aria-hidden="true" />;
       default:
-        return <FaDesktop className={`text-info ${combinedClasses}`} />;
+        return <FaDesktop className={`text-info ${combinedClasses}`} aria-hidden="true" />;
     }
   };
 
@@ -94,6 +94,7 @@ const ThemeController: React.FC<ThemeControllerProps> = ({ showLabel = false, cl
     <button 
       className={`flex items-center justify-center p-2 rounded-full hover:bg-base-200 ${className}`}
       onClick={toggleTheme}
+      aria-label={`Switch theme to ${theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'} mode`}
     >
       <div className="flex items-center justify-center space-x-1">
         {renderIcon()}

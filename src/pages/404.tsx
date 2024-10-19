@@ -75,17 +75,17 @@ const NotFound: React.FC = () => {
             {gifs[currentIndex] && (
                 <img
                     src={gifs[currentIndex]}
-                    alt="Funny 404 gif"
+                    alt="A funny gif representing a 404 error"
                     className="w-full max-w-xs sm:max-w-md rounded-lg shadow-lg mb-4"
                 />
             )}
             <h1 className="text-2xl sm:text-4xl font-bold mb-4">404 - Page Not Found</h1>
             <p className="text-base sm:text-lg mb-6">{messages[currentIndex]}</p>
             <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                <a href="/" className="btn btn-primary w-full sm:w-auto">
+                <a href="/" className="btn btn-primary w-full sm:w-auto" aria-label="Return to the homepage">
                     Go back Home
                 </a>
-                <button className="btn btn-secondary w-full sm:w-auto" onClick={handleNextMeme}>
+                <button className="btn btn-secondary w-full sm:w-auto" onClick={handleNextMeme} aria-label="Show next meme">
                     Next Meme
                 </button>
             </div>

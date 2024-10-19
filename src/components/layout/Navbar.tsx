@@ -86,6 +86,7 @@ const Navbar: React.FC = () => {
                 isDrawerOpen ? 'translate-x-[-100%] opacity-0' : 'translate-x-0 opacity-100'
               }`}
               onClick={() => handleLinkClick('Home')}
+              aria-label="My Portfolio"
             >
               My Portfolio
             </a>
@@ -104,15 +105,19 @@ const Navbar: React.FC = () => {
                     <summary
                       className="flex items-center w-full px-3 py-2 text-base font-medium rounded-md hover:bg-base-200 cursor-pointer"
                       onClick={toggleAboutMenu}
+                      aria-label="About Menu"
+                      aria-expanded={isAboutOpen}
+                      role="button"
                     >
                       {link.label}
                       <FaCaretDown
                         className={`ml-1 transition-transform duration-300 ${
                           isAboutOpen ? 'rotate-180' : ''
                         } hidden lg:inline`}
+                        aria-hidden="true"
                       />
                     </summary>
-                    <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-base-100 ring-1 ring-black ring-opacity-5 overflow-hidden transition-all duration-300 origin-top-right">
+                    <div className={`absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-base-100 ring-1 ring-black ring-opacity-5 overflow-hidden transition-all duration-300 origin-top-right ${isAboutOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                       <div className="py-1" role="menu" aria-orientation="vertical">
                         {link.submenu.map((submenuItem, subIndex) => (
                           <a
@@ -120,6 +125,7 @@ const Navbar: React.FC = () => {
                             href={submenuItem.href}
                             className="block px-4 py-2 text-sm text-base-content hover:bg-base-200"
                             onClick={() => handleLinkClick(submenuItem.label)}
+                            aria-label={submenuItem.label}
                           >
                             {submenuItem.label}
                           </a>
@@ -132,6 +138,7 @@ const Navbar: React.FC = () => {
                     href={link.href}
                     className="px-3 py-2 rounded-md text-base font-medium hover:bg-base-200"
                     onClick={() => handleLinkClick(link.label)}
+                    aria-label={link.label}
                   >
                     {link.label}
                   </a>
@@ -145,6 +152,8 @@ const Navbar: React.FC = () => {
             <button
               className="inline-flex items-center justify-center p-2 rounded-md text-base-content hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
               onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+              aria-label="Toggle navigation"
+              aria-expanded={isDrawerOpen}
             >
               <FaBars className="block h-6 w-6" aria-hidden="true" />
             </button>
@@ -159,9 +168,13 @@ const Navbar: React.FC = () => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
+        aria-hidden={!isDrawerOpen}
       >
         <div
           ref={drawerRef}
+          role="menu"
+          aria-label="Mobile navigation drawer"
+          aria-hidden={!isDrawerOpen}
           className={`fixed inset-y-0 right-0 w-full max-w-xs bg-base-100 shadow-lg transform transition-transform duration-300 ease-in-out ${
             isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
@@ -173,7 +186,6 @@ const Navbar: React.FC = () => {
                 src={logo}
                 className="animate-spinSlow w-6 h-6"
                 alt="React Logo"
-                loading="lazy"
               />
             </div>
             <div className="flex-grow px-4 pt-5 pb-4 space-y-4">
@@ -192,6 +204,7 @@ const Navbar: React.FC = () => {
                                 href={submenuItem.href}
                                 className="block px-3 py-2 text-sm font-medium rounded-md hover:bg-base-200"
                                 onClick={() => handleLinkClick(submenuItem.label)}
+                                aria-label={submenuItem.label}
                               >
                                 {submenuItem.label}
                               </a>
@@ -204,6 +217,7 @@ const Navbar: React.FC = () => {
                         href={link.href}
                         className="block px-3 py-2 text-base font-medium rounded-md hover:bg-base-200"
                         onClick={() => handleLinkClick(link.label)}
+                        aria-label={link.label}
                       >
                         {link.label}
                       </a>

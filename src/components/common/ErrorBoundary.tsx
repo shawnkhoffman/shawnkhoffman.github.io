@@ -36,13 +36,20 @@ class ErrorBoundary extends Component<Props, State> {
       const { error } = this.state;
 
       return (
-        <div className="bg-base-100 p-6 rounded-lg shadow-lg max-w-lg w-full">
+        <div
+          className="bg-base-100 p-6 rounded-lg shadow-lg max-w-lg w-full"
+          role="alert"
+          aria-live="assertive"
+        >
           <h1 className="text-2xl font-semibold mb-2 text-error">
             Oops! Something went wrong.
           </h1>
 
           {this.state.error?.message && (
-            <pre className="whitespace-pre-wrap text-sm text-base-content bg-error bg-opacity-10 p-4 rounded-lg font-mono mb-4">
+            <pre
+              className="whitespace-pre-wrap text-sm text-base-content bg-error bg-opacity-10 p-4 rounded-lg font-mono mb-4"
+              aria-live="polite"
+            >
               {this.state.error.message}
             </pre>
           )}
@@ -109,6 +116,7 @@ class ErrorBoundary extends Component<Props, State> {
             <button
               className="btn btn-primary mt-4"
               onClick={() => window.location.reload()}
+              aria-label="Reload the page to try again"
             >
               Reload Page
             </button>
