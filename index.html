@@ -14,7 +14,7 @@
     <!-- Open Graph for Social Sharing -->
     <meta property="og:title" content="Shawn Hoffman's Portfolio" />
     <meta property="og:description" content="A showcase of Shawn Hoffman's professional portfolio." />
-    <meta property="og:image" content="/assets/og-image.jpg" />
+    <meta property="og:image" content="/assets/react.svg" />
     <meta property="og:url" content="https://shawnhoffman.dev" />
     <meta property="og:type" content="website" />
 
@@ -22,7 +22,17 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Shawn Hoffman's Portfolio" />
     <meta name="twitter:description" content="Showcasing projects, contact details, and more." />
-    <meta name="twitter:image" content="/assets/twitter-image.jpg" />
+    <meta name="twitter:image" content="/assets/react.svg" />
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="data:application/octet-stream;base64,aW1wb3J0IHsgU3RyaWN0TW9kZSB9IGZyb20gJ3JlYWN0JzsKaW1wb3J0IHsgY3JlYXRlUm9vdCB9IGZyb20gJ3JlYWN0LWRvbS9jbGllbnQnOwppbXBvcnQgQXBwIGZyb20gJy4vQXBwJzsKaW1wb3J0ICcuL3N0eWxlcy9pbmRleC5jc3MnOwoKY3JlYXRlUm9vdChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncm9vdCcpISkucmVuZGVyKAogIDxTdHJpY3RNb2RlPgogICAgPEFwcCAvPgogIDwvU3RyaWN0TW9kZT4KKTs=" as="script" />
+    <link rel="preload" href="/assets/react.svg" as="image" />
+    <link rel="preload" href="/styles/index.css" as="style" />
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_MEASUREMENT_ID}"></script>
@@ -32,8 +42,9 @@
       gtag('js', new Date());
       gtag('config', '${import.meta.env.VITE_GA_MEASUREMENT_ID}', { 'anonymize_ip': true });
     </script>
-    <script type="module" crossorigin src="/assets/index-DVMYrzuz.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Dx-tTJKW.css">
+    <script type="module" crossorigin src="/assets/index-CwhqoZCg.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-B3nmVA3b.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-C4bgwgfC.css">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
   </head>
   <body>
