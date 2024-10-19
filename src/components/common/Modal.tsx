@@ -38,6 +38,8 @@ const Modal: React.FC<ModalProps> = ({
   const [showNavigationHint, setShowNavigationHint] = useState(true);
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const [scrollIndicatorVisible, setScrollIndicatorVisible] = useState(true);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
 
   const checkContentOverflow = () => {
     if (contentRef.current) {
@@ -74,6 +76,25 @@ const Modal: React.FC<ModalProps> = ({
         e.preventDefault();
         firstElement.focus();
       }
+    }
+  };
+
+  const handleTouchStart = (e: TouchEvent) => {
+    setTouchStartX(e.changedTouches[0].screenX);
+  };
+
+  const handleTouchMove = (e: TouchEvent) => {
+    setTouchEndX(e.changedTouches[0].screenX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX - touchEndX > 50 && onNext) {
+      onNext();
+      setShowNavigationHint(false);
+    }
+    if (touchEndX - touchStartX > 50 && onPrevious) {
+      onPrevious();
+      setShowNavigationHint(false);
     }
   };
 
@@ -130,6 +151,25 @@ const Modal: React.FC<ModalProps> = ({
       }
     };
   }, [isOpen, isExpanded, currentPage, triggerOverflowCheck]);
+
+  useEffect(() => {
+    if (isOpen) {
+      const modalElement = modalRef.current;
+      if (modalElement) {
+        modalElement.addEventListener('touchstart', handleTouchStart);
+        modalElement.addEventListener('touchmove', handleTouchMove);
+        modalElement.addEventListener('touchend', handleTouchEnd);
+      }
+
+      return () => {
+        if (modalElement) {
+          modalElement.removeEventListener('touchstart', handleTouchStart);
+          modalElement.removeEventListener('touchmove', handleTouchMove);
+          modalElement.removeEventListener('touchend', handleTouchEnd);
+        }
+      };
+    }
+  }, [isOpen, touchStartX, touchEndX]);
 
   if (!isOpen) return null;
 
