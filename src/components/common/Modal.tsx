@@ -39,32 +39,36 @@ const Modal: React.FC<ModalProps> = ({
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const [scrollIndicatorVisible, setScrollIndicatorVisible] = useState(true);
   const [touchStartX, setTouchStartX] = useState(0);
+  const [touchStartY, setTouchStartY] = useState(0);
   const [touchEndX, setTouchEndX] = useState(0);
+  const [touchEndY, setTouchEndY] = useState(0);
 
-  const checkContentOverflow = () => {
+  const checkContentOverflow = useCallback(() => {
     if (contentRef.current) {
       const isOverflowing = contentRef.current.scrollHeight > contentRef.current.clientHeight;
       setIsContentOverflowing(isOverflowing);
     }
-  };
+  }, []);
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (contentRef.current) {
       const { scrollTop } = contentRef.current;
       if (scrollTop > 0) {
         setScrollIndicatorVisible(false);
       }
     }
-  };
+  }, []);
 
-  const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleOutsideClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
       onClose();
     }
-  };
+  }, [onClose]);
 
-  const focusTrap = (e: KeyboardEvent) => {
-    const focusableElements = modalRef.current?.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  const focusTrap = useCallback((e: KeyboardEvent) => {
+    const focusableElements = modalRef.current?.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
     const firstElement = focusableElements?.[0] as HTMLElement;
     const lastElement = focusableElements?.[focusableElements.length - 1] as HTMLElement;
 
@@ -77,26 +81,34 @@ const Modal: React.FC<ModalProps> = ({
         firstElement.focus();
       }
     }
-  };
+  }, []);
 
-  const handleTouchStart = (e: TouchEvent) => {
-    setTouchStartX(e.changedTouches[0].screenX);
-  };
+  const handleTouchStart = useCallback((e: TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+    setTouchStartY(e.touches[0].clientY);
+  }, []);
 
-  const handleTouchMove = (e: TouchEvent) => {
-    setTouchEndX(e.changedTouches[0].screenX);
-  };
+  const handleTouchMove = useCallback((e: TouchEvent) => {
+    setTouchEndX(e.touches[0].clientX);
+    setTouchEndY(e.touches[0].clientY);
+  }, []);
 
   const handleTouchEnd = useCallback(() => {
-    if (touchStartX - touchEndX > 50 && onNext) {
-      onNext();
-      setShowNavigationHint(false);
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (Math.abs(deltaX) > 50) {
+        if (deltaX > 0 && onPrevious) {
+          onPrevious();
+          setShowNavigationHint(false);
+        } else if (deltaX < 0 && onNext) {
+          onNext();
+          setShowNavigationHint(false);
+        }
+      }
     }
-    if (touchEndX - touchStartX > 50 && onPrevious) {
-      onPrevious();
-      setShowNavigationHint(false);
-    }
-  }, [touchStartX, touchEndX, onNext, onPrevious]);
+  }, [touchStartX, touchStartY, touchEndX, touchEndY, onNext, onPrevious]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -116,23 +128,21 @@ const Modal: React.FC<ModalProps> = ({
       document.addEventListener('keydown', focusTrap);
       closeButtonRef.current?.focus();
       checkContentOverflow();
-
       document.body.classList.add('overflow-hidden');
     }
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('keydown', focusTrap);
-
       document.body.classList.remove('overflow-hidden');
     };
-  }, [isOpen, onNext, onPrevious, onClose]);
+  }, [isOpen, onNext, onPrevious, onClose, focusTrap, checkContentOverflow]);
 
   useEffect(() => {
     if (isOpen) {
       checkContentOverflow();
     }
-  }, [isOpen, currentPage, isExpanded, triggerOverflowCheck]);
+  }, [isOpen, currentPage, isExpanded, triggerOverflowCheck, checkContentOverflow]);
 
   useEffect(() => {
     const currentContent = contentRef.current;
@@ -150,24 +160,23 @@ const Modal: React.FC<ModalProps> = ({
         observer.unobserve(currentContent);
       }
     };
-  }, [isOpen, isExpanded, currentPage, triggerOverflowCheck]);
+  }, [checkContentOverflow]);
 
   useEffect(() => {
     const modalElement = modalRef.current;
+    
     if (isOpen && modalElement) {
       modalElement.addEventListener('touchstart', handleTouchStart);
       modalElement.addEventListener('touchmove', handleTouchMove);
       modalElement.addEventListener('touchend', handleTouchEnd);
-    }
 
-    return () => {
-      if (modalElement) {
+      return () => {
         modalElement.removeEventListener('touchstart', handleTouchStart);
         modalElement.removeEventListener('touchmove', handleTouchMove);
         modalElement.removeEventListener('touchend', handleTouchEnd);
-      }
-    };
-  }, [isOpen, handleTouchEnd]);
+      };
+    }
+  }, [isOpen, handleTouchStart, handleTouchMove, handleTouchEnd]);
 
   if (!isOpen) return null;
 
@@ -204,12 +213,11 @@ const Modal: React.FC<ModalProps> = ({
           </button>
         </div>
 
-        {showNavigation && totalPages > 1 && (
+        {showNavigation && totalPages > 1 && !isMobile && (
           <>
             <button
               className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
-              onClick={(e) => {
-                e.stopPropagation();
+              onClick={() => {
                 if (onPrevious) {
                   onPrevious();
                   setShowNavigationHint(false);
@@ -221,8 +229,7 @@ const Modal: React.FC<ModalProps> = ({
             </button>
             <button
               className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
-              onClick={(e) => {
-                e.stopPropagation();
+              onClick={() => {
                 if (onNext) {
                   onNext();
                   setShowNavigationHint(false);
