@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { FaChevronLeft, FaChevronRight, FaChevronDown, FaExpand, FaCompress } from 'react-icons/fa';
 
 interface ModalProps {
@@ -87,7 +87,7 @@ const Modal: React.FC<ModalProps> = ({
     setTouchEndX(e.changedTouches[0].screenX);
   };
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = useCallback(() => {
     if (touchStartX - touchEndX > 50 && onNext) {
       onNext();
       setShowNavigationHint(false);
@@ -96,7 +96,7 @@ const Modal: React.FC<ModalProps> = ({
       onPrevious();
       setShowNavigationHint(false);
     }
-  };
+  }, [touchStartX, touchEndX, onNext, onPrevious]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -153,23 +153,21 @@ const Modal: React.FC<ModalProps> = ({
   }, [isOpen, isExpanded, currentPage, triggerOverflowCheck]);
 
   useEffect(() => {
-    if (isOpen) {
-      const modalElement = modalRef.current;
-      if (modalElement) {
-        modalElement.addEventListener('touchstart', handleTouchStart);
-        modalElement.addEventListener('touchmove', handleTouchMove);
-        modalElement.addEventListener('touchend', handleTouchEnd);
-      }
-
-      return () => {
-        if (modalElement) {
-          modalElement.removeEventListener('touchstart', handleTouchStart);
-          modalElement.removeEventListener('touchmove', handleTouchMove);
-          modalElement.removeEventListener('touchend', handleTouchEnd);
-        }
-      };
+    const modalElement = modalRef.current;
+    if (isOpen && modalElement) {
+      modalElement.addEventListener('touchstart', handleTouchStart);
+      modalElement.addEventListener('touchmove', handleTouchMove);
+      modalElement.addEventListener('touchend', handleTouchEnd);
     }
-  }, [isOpen, touchStartX, touchEndX]);
+
+    return () => {
+      if (modalElement) {
+        modalElement.removeEventListener('touchstart', handleTouchStart);
+        modalElement.removeEventListener('touchmove', handleTouchMove);
+        modalElement.removeEventListener('touchend', handleTouchEnd);
+      }
+    };
+  }, [isOpen, handleTouchEnd]);
 
   if (!isOpen) return null;
 
