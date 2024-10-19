@@ -164,21 +164,22 @@ const Modal: React.FC<ModalProps> = ({
 
   useEffect(() => {
     const modalElement = modalRef.current;
-    
     if (isOpen && modalElement) {
       modalElement.addEventListener('touchstart', handleTouchStart);
       modalElement.addEventListener('touchmove', handleTouchMove);
       modalElement.addEventListener('touchend', handleTouchEnd);
+    }
 
-      return () => {
+    return () => {
+      if (modalElement) {
         modalElement.removeEventListener('touchstart', handleTouchStart);
         modalElement.removeEventListener('touchmove', handleTouchMove);
         modalElement.removeEventListener('touchend', handleTouchEnd);
-      };
-    }
+      }
+    };
   }, [isOpen, handleTouchStart, handleTouchMove, handleTouchEnd]);
 
-  if (!isOpen) return null;
+  if (!isOpen) return null;if (!isOpen) return null;
 
   return (
     <div
