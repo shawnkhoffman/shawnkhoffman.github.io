@@ -45,10 +45,17 @@ describe('Navbar', () => {
       },
       writable: true,
     });
+
+    global.ResizeObserver = vi.fn().mockImplementation(() => ({
+      observe: vi.fn(),
+      unobserve: vi.fn(),
+      disconnect: vi.fn(),
+    }));
   });
 
   afterEach(() => {
     vi.restoreAllMocks();
+    document.body.innerHTML = '';
   });
 
   const renderNavbar = () =>
@@ -123,6 +130,20 @@ describe('Navbar', () => {
       fireEvent.mouseDown(document.body);
       expect(screen.queryByRole('link', { name: 'About Me' })).not.toBeVisible();
     });
+
+    it('rotates the caret icon when About menu is toggled', () => {
+      renderNavbar();
+      const aboutButton = screen.getByRole('button', { name: 'About Menu' });
+      const caretIcon = aboutButton.querySelector('svg');
+
+      expect(caretIcon).not.toHaveClass('rotate-180');
+
+      fireEvent.click(aboutButton);
+      expect(caretIcon).toHaveClass('rotate-180');
+
+      fireEvent.click(aboutButton);
+      expect(caretIcon).not.toHaveClass('rotate-180');
+    });
   });
 
   describe('Mobile view', () => {
@@ -170,30 +191,63 @@ describe('Navbar', () => {
       expect(mobileThemeController).toHaveAttribute('data-show-label', 'true');
       expect(mobileThemeController).toHaveClass('block px-3 py-2 text-base font-medium rounded-md hover:bg-base-200 w-full');
     });
+
+    it('renders the React logo in the mobile menu', () => {
+      renderNavbar();
+      const menuButton = screen.getByRole('button', { name: 'Toggle navigation' });
+      fireEvent.click(menuButton);
+
+      const reactLogo = screen.getByAltText('React Logo');
+      expect(reactLogo).toBeInTheDocument();
+      expect(reactLogo).toHaveAttribute('src', '/src/assets/images/react.svg');
+      expect(reactLogo).toHaveClass('animate-spinSlow');
+    });
+
+    it('closes mobile menu on swipe gesture', () => {
+      renderNavbar();
+      const menuButton = screen.getByRole('button', { name: 'Toggle navigation' });
+      fireEvent.click(menuButton);
+
+      const mobileMenu = screen.getByRole('menu', { name: 'Mobile navigation drawer' });
+      
+      fireEvent.touchStart(mobileMenu, { touches: [{ clientX: 0 }] });
+      fireEvent.touchMove(mobileMenu, { touches: [{ clientX: 100 }] });
+      fireEvent.touchEnd(mobileMenu);
+
+      expect(screen.queryByRole('menu', { name: 'Mobile navigation drawer' })).not.toBeInTheDocument();
+    });
+
+    it('sets and removes overflow on document body when toggling mobile menu', () => {
+      renderNavbar();
+      const menuButton = screen.getByRole('button', { name: 'Toggle navigation' });
+
+      fireEvent.click(menuButton);
+      expect(document.body.style.overflow).toBe('hidden');
+
+      fireEvent.click(menuButton);
+      expect(document.body.style.overflow).toBe('');
+    });
+  });
+
+  describe('Link URLs', () => {
+    it('verifies correct URLs for navigation links', () => {
+      renderNavbar();
+
+      expect(screen.getByRole('link', { name: 'My Portfolio' })).toHaveAttribute('href', '/');
+      expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/');
+
+      const aboutButton = screen.getByRole('button', { name: 'About Menu' });
+      fireEvent.click(aboutButton);
+
+      expect(screen.getByRole('link', { name: 'About Me' })).toHaveAttribute('href', '/about-me');
+      expect(screen.getByRole('link', { name: 'About This Site' })).toHaveAttribute('href', '/about-this-site');
+    });
   });
 
   describe('Navbar with localStorage unavailable', () => {
     beforeEach(() => {
       vi.spyOn(window.localStorage, 'getItem').mockReturnValue(null);
       vi.spyOn(window.localStorage, 'setItem').mockImplementation(() => {});
-
-      Object.defineProperty(window, 'matchMedia', {
-        writable: true,
-        value: vi.fn().mockImplementation(query => ({
-          matches: false,
-          media: query,
-          onchange: null,
-          addListener: vi.fn(),
-          removeListener: vi.fn(),
-          addEventListener: vi.fn(),
-          removeEventListener: vi.fn(),
-          dispatchEvent: vi.fn(),
-        })),
-      });
-    });
-
-    afterEach(() => {
-      vi.restoreAllMocks();
     });
 
     it('renders the Navbar and defaults to system light theme if localStorage fails', () => {
@@ -205,7 +259,7 @@ describe('Navbar', () => {
       Object.defineProperty(window, 'matchMedia', {
         writable: true,
         value: vi.fn().mockImplementation(query => ({
-          matches: true,
+          matches: query === '(prefers-color-scheme: dark)',
           media: query,
           onchange: null,
           addListener: vi.fn(),

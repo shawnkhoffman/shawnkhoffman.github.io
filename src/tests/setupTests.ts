@@ -1,5 +1,6 @@
+// setupTests.ts
 import '@testing-library/jest-dom';
-import { afterAll, beforeAll } from 'vitest';
+import { afterAll, beforeAll, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 
 beforeAll(() => {
@@ -10,6 +11,8 @@ beforeAll(() => {
     }
     originalConsoleError(...args);
   };
+
+  vi.mock('*.svg', () => 'mock-svg');
 });
 
 afterAll(() => {
