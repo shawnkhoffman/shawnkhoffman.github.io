@@ -47,6 +47,7 @@ const Modal: React.FC<ModalProps> = ({
     if (contentRef.current) {
       const isOverflowing = contentRef.current.scrollHeight > contentRef.current.clientHeight;
       setIsContentOverflowing(isOverflowing);
+      setScrollIndicatorVisible(isOverflowing);
     }
   }, []);
 

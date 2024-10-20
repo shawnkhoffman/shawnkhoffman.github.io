@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Introduction Component > renders the introduction section with heading and paragraph 1`] = `
+<div>
+  <section
+    aria-labelledby="about-heading"
+    class="w-full max-w-3xl text-center mb-10"
+  >
+    <h1
+      class="text-4xl font-bold mb-4"
+      id="about-heading"
+    >
+      About Me
+    </h1>
+    <p
+      class="text-lg"
+    >
+      I'm a full-stack software engineer with a background in platform and site reliability engineering in media and video streaming. I specialize in building high-quality user experiences using modern web technologies, and highly scalable, reliable cloud software for large, global platforms.
+    </p>
+  </section>
+</div>
+`;

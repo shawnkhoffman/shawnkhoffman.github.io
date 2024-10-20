@@ -1,0 +1,167 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ErrorTestContent > matches snapshot after clearing an error 1`] = `
+<DocumentFragment>
+  <div
+    class="h-full flex flex-col p-4 sm:p-6"
+  >
+    <div
+      class="mb-6"
+    >
+      <p
+        class="mb-4 text-sm sm:text-base"
+      >
+        This website uses an 
+        <strong>
+          ErrorBoundary
+        </strong>
+         to catch and gracefully handle unexpected errors. When an error occurs, instead of crashing the entire site, the ErrorBoundary catches it and displays a relevant error message. This ensures the user experience remains intact even when problems arise.
+      </p>
+      <p
+        class="mb-4 text-sm sm:text-base"
+      >
+        Below you can simulate different types of errors that the ErrorBoundary can catch. Use the dropdown menu to select an error type, then click the "Test" button to simulate that error. You can clear the error afterward by using the "Clear Error" button or just select a different error type.
+      </p>
+    </div>
+    <div
+      class="flex-grow flex flex-col items-center justify-center space-y-6"
+    >
+      <div
+        class="dropdown mb-6 w-full max-w-xs sm:max-w-md"
+      >
+        <div
+          class="btn flex items-center w-full justify-between"
+          role="button"
+          tabindex="0"
+        >
+          Network Error
+          <svg
+            class="ml-2"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        class="flex justify-center gap-4 mb-6"
+      >
+        <button
+          class="btn btn-sm btn-outline"
+        >
+          Test
+        </button>
+        <button
+          class="btn btn-sm btn-outline btn-accent btn-disabled"
+          disabled=""
+        >
+          Clear Error
+        </button>
+      </div>
+      <div
+        class="w-full max-w-xs sm:max-w-md bg-base-200 p-4 sm:p-6 rounded-lg shadow-md mx-auto"
+      >
+        <div
+          class="text-success text-center"
+        >
+          Please select an error to test.
+        </div>
+      </div>
+    </div>
+    <div
+      class="pb-10"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ErrorTestContent > renders the component with initial state and matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="h-full flex flex-col p-4 sm:p-6"
+  >
+    <div
+      class="mb-6"
+    >
+      <p
+        class="mb-4 text-sm sm:text-base"
+      >
+        This website uses an 
+        <strong>
+          ErrorBoundary
+        </strong>
+         to catch and gracefully handle unexpected errors. When an error occurs, instead of crashing the entire site, the ErrorBoundary catches it and displays a relevant error message. This ensures the user experience remains intact even when problems arise.
+      </p>
+      <p
+        class="mb-4 text-sm sm:text-base"
+      >
+        Below you can simulate different types of errors that the ErrorBoundary can catch. Use the dropdown menu to select an error type, then click the "Test" button to simulate that error. You can clear the error afterward by using the "Clear Error" button or just select a different error type.
+      </p>
+    </div>
+    <div
+      class="flex-grow flex flex-col items-center justify-center space-y-6"
+    >
+      <div
+        class="dropdown mb-6 w-full max-w-xs sm:max-w-md"
+      >
+        <div
+          class="btn flex items-center w-full justify-between"
+          role="button"
+          tabindex="0"
+        >
+          Network Error
+          <svg
+            class="ml-2"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        class="flex justify-center gap-4 mb-6"
+      >
+        <button
+          class="btn btn-sm btn-outline"
+        >
+          Test
+        </button>
+        <button
+          class="btn btn-sm btn-outline btn-accent btn-disabled"
+          disabled=""
+        >
+          Clear Error
+        </button>
+      </div>
+      <div
+        class="w-full max-w-xs sm:max-w-md bg-base-200 p-4 sm:p-6 rounded-lg shadow-md mx-auto"
+      >
+        <div
+          class="text-success text-center"
+        >
+          Please select an error to test.
+        </div>
+      </div>
+    </div>
+    <div
+      class="pb-10"
+    />
+  </div>
+</DocumentFragment>
+`;

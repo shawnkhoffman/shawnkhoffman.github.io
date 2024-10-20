@@ -1,0 +1,1692 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Modal > closes the modal on Escape key press 1`] = `
+<div>
+  <div
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="relative w-full max-w-[90vw] md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh] flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8"
+      tabindex="-1"
+    >
+      <div
+        class="p-4 border-b border-base-300 flex justify-between items-center"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-semibold text-center flex-grow"
+          id="modal-title"
+        >
+          Test Modal Title
+        </h2>
+        <button
+          aria-label="Expand modal"
+          class="text-xl p-2 hover:text-info focus:outline-none"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        aria-label="Go to the previous page"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+          />
+        </svg>
+      </button>
+      <button
+        aria-label="Go to the next page"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+          />
+        </svg>
+      </button>
+      <div
+        class="p-6 pb-10 flex-grow overflow-y-auto relative"
+      >
+        <div>
+          Modal Content
+        </div>
+      </div>
+      <div
+        class="p-4 border-t border-base-300 flex justify-end"
+      >
+        <button
+          aria-label="Close modal"
+          class="btn btn-sm"
+        >
+          Close
+        </button>
+      </div>
+      <div
+        class="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2"
+      >
+        <span
+          class="text-sm text-info"
+        >
+          Use ← → arrow keys to navigate
+        </span>
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2"
+      >
+        <div
+          aria-label="Page 1 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 2 of 3"
+          class="w-3 h-3 rounded-full bg-info"
+        />
+        <div
+          aria-label="Page 3 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal > closes the modal when the close button is clicked 1`] = `
+<div>
+  <div
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="relative w-full max-w-[90vw] md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh] flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8"
+      tabindex="-1"
+    >
+      <div
+        class="p-4 border-b border-base-300 flex justify-between items-center"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-semibold text-center flex-grow"
+          id="modal-title"
+        >
+          Test Modal Title
+        </h2>
+        <button
+          aria-label="Expand modal"
+          class="text-xl p-2 hover:text-info focus:outline-none"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        aria-label="Go to the previous page"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+          />
+        </svg>
+      </button>
+      <button
+        aria-label="Go to the next page"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+          />
+        </svg>
+      </button>
+      <div
+        class="p-6 pb-10 flex-grow overflow-y-auto relative"
+      >
+        <div>
+          Modal Content
+        </div>
+      </div>
+      <div
+        class="p-4 border-t border-base-300 flex justify-end"
+      >
+        <button
+          aria-label="Close modal"
+          class="btn btn-sm"
+        >
+          Close
+        </button>
+      </div>
+      <div
+        class="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2"
+      >
+        <span
+          class="text-sm text-info"
+        >
+          Use ← → arrow keys to navigate
+        </span>
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2"
+      >
+        <div
+          aria-label="Page 1 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 2 of 3"
+          class="w-3 h-3 rounded-full bg-info"
+        />
+        <div
+          aria-label="Page 3 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal > displays navigation dots for multiple pages 1`] = `
+<div>
+  <div
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="relative w-full max-w-[90vw] md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh] flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8"
+      tabindex="-1"
+    >
+      <div
+        class="p-4 border-b border-base-300 flex justify-between items-center"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-semibold text-center flex-grow"
+          id="modal-title"
+        >
+          Test Modal Title
+        </h2>
+        <button
+          aria-label="Expand modal"
+          class="text-xl p-2 hover:text-info focus:outline-none"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        aria-label="Go to the previous page"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+          />
+        </svg>
+      </button>
+      <button
+        aria-label="Go to the next page"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+          />
+        </svg>
+      </button>
+      <div
+        class="p-6 pb-10 flex-grow overflow-y-auto relative"
+      >
+        <div>
+          Modal Content
+        </div>
+      </div>
+      <div
+        class="p-4 border-t border-base-300 flex justify-end"
+      >
+        <button
+          aria-label="Close modal"
+          class="btn btn-sm"
+        >
+          Close
+        </button>
+      </div>
+      <div
+        class="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2"
+      >
+        <span
+          class="text-sm text-info"
+        >
+          Use ← → arrow keys to navigate
+        </span>
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2"
+      >
+        <div
+          aria-label="Page 1 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 2 of 3"
+          class="w-3 h-3 rounded-full bg-info"
+        />
+        <div
+          aria-label="Page 3 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal > does not render the modal when isOpen is false 1`] = `<div />`;
+
+exports[`Modal > expands and compresses the modal when the expand button is clicked 1`] = `
+<div>
+  <div
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="relative w-full max-w-[95vw] md:max-w-4xl lg:max-w-5xl h-[85vh] flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8"
+      tabindex="-1"
+    >
+      <div
+        class="p-4 border-b border-base-300 flex justify-between items-center"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-semibold text-center flex-grow"
+          id="modal-title"
+        >
+          Test Modal Title
+        </h2>
+        <button
+          aria-label="Compress modal"
+          class="text-xl p-2 hover:text-info focus:outline-none"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M436 192H312c-13.3 0-24-10.7-24-24V44c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v84h84c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm-276-24V44c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v84H12c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24zm0 300V344c0-13.3-10.7-24-24-24H12c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-84h84c6.6 0 12-5.4 12-12v-40c0-6.6-5.4-12-12-12H312c-13.3 0-24 10.7-24 24v124c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        aria-label="Go to the previous page"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+          />
+        </svg>
+      </button>
+      <button
+        aria-label="Go to the next page"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+          />
+        </svg>
+      </button>
+      <div
+        class="p-6 pb-10 flex-grow overflow-y-auto relative"
+      >
+        <div>
+          Modal Content
+        </div>
+      </div>
+      <div
+        class="p-4 border-t border-base-300 flex justify-end"
+      >
+        <button
+          aria-label="Close modal"
+          class="btn btn-sm"
+        >
+          Close
+        </button>
+      </div>
+      <div
+        class="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2"
+      >
+        <span
+          class="text-sm text-info"
+        >
+          Use ← → arrow keys to navigate
+        </span>
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2"
+      >
+        <div
+          aria-label="Page 1 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 2 of 3"
+          class="w-3 h-3 rounded-full bg-info"
+        />
+        <div
+          aria-label="Page 3 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal > expands and compresses the modal when the expand button is clicked 2`] = `
+<div>
+  <div
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="relative w-full max-w-[90vw] md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh] flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8"
+      tabindex="-1"
+    >
+      <div
+        class="p-4 border-b border-base-300 flex justify-between items-center"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-semibold text-center flex-grow"
+          id="modal-title"
+        >
+          Test Modal Title
+        </h2>
+        <button
+          aria-label="Expand modal"
+          class="text-xl p-2 hover:text-info focus:outline-none"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        aria-label="Go to the previous page"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+          />
+        </svg>
+      </button>
+      <button
+        aria-label="Go to the next page"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+          />
+        </svg>
+      </button>
+      <div
+        class="p-6 pb-10 flex-grow overflow-y-auto relative"
+      >
+        <div>
+          Modal Content
+        </div>
+      </div>
+      <div
+        class="p-4 border-t border-base-300 flex justify-end"
+      >
+        <button
+          aria-label="Close modal"
+          class="btn btn-sm"
+        >
+          Close
+        </button>
+      </div>
+      <div
+        class="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2"
+      >
+        <span
+          class="text-sm text-info"
+        >
+          Use ← → arrow keys to navigate
+        </span>
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2"
+      >
+        <div
+          aria-label="Page 1 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 2 of 3"
+          class="w-3 h-3 rounded-full bg-info"
+        />
+        <div
+          aria-label="Page 3 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal > matches snapshot for single-page modal without navigation 1`] = `
+<div>
+  <div
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="relative w-full max-w-[90vw] md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh] flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8"
+      tabindex="-1"
+    >
+      <div
+        class="p-4 border-b border-base-300 flex justify-between items-center"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-semibold text-center flex-grow"
+          id="modal-title"
+        >
+          Test Modal Title
+        </h2>
+        <button
+          aria-label="Expand modal"
+          class="text-xl p-2 hover:text-info focus:outline-none"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="p-6 pb-10 flex-grow overflow-y-auto relative"
+      >
+        <div>
+          Modal Content
+        </div>
+      </div>
+      <div
+        class="p-4 border-t border-base-300 flex justify-end"
+      >
+        <button
+          aria-label="Close modal"
+          class="btn btn-sm"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal > matches snapshot when modal is expanded 1`] = `
+<div>
+  <div
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="relative w-full max-w-[95vw] md:max-w-4xl lg:max-w-5xl h-[85vh] flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8"
+      tabindex="-1"
+    >
+      <div
+        class="p-4 border-b border-base-300 flex justify-between items-center"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-semibold text-center flex-grow"
+          id="modal-title"
+        >
+          Test Modal Title
+        </h2>
+        <button
+          aria-label="Compress modal"
+          class="text-xl p-2 hover:text-info focus:outline-none"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M436 192H312c-13.3 0-24-10.7-24-24V44c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v84h84c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm-276-24V44c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v84H12c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24zm0 300V344c0-13.3-10.7-24-24-24H12c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-84h84c6.6 0 12-5.4 12-12v-40c0-6.6-5.4-12-12-12H312c-13.3 0-24 10.7-24 24v124c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        aria-label="Go to the previous page"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+          />
+        </svg>
+      </button>
+      <button
+        aria-label="Go to the next page"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+          />
+        </svg>
+      </button>
+      <div
+        class="p-6 pb-10 flex-grow overflow-y-auto relative"
+      >
+        <div>
+          Modal Content
+        </div>
+      </div>
+      <div
+        class="p-4 border-t border-base-300 flex justify-end"
+      >
+        <button
+          aria-label="Close modal"
+          class="btn btn-sm"
+        >
+          Close
+        </button>
+      </div>
+      <div
+        class="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2"
+      >
+        <span
+          class="text-sm text-info"
+        >
+          Use ← → arrow keys to navigate
+        </span>
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2"
+      >
+        <div
+          aria-label="Page 1 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 2 of 3"
+          class="w-3 h-3 rounded-full bg-info"
+        />
+        <div
+          aria-label="Page 3 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal > matches snapshot when modal is in mobile view 1`] = `
+<div>
+  <div
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="relative w-full max-w-[90vw] md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh] flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8"
+      tabindex="-1"
+    >
+      <div
+        class="p-4 border-b border-base-300 flex justify-between items-center"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-semibold text-center flex-grow"
+          id="modal-title"
+        >
+          Test Modal Title
+        </h2>
+        <button
+          aria-label="Expand modal"
+          class="text-xl p-2 hover:text-info focus:outline-none"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="p-6 pb-10 flex-grow overflow-y-auto relative"
+      >
+        <div>
+          Modal Content
+        </div>
+      </div>
+      <div
+        class="p-4 border-t border-base-300 flex justify-end"
+      >
+        <button
+          aria-label="Close modal"
+          class="btn btn-sm"
+        >
+          Close
+        </button>
+      </div>
+      <div
+        class="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2"
+      >
+        <span
+          class="text-sm text-info"
+        >
+          Swipe left or right to navigate
+        </span>
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2"
+      >
+        <div
+          aria-label="Page 1 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 2 of 3"
+          class="w-3 h-3 rounded-full bg-info"
+        />
+        <div
+          aria-label="Page 3 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal > navigates to the next page when the right arrow is clicked 1`] = `
+<div>
+  <div
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="relative w-full max-w-[90vw] md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh] flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8"
+      tabindex="-1"
+    >
+      <div
+        class="p-4 border-b border-base-300 flex justify-between items-center"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-semibold text-center flex-grow"
+          id="modal-title"
+        >
+          Test Modal Title
+        </h2>
+        <button
+          aria-label="Expand modal"
+          class="text-xl p-2 hover:text-info focus:outline-none"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        aria-label="Go to the previous page"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+          />
+        </svg>
+      </button>
+      <button
+        aria-label="Go to the next page"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+          />
+        </svg>
+      </button>
+      <div
+        class="p-6 pb-10 flex-grow overflow-y-auto relative"
+      >
+        <div>
+          Modal Content
+        </div>
+      </div>
+      <div
+        class="p-4 border-t border-base-300 flex justify-end"
+      >
+        <button
+          aria-label="Close modal"
+          class="btn btn-sm"
+        >
+          Close
+        </button>
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2"
+      >
+        <div
+          aria-label="Page 1 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 2 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 3 of 3"
+          class="w-3 h-3 rounded-full bg-info"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal > navigates to the previous page when the left arrow is clicked 1`] = `
+<div>
+  <div
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="relative w-full max-w-[90vw] md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh] flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8"
+      tabindex="-1"
+    >
+      <div
+        class="p-4 border-b border-base-300 flex justify-between items-center"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-semibold text-center flex-grow"
+          id="modal-title"
+        >
+          Test Modal Title
+        </h2>
+        <button
+          aria-label="Expand modal"
+          class="text-xl p-2 hover:text-info focus:outline-none"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        aria-label="Go to the previous page"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+          />
+        </svg>
+      </button>
+      <button
+        aria-label="Go to the next page"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+          />
+        </svg>
+      </button>
+      <div
+        class="p-6 pb-10 flex-grow overflow-y-auto relative"
+      >
+        <div>
+          Modal Content
+        </div>
+      </div>
+      <div
+        class="p-4 border-t border-base-300 flex justify-end"
+      >
+        <button
+          aria-label="Close modal"
+          class="btn btn-sm"
+        >
+          Close
+        </button>
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2"
+      >
+        <div
+          aria-label="Page 1 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 2 of 3"
+          class="w-3 h-3 rounded-full bg-info"
+        />
+        <div
+          aria-label="Page 3 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal > renders the modal with title and content 1`] = `
+<div>
+  <div
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="relative w-full max-w-[90vw] md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh] flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8"
+      tabindex="-1"
+    >
+      <div
+        class="p-4 border-b border-base-300 flex justify-between items-center"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-semibold text-center flex-grow"
+          id="modal-title"
+        >
+          Test Modal Title
+        </h2>
+        <button
+          aria-label="Expand modal"
+          class="text-xl p-2 hover:text-info focus:outline-none"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        aria-label="Go to the previous page"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+          />
+        </svg>
+      </button>
+      <button
+        aria-label="Go to the next page"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+          />
+        </svg>
+      </button>
+      <div
+        class="p-6 pb-10 flex-grow overflow-y-auto relative"
+      >
+        <div>
+          Modal Content
+        </div>
+      </div>
+      <div
+        class="p-4 border-t border-base-300 flex justify-end"
+      >
+        <button
+          aria-label="Close modal"
+          class="btn btn-sm"
+        >
+          Close
+        </button>
+      </div>
+      <div
+        class="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2"
+      >
+        <span
+          class="text-sm text-info"
+        >
+          Use ← → arrow keys to navigate
+        </span>
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2"
+      >
+        <div
+          aria-label="Page 1 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 2 of 3"
+          class="w-3 h-3 rounded-full bg-info"
+        />
+        <div
+          aria-label="Page 3 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal > shows the scroll indicator if content overflows 1`] = `
+<div>
+  <div
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="relative w-full max-w-[90vw] md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh] flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8"
+      tabindex="-1"
+    >
+      <div
+        class="p-4 border-b border-base-300 flex justify-between items-center"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-semibold text-center flex-grow"
+          id="modal-title"
+        >
+          Test Modal Title
+        </h2>
+        <button
+          aria-label="Expand modal"
+          class="text-xl p-2 hover:text-info focus:outline-none"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        aria-label="Go to the previous page"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+          />
+        </svg>
+      </button>
+      <button
+        aria-label="Go to the next page"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+          />
+        </svg>
+      </button>
+      <div
+        class="p-6 pb-10 flex-grow overflow-y-auto relative"
+      >
+        <div>
+          Modal Content
+        </div>
+        <div
+          class="absolute bottom-2 right-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2"
+        >
+          <svg
+            aria-hidden="true"
+            class="animate-bounce text-xl text-info"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"
+            />
+          </svg>
+          <span
+            class="text-sm text-info"
+          >
+            Scroll down to see more
+          </span>
+        </div>
+      </div>
+      <div
+        class="p-4 border-t border-base-300 flex justify-end"
+      >
+        <button
+          aria-label="Close modal"
+          class="btn btn-sm"
+        >
+          Close
+        </button>
+      </div>
+      <div
+        class="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2"
+      >
+        <span
+          class="text-sm text-info"
+        >
+          Use ← → arrow keys to navigate
+        </span>
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2"
+      >
+        <div
+          aria-label="Page 1 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 2 of 3"
+          class="w-3 h-3 rounded-full bg-info"
+        />
+        <div
+          aria-label="Page 3 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal > triggers next page on right arrow key press 1`] = `
+<div>
+  <div
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="relative w-full max-w-[90vw] md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh] flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8"
+      tabindex="-1"
+    >
+      <div
+        class="p-4 border-b border-base-300 flex justify-between items-center"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-semibold text-center flex-grow"
+          id="modal-title"
+        >
+          Test Modal Title
+        </h2>
+        <button
+          aria-label="Expand modal"
+          class="text-xl p-2 hover:text-info focus:outline-none"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        aria-label="Go to the previous page"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+          />
+        </svg>
+      </button>
+      <button
+        aria-label="Go to the next page"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+          />
+        </svg>
+      </button>
+      <div
+        class="p-6 pb-10 flex-grow overflow-y-auto relative"
+      >
+        <div>
+          Modal Content
+        </div>
+      </div>
+      <div
+        class="p-4 border-t border-base-300 flex justify-end"
+      >
+        <button
+          aria-label="Close modal"
+          class="btn btn-sm"
+        >
+          Close
+        </button>
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2"
+      >
+        <div
+          aria-label="Page 1 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 2 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 3 of 3"
+          class="w-3 h-3 rounded-full bg-info"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal > triggers previous page on left arrow key press 1`] = `
+<div>
+  <div
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 pointer-events-auto"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="relative w-full max-w-[90vw] md:max-w-2xl lg:max-w-3xl h-[70vh] md:h-[60vh] lg:h-[50vh] flex flex-col bg-base-100 rounded-lg shadow-xl transition-all duration-300 p-4 sm:p-6 lg:p-8"
+      tabindex="-1"
+    >
+      <div
+        class="p-4 border-b border-base-300 flex justify-between items-center"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-semibold text-center flex-grow"
+          id="modal-title"
+        >
+          Test Modal Title
+        </h2>
+        <button
+          aria-label="Expand modal"
+          class="text-xl p-2 hover:text-info focus:outline-none"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        aria-label="Go to the previous page"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+          />
+        </svg>
+      </button>
+      <button
+        aria-label="Go to the next page"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
+      >
+        <svg
+          aria-hidden="true"
+          class="text-5xl"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 320 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+          />
+        </svg>
+      </button>
+      <div
+        class="p-6 pb-10 flex-grow overflow-y-auto relative"
+      >
+        <div>
+          Modal Content
+        </div>
+      </div>
+      <div
+        class="p-4 border-t border-base-300 flex justify-end"
+      >
+        <button
+          aria-label="Close modal"
+          class="btn btn-sm"
+        >
+          Close
+        </button>
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2"
+      >
+        <div
+          aria-label="Page 1 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+        <div
+          aria-label="Page 2 of 3"
+          class="w-3 h-3 rounded-full bg-info"
+        />
+        <div
+          aria-label="Page 3 of 3"
+          class="w-3 h-3 rounded-full bg-neutral-content"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

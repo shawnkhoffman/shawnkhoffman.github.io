@@ -1,0 +1,79 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CollapsibleSection > matches the snapshot when collapsed 1`] = `
+<div>
+  <div
+    class="collapse collapse-arrow bg-base-200 "
+  >
+    <button
+      aria-controls="collapsible-content-section-title"
+      aria-expanded="false"
+      class="collapse-title text-xl font-medium"
+    >
+      Section Title
+    </button>
+    <div
+      aria-hidden="true"
+      class="collapse-content"
+      id="collapsible-content-section-title"
+      role="region"
+    >
+      <p>
+        This is the collapsible content.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleSection > matches the snapshot when expanded 1`] = `
+<div>
+  <div
+    class="collapse collapse-arrow bg-base-200 collapse-open"
+  >
+    <button
+      aria-controls="collapsible-content-section-title"
+      aria-expanded="true"
+      class="collapse-title text-xl font-medium"
+    >
+      Section Title
+    </button>
+    <div
+      aria-hidden="false"
+      class="collapse-content"
+      id="collapsible-content-section-title"
+      role="region"
+    >
+      <p>
+        This is the collapsible content.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleSection > renders the component with given title and content 1`] = `
+<div>
+  <div
+    class="collapse collapse-arrow bg-base-200 "
+  >
+    <button
+      aria-controls="collapsible-content-section-title"
+      aria-expanded="false"
+      class="collapse-title text-xl font-medium"
+    >
+      Section Title
+    </button>
+    <div
+      aria-hidden="true"
+      class="collapse-content"
+      id="collapsible-content-section-title"
+      role="region"
+    >
+      <p>
+        This is the collapsible content.
+      </p>
+    </div>
+  </div>
+</div>
+`;

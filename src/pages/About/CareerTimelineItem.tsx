@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface CareerTimelineItemProps {
+export interface CareerTimelineItemProps {
   date: string;
   title: string;
   description: string;

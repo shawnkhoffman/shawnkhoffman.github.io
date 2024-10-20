@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, { memo, useState, useEffect, useCallback } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import { FaSun, FaMoon, FaDesktop, FaMobileAlt, FaTabletAlt } from 'react-icons/fa';
 
@@ -10,12 +10,12 @@ interface ThemeControllerProps {
   className?: string;
 }
 
-const ThemeController: React.FC<ThemeControllerProps> = ({ showLabel = false, className = '' }) => {
+const ThemeController: React.FC<ThemeControllerProps> = memo(({ showLabel = false, className = '' }) => {
   const { theme, setTheme } = useTheme();
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [deviceType, setDeviceType] = useState<DeviceType>('desktop');
 
-  const updateDeviceType = () => {
+  const updateDeviceType = useCallback(() => {
     const width = window.innerWidth;
     if (width < 768) {
       setDeviceType('mobile');
@@ -24,35 +24,70 @@ const ThemeController: React.FC<ThemeControllerProps> = ({ showLabel = false, cl
     } else {
       setDeviceType('desktop');
     }
-  };
+  }, []);
 
   useEffect(() => {
     updateDeviceType();
-
     window.addEventListener('resize', updateDeviceType);
-
     return () => {
       window.removeEventListener('resize', updateDeviceType);
     };
+  }, [updateDeviceType]);
+
+  const getNextTheme = useCallback((currentTheme: Theme): Theme => {
+    const themeOrder: Theme[] = ['light', 'dark', 'system'];
+    const currentIndex = themeOrder.indexOf(currentTheme);
+    return themeOrder[(currentIndex + 1) % themeOrder.length];
   }, []);
 
-  const toggleTheme = () => {
+  const getAnimationClass = useCallback((iconTheme: Theme) => {
+    switch (iconTheme) {
+      case 'light':
+        return 'animate-rotate-sun';
+      case 'dark':
+        return 'animate-rotate-moon';
+      case 'system':
+        return 'animate-rotate-system';
+      default:
+        return '';
+    }
+  }, []);
+
+  const renderSystemIcon = useCallback(
+    (combinedClasses: string) => {
+      switch (deviceType) {
+        case 'mobile':
+          return <FaMobileAlt className={`text-info ${combinedClasses}`} aria-hidden="true" />;
+        case 'tablet':
+          return <FaTabletAlt className={`text-info ${combinedClasses}`} aria-hidden="true" />;
+        default:
+          return <FaDesktop className={`text-info ${combinedClasses}`} aria-hidden="true" />;
+      }
+    },
+    [deviceType]
+  );
+
+  const getAriaLabel = useCallback(
+    (currentTheme: Theme): string => {
+      const nextTheme = getNextTheme(currentTheme);
+      return `Switch theme to ${nextTheme} mode`;
+    },
+    [getNextTheme]
+  );
+
+  const toggleTheme = useCallback(() => {
     setShouldAnimate(true);
-    const nextTheme = {
-      light: 'dark',
-      dark: 'system',
-      system: 'light',
-    }[theme as Theme] as Theme;
+    const nextTheme = getNextTheme(theme as Theme);
     setTheme(nextTheme);
 
     setTimeout(() => {
       setShouldAnimate(false);
     }, 200);
-  };
+  }, [theme, setTheme, getNextTheme]);
 
-  const renderIcon = () => {
-    const baseClasses = "w-5 h-5 transition-transform";
-    const animationClass = shouldAnimate ? getAnimationClass(theme as Theme) : "";
+  const renderIcon = useCallback(() => {
+    const baseClasses = 'w-5 h-5 transition-transform';
+    const animationClass = shouldAnimate ? getAnimationClass(theme as Theme) : '';
     const combinedClasses = `${baseClasses} ${animationClass}`;
 
     switch (theme) {
@@ -64,37 +99,13 @@ const ThemeController: React.FC<ThemeControllerProps> = ({ showLabel = false, cl
       default:
         return renderSystemIcon(combinedClasses);
     }
-  };
-
-  const renderSystemIcon = (combinedClasses: string) => {
-    switch (deviceType) {
-      case 'mobile':
-        return <FaMobileAlt className={`text-info ${combinedClasses}`} aria-hidden="true" />;
-      case 'tablet':
-        return <FaTabletAlt className={`text-info ${combinedClasses}`} aria-hidden="true" />;
-      default:
-        return <FaDesktop className={`text-info ${combinedClasses}`} aria-hidden="true" />;
-    }
-  };
-
-  const getAnimationClass = (iconTheme: Theme) => {
-    switch (iconTheme) {
-      case 'light':
-        return 'animate-rotate-sun';
-      case 'dark':
-        return 'animate-rotate-moon';
-      case 'system':
-        return 'animate-rotate-system';
-      default:
-        return '';
-    }
-  };
+  }, [theme, shouldAnimate, getAnimationClass, renderSystemIcon]);
 
   return (
-    <button 
+    <button
       className={`flex items-center justify-center p-2 rounded-full hover:bg-base-200 ${className}`}
       onClick={toggleTheme}
-      aria-label={`Switch theme to ${theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'} mode`}
+      aria-label={getAriaLabel(theme as Theme)}
     >
       <div className="flex items-center justify-center space-x-1">
         {renderIcon()}
@@ -102,6 +113,6 @@ const ThemeController: React.FC<ThemeControllerProps> = ({ showLabel = false, cl
       </div>
     </button>
   );
-};
+});
 
-export default memo(ThemeController);
+export default ThemeController;

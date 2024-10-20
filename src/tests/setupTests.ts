@@ -1,4 +1,3 @@
-// setupTests.ts
 import '@testing-library/jest-dom';
 import { afterAll, beforeAll, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
@@ -18,3 +17,11 @@ beforeAll(() => {
 afterAll(() => {
   cleanup();
 });
+
+class ResizeObserverMock implements ResizeObserver {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+}
+
+global.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;

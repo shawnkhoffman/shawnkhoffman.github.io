@@ -1,0 +1,91 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TechnologyCard > matches the snapshot 1`] = `
+<div>
+  <a
+    aria-label="Learn more about React"
+    class="flex flex-col items-center text-center hover:bg-base-200 p-4 rounded-lg transition duration-300"
+    href="https://reactjs.org/"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    <span
+      aria-hidden="true"
+    >
+      <svg
+        data-testid="mock-icon"
+      />
+    </span>
+    <h3
+      class="font-semibold"
+    >
+      React
+    </h3>
+    <p
+      class="text-sm"
+    >
+      A JavaScript library for building user interfaces.
+    </p>
+  </a>
+</div>
+`;
+
+exports[`TechnologyCard > renders the TechnologyCard with given props 1`] = `
+<div>
+  <a
+    aria-label="Learn more about React"
+    class="flex flex-col items-center text-center hover:bg-base-200 p-4 rounded-lg transition duration-300"
+    href="https://reactjs.org/"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    <span
+      aria-hidden="true"
+    >
+      <svg
+        data-testid="mock-icon"
+      />
+    </span>
+    <h3
+      class="font-semibold"
+    >
+      React
+    </h3>
+    <p
+      class="text-sm"
+    >
+      A JavaScript library for building user interfaces.
+    </p>
+  </a>
+</div>
+`;
+
+exports[`TechnologyCard > renders without crashing when optional props are missing 1`] = `
+<div>
+  <a
+    aria-label="Learn more about TypeScript"
+    class="flex flex-col items-center text-center hover:bg-base-200 p-4 rounded-lg transition duration-300"
+    href="https://www.typescriptlang.org/"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    <span
+      aria-hidden="true"
+    >
+      <svg
+        data-testid="mock-icon"
+      />
+    </span>
+    <h3
+      class="font-semibold"
+    >
+      TypeScript
+    </h3>
+    <p
+      class="text-sm"
+    >
+      A typed superset of JavaScript.
+    </p>
+  </a>
+</div>
+`;

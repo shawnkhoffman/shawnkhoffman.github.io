@@ -14,7 +14,7 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({ title, content 
   };
 
   return (
-    <div className="collapse collapse-arrow bg-base-200">
+    <div className={`collapse collapse-arrow bg-base-200 ${isOpen ? 'collapse-open' : ''}`}>
       <button
         className="collapse-title text-xl font-medium"
         aria-expanded={isOpen}

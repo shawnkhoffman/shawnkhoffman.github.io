@@ -1,15 +1,19 @@
 import React from 'react';
 import CareerTimelineItem from './CareerTimelineItem';
 
-interface CareerTimelineData {
+export interface CareerTimelineData {
   date: string;
   title: string;
   description: string;
   position: 'start' | 'end';
 }
 
-const CareerTimeline: React.FC = () => {
-  const timelineData: CareerTimelineData[] = [
+interface CareerTimelineProps {
+  timelineData?: CareerTimelineData[];
+}
+
+const CareerTimeline: React.FC<CareerTimelineProps> = ({ timelineData }) => {
+  const defaultTimelineData: CareerTimelineData[] = [
     {
       date: '2024 - Present',
       title: 'Senior Software Engineer - Crunchyroll',
@@ -60,11 +64,13 @@ const CareerTimeline: React.FC = () => {
     },
   ];
 
+  const dataToRender = timelineData || defaultTimelineData;
+
   return (
     <div className="w-full max-w-5xl mb-10 p-6 bg-base-100 rounded-lg shadow-lg">
       <h2 className="text-3xl font-semibold text-center mb-6">Career Timeline</h2>
       <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
-        {timelineData.map((item, index) => (
+        {dataToRender.map((item, index) => (
           <CareerTimelineItem
             key={index}
             date={item.date}
