@@ -33,6 +33,35 @@ const Navbar: React.FC = () => {
     setIsAboutOpen(false);
   };
 
+  useEffect(() => {
+    if (isDrawerOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isDrawerOpen]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (isDrawerOpen && drawerRef.current && !drawerRef.current.contains(target)) {
+        setIsDrawerOpen(false);
+      }
+      if (isAboutOpen && aboutRef.current && !aboutRef.current.contains(target)) {
+        setIsAboutOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isDrawerOpen, isAboutOpen]);
+
   const handleTouchStart = (event: React.TouchEvent) => {
     setTouchStartX(event.touches[0].clientX);
     setTouchEndX(null);
@@ -52,23 +81,6 @@ const Navbar: React.FC = () => {
     setTouchStartX(null);
     setTouchEndX(null);
   };
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Node;
-      if (isDrawerOpen && drawerRef.current && !drawerRef.current.contains(target)) {
-        setIsDrawerOpen(false);
-      }
-      if (isAboutOpen && aboutRef.current && !aboutRef.current.contains(target)) {
-        setIsAboutOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isDrawerOpen, isAboutOpen]);
 
   const toggleAboutMenu = (e: React.MouseEvent) => {
     e.preventDefault();
