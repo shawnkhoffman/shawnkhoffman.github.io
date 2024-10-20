@@ -1,0 +1,61 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MainLayout Component > applies correct layout classes to the main container and matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col min-h-screen"
+  >
+    <nav
+      data-testid="navbar"
+    >
+      Mocked Navbar
+    </nav>
+    <main
+      class="flex-grow flex flex-col justify-center items-center bg-base-200 text-base-content"
+    >
+      <div
+        data-testid="error-boundary"
+      >
+        <div>
+          Test Content
+        </div>
+      </div>
+    </main>
+    <footer
+      data-testid="footer"
+    >
+      Mocked Footer
+    </footer>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`MainLayout Component > renders Navbar, Footer, and ErrorBoundary with children and matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col min-h-screen"
+  >
+    <nav
+      data-testid="navbar"
+    >
+      Mocked Navbar
+    </nav>
+    <main
+      class="flex-grow flex flex-col justify-center items-center bg-base-200 text-base-content"
+    >
+      <div
+        data-testid="error-boundary"
+      >
+        <div>
+          Test Content
+        </div>
+      </div>
+    </main>
+    <footer
+      data-testid="footer"
+    >
+      Mocked Footer
+    </footer>
+  </div>
+</DocumentFragment>
+`;

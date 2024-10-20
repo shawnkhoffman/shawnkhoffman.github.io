@@ -4,35 +4,30 @@ exports[`ErrorBoundary > catches errors and displays fallback UI 1`] = `
 <div>
   <div
     aria-live="assertive"
-    class="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6"
+    class="flex flex-col items-center justify-center w-full p-4 sm:p-6 md:p-8"
     role="alert"
   >
     <div
-      class="w-full max-w-xl bg-base-100 p-6 rounded-lg shadow-lg"
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-base-100 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg overflow-auto"
     >
       <h1
-        class="text-3xl font-bold mb-4 text-error"
+        class="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-error"
       >
         Oops! Something went wrong.
       </h1>
-      <div
-        class="mb-4"
+      <p
+        class="mb-4 text-sm sm:text-base md:text-lg"
       >
-        <p
-          class="text-base mb-4"
-        >
-          Something went wrong while processing your request. Please refresh the page or try again later.
-        </p>
-      </div>
+        Something went wrong while processing your request. Please refresh the page or try again later.
+      </p>
       <pre
-        aria-live="polite"
-        class="whitespace-pre-wrap text-sm text-base-content bg-error bg-opacity-10 p-4 rounded-lg font-mono mb-6"
+        class="whitespace-pre-wrap text-xs sm:text-sm md:text-base text-base-content bg-error bg-opacity-10 p-2 sm:p-4 rounded-lg font-mono mb-4 max-h-40 overflow-auto"
       >
         Test error
       </pre>
       <button
         aria-label="Reload the page to try again"
-        class="btn btn-primary w-full sm:w-auto"
+        class="btn btn-primary btn-sm mt-4"
       >
         Reload Page
       </button>
@@ -45,35 +40,30 @@ exports[`ErrorBoundary > displays correct message for error: "AuthenticationErro
 <div>
   <div
     aria-live="assertive"
-    class="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6"
+    class="flex flex-col items-center justify-center w-full p-4 sm:p-6 md:p-8"
     role="alert"
   >
     <div
-      class="w-full max-w-xl bg-base-100 p-6 rounded-lg shadow-lg"
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-base-100 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg overflow-auto"
     >
       <h1
-        class="text-3xl font-bold mb-4 text-error"
+        class="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-error"
       >
         Oops! Something went wrong.
       </h1>
-      <div
-        class="mb-4"
+      <p
+        class="mb-4 text-sm sm:text-base md:text-lg"
       >
-        <p
-          class="text-base mb-4"
-        >
-          You do not have permission to access this page, or there's an issue with your credentials. Please try authenticating again.
-        </p>
-      </div>
+        You do not have permission to access this page, or there's an issue with your credentials. Please try authenticating again.
+      </p>
       <pre
-        aria-live="polite"
-        class="whitespace-pre-wrap text-sm text-base-content bg-error bg-opacity-10 p-4 rounded-lg font-mono mb-6"
+        class="whitespace-pre-wrap text-xs sm:text-sm md:text-base text-base-content bg-error bg-opacity-10 p-2 sm:p-4 rounded-lg font-mono mb-4 max-h-40 overflow-auto"
       >
         AuthenticationError: Invalid token
       </pre>
       <button
         aria-label="Reload the page to try again"
-        class="btn btn-primary w-full sm:w-auto"
+        class="btn btn-primary btn-sm mt-4"
       >
         Reload Page
       </button>
@@ -86,35 +76,30 @@ exports[`ErrorBoundary > displays correct message for error: "AuthorizationError
 <div>
   <div
     aria-live="assertive"
-    class="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6"
+    class="flex flex-col items-center justify-center w-full p-4 sm:p-6 md:p-8"
     role="alert"
   >
     <div
-      class="w-full max-w-xl bg-base-100 p-6 rounded-lg shadow-lg"
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-base-100 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg overflow-auto"
     >
       <h1
-        class="text-3xl font-bold mb-4 text-error"
+        class="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-error"
       >
         Oops! Something went wrong.
       </h1>
-      <div
-        class="mb-4"
+      <p
+        class="mb-4 text-sm sm:text-base md:text-lg"
       >
-        <p
-          class="text-base mb-4"
-        >
-          You do not have permission to access this page, or there's an issue with your credentials. Please try authenticating again.
-        </p>
-      </div>
+        You do not have permission to access this page, or there's an issue with your credentials. Please try authenticating again.
+      </p>
       <pre
-        aria-live="polite"
-        class="whitespace-pre-wrap text-sm text-base-content bg-error bg-opacity-10 p-4 rounded-lg font-mono mb-6"
+        class="whitespace-pre-wrap text-xs sm:text-sm md:text-base text-base-content bg-error bg-opacity-10 p-2 sm:p-4 rounded-lg font-mono mb-4 max-h-40 overflow-auto"
       >
         AuthorizationError: Access denied
       </pre>
       <button
         aria-label="Reload the page to try again"
-        class="btn btn-primary w-full sm:w-auto"
+        class="btn btn-primary btn-sm mt-4"
       >
         Reload Page
       </button>
@@ -127,35 +112,30 @@ exports[`ErrorBoundary > displays correct message for error: "CORS Error" > Erro
 <div>
   <div
     aria-live="assertive"
-    class="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6"
+    class="flex flex-col items-center justify-center w-full p-4 sm:p-6 md:p-8"
     role="alert"
   >
     <div
-      class="w-full max-w-xl bg-base-100 p-6 rounded-lg shadow-lg"
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-base-100 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg overflow-auto"
     >
       <h1
-        class="text-3xl font-bold mb-4 text-error"
+        class="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-error"
       >
         Oops! Something went wrong.
       </h1>
-      <div
-        class="mb-4"
+      <p
+        class="mb-4 text-sm sm:text-base md:text-lg"
       >
-        <p
-          class="text-base mb-4"
-        >
-          It seems we are unable to retrieve the data due to a configuration issue. Please try again later.
-        </p>
-      </div>
+        It seems we are unable to retrieve the data due to a configuration issue. Please try again later.
+      </p>
       <pre
-        aria-live="polite"
-        class="whitespace-pre-wrap text-sm text-base-content bg-error bg-opacity-10 p-4 rounded-lg font-mono mb-6"
+        class="whitespace-pre-wrap text-xs sm:text-sm md:text-base text-base-content bg-error bg-opacity-10 p-2 sm:p-4 rounded-lg font-mono mb-4 max-h-40 overflow-auto"
       >
         CORS Error
       </pre>
       <button
         aria-label="Reload the page to try again"
-        class="btn btn-primary w-full sm:w-auto"
+        class="btn btn-primary btn-sm mt-4"
       >
         Reload Page
       </button>
@@ -168,35 +148,30 @@ exports[`ErrorBoundary > displays correct message for error: "Failed to fetch" >
 <div>
   <div
     aria-live="assertive"
-    class="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6"
+    class="flex flex-col items-center justify-center w-full p-4 sm:p-6 md:p-8"
     role="alert"
   >
     <div
-      class="w-full max-w-xl bg-base-100 p-6 rounded-lg shadow-lg"
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-base-100 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg overflow-auto"
     >
       <h1
-        class="text-3xl font-bold mb-4 text-error"
+        class="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-error"
       >
         Oops! Something went wrong.
       </h1>
-      <div
-        class="mb-4"
+      <p
+        class="mb-4 text-sm sm:text-base md:text-lg"
       >
-        <p
-          class="text-base mb-4"
-        >
-          There was a problem fetching data from the server. Please try refreshing the page or come back later.
-        </p>
-      </div>
+        There was a problem fetching data from the server. Please try refreshing the page or come back later.
+      </p>
       <pre
-        aria-live="polite"
-        class="whitespace-pre-wrap text-sm text-base-content bg-error bg-opacity-10 p-4 rounded-lg font-mono mb-6"
+        class="whitespace-pre-wrap text-xs sm:text-sm md:text-base text-base-content bg-error bg-opacity-10 p-2 sm:p-4 rounded-lg font-mono mb-4 max-h-40 overflow-auto"
       >
         Failed to fetch
       </pre>
       <button
         aria-label="Reload the page to try again"
-        class="btn btn-primary w-full sm:w-auto"
+        class="btn btn-primary btn-sm mt-4"
       >
         Reload Page
       </button>
@@ -209,35 +184,30 @@ exports[`ErrorBoundary > displays correct message for error: "NetworkError: Fail
 <div>
   <div
     aria-live="assertive"
-    class="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6"
+    class="flex flex-col items-center justify-center w-full p-4 sm:p-6 md:p-8"
     role="alert"
   >
     <div
-      class="w-full max-w-xl bg-base-100 p-6 rounded-lg shadow-lg"
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-base-100 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg overflow-auto"
     >
       <h1
-        class="text-3xl font-bold mb-4 text-error"
+        class="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-error"
       >
         Oops! Something went wrong.
       </h1>
-      <div
-        class="mb-4"
+      <p
+        class="mb-4 text-sm sm:text-base md:text-lg"
       >
-        <p
-          class="text-base mb-4"
-        >
-          It looks like you're offline or experiencing network issues. Please check your internet connection and try reloading the page.
-        </p>
-      </div>
+        It looks like you're offline or experiencing network issues. Please check your internet connection and try reloading the page.
+      </p>
       <pre
-        aria-live="polite"
-        class="whitespace-pre-wrap text-sm text-base-content bg-error bg-opacity-10 p-4 rounded-lg font-mono mb-6"
+        class="whitespace-pre-wrap text-xs sm:text-sm md:text-base text-base-content bg-error bg-opacity-10 p-2 sm:p-4 rounded-lg font-mono mb-4 max-h-40 overflow-auto"
       >
         NetworkError: Failed to connect
       </pre>
       <button
         aria-label="Reload the page to try again"
-        class="btn btn-primary w-full sm:w-auto"
+        class="btn btn-primary btn-sm mt-4"
       >
         Reload Page
       </button>
@@ -250,35 +220,30 @@ exports[`ErrorBoundary > displays correct message for error: "RateLimitError: To
 <div>
   <div
     aria-live="assertive"
-    class="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6"
+    class="flex flex-col items-center justify-center w-full p-4 sm:p-6 md:p-8"
     role="alert"
   >
     <div
-      class="w-full max-w-xl bg-base-100 p-6 rounded-lg shadow-lg"
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-base-100 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg overflow-auto"
     >
       <h1
-        class="text-3xl font-bold mb-4 text-error"
+        class="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-error"
       >
         Oops! Something went wrong.
       </h1>
-      <div
-        class="mb-4"
+      <p
+        class="mb-4 text-sm sm:text-base md:text-lg"
       >
-        <p
-          class="text-base mb-4"
-        >
-          Too many requests have been made. Please wait a few minutes before trying again.
-        </p>
-      </div>
+        Too many requests have been made. Please wait a few minutes before trying again.
+      </p>
       <pre
-        aria-live="polite"
-        class="whitespace-pre-wrap text-sm text-base-content bg-error bg-opacity-10 p-4 rounded-lg font-mono mb-6"
+        class="whitespace-pre-wrap text-xs sm:text-sm md:text-base text-base-content bg-error bg-opacity-10 p-2 sm:p-4 rounded-lg font-mono mb-4 max-h-40 overflow-auto"
       >
         RateLimitError: Too many requests
       </pre>
       <button
         aria-label="Reload the page to try again"
-        class="btn btn-primary w-full sm:w-auto"
+        class="btn btn-primary btn-sm mt-4"
       >
         Reload Page
       </button>
@@ -291,35 +256,30 @@ exports[`ErrorBoundary > displays correct message for error: "TimeoutError: Requ
 <div>
   <div
     aria-live="assertive"
-    class="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6"
+    class="flex flex-col items-center justify-center w-full p-4 sm:p-6 md:p-8"
     role="alert"
   >
     <div
-      class="w-full max-w-xl bg-base-100 p-6 rounded-lg shadow-lg"
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-base-100 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg overflow-auto"
     >
       <h1
-        class="text-3xl font-bold mb-4 text-error"
+        class="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-error"
       >
         Oops! Something went wrong.
       </h1>
-      <div
-        class="mb-4"
+      <p
+        class="mb-4 text-sm sm:text-base md:text-lg"
       >
-        <p
-          class="text-base mb-4"
-        >
-          The request took too long to complete. Please check your internet connection and try again later.
-        </p>
-      </div>
+        The request took too long to complete. Please check your internet connection and try again later.
+      </p>
       <pre
-        aria-live="polite"
-        class="whitespace-pre-wrap text-sm text-base-content bg-error bg-opacity-10 p-4 rounded-lg font-mono mb-6"
+        class="whitespace-pre-wrap text-xs sm:text-sm md:text-base text-base-content bg-error bg-opacity-10 p-2 sm:p-4 rounded-lg font-mono mb-4 max-h-40 overflow-auto"
       >
         TimeoutError: Request timed out
       </pre>
       <button
         aria-label="Reload the page to try again"
-        class="btn btn-primary w-full sm:w-auto"
+        class="btn btn-primary btn-sm mt-4"
       >
         Reload Page
       </button>
@@ -332,35 +292,30 @@ exports[`ErrorBoundary > displays correct message for error: "ValidationError: I
 <div>
   <div
     aria-live="assertive"
-    class="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6"
+    class="flex flex-col items-center justify-center w-full p-4 sm:p-6 md:p-8"
     role="alert"
   >
     <div
-      class="w-full max-w-xl bg-base-100 p-6 rounded-lg shadow-lg"
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-base-100 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg overflow-auto"
     >
       <h1
-        class="text-3xl font-bold mb-4 text-error"
+        class="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-error"
       >
         Oops! Something went wrong.
       </h1>
-      <div
-        class="mb-4"
+      <p
+        class="mb-4 text-sm sm:text-base md:text-lg"
       >
-        <p
-          class="text-base mb-4"
-        >
-          There was an issue with the form input. Please check the fields and ensure they are correctly filled out.
-        </p>
-      </div>
+        There was an issue with the form input. Please check the fields and ensure they are correctly filled out.
+      </p>
       <pre
-        aria-live="polite"
-        class="whitespace-pre-wrap text-sm text-base-content bg-error bg-opacity-10 p-4 rounded-lg font-mono mb-6"
+        class="whitespace-pre-wrap text-xs sm:text-sm md:text-base text-base-content bg-error bg-opacity-10 p-2 sm:p-4 rounded-lg font-mono mb-4 max-h-40 overflow-auto"
       >
         ValidationError: Invalid input
       </pre>
       <button
         aria-label="Reload the page to try again"
-        class="btn btn-primary w-full sm:w-auto"
+        class="btn btn-primary btn-sm mt-4"
       >
         Reload Page
       </button>
@@ -373,35 +328,30 @@ exports[`ErrorBoundary > displays the error message 1`] = `
 <div>
   <div
     aria-live="assertive"
-    class="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6"
+    class="flex flex-col items-center justify-center w-full p-4 sm:p-6 md:p-8"
     role="alert"
   >
     <div
-      class="w-full max-w-xl bg-base-100 p-6 rounded-lg shadow-lg"
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-base-100 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg overflow-auto"
     >
       <h1
-        class="text-3xl font-bold mb-4 text-error"
+        class="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-error"
       >
         Oops! Something went wrong.
       </h1>
-      <div
-        class="mb-4"
+      <p
+        class="mb-4 text-sm sm:text-base md:text-lg"
       >
-        <p
-          class="text-base mb-4"
-        >
-          Something went wrong while processing your request. Please refresh the page or try again later.
-        </p>
-      </div>
+        Something went wrong while processing your request. Please refresh the page or try again later.
+      </p>
       <pre
-        aria-live="polite"
-        class="whitespace-pre-wrap text-sm text-base-content bg-error bg-opacity-10 p-4 rounded-lg font-mono mb-6"
+        class="whitespace-pre-wrap text-xs sm:text-sm md:text-base text-base-content bg-error bg-opacity-10 p-2 sm:p-4 rounded-lg font-mono mb-4 max-h-40 overflow-auto"
       >
         Test error
       </pre>
       <button
         aria-label="Reload the page to try again"
-        class="btn btn-primary w-full sm:w-auto"
+        class="btn btn-primary btn-sm mt-4"
       >
         Reload Page
       </button>
@@ -414,35 +364,30 @@ exports[`ErrorBoundary > displays the reload button by default 1`] = `
 <div>
   <div
     aria-live="assertive"
-    class="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6"
+    class="flex flex-col items-center justify-center w-full p-4 sm:p-6 md:p-8"
     role="alert"
   >
     <div
-      class="w-full max-w-xl bg-base-100 p-6 rounded-lg shadow-lg"
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-base-100 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg overflow-auto"
     >
       <h1
-        class="text-3xl font-bold mb-4 text-error"
+        class="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-error"
       >
         Oops! Something went wrong.
       </h1>
-      <div
-        class="mb-4"
+      <p
+        class="mb-4 text-sm sm:text-base md:text-lg"
       >
-        <p
-          class="text-base mb-4"
-        >
-          Something went wrong while processing your request. Please refresh the page or try again later.
-        </p>
-      </div>
+        Something went wrong while processing your request. Please refresh the page or try again later.
+      </p>
       <pre
-        aria-live="polite"
-        class="whitespace-pre-wrap text-sm text-base-content bg-error bg-opacity-10 p-4 rounded-lg font-mono mb-6"
+        class="whitespace-pre-wrap text-xs sm:text-sm md:text-base text-base-content bg-error bg-opacity-10 p-2 sm:p-4 rounded-lg font-mono mb-4 max-h-40 overflow-auto"
       >
         Test error
       </pre>
       <button
         aria-label="Reload the page to try again"
-        class="btn btn-primary w-full sm:w-auto"
+        class="btn btn-primary btn-sm mt-4"
       >
         Reload Page
       </button>
@@ -455,29 +400,24 @@ exports[`ErrorBoundary > does not display the reload button when showReloadButto
 <div>
   <div
     aria-live="assertive"
-    class="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6"
+    class="flex flex-col items-center justify-center w-full p-4 sm:p-6 md:p-8"
     role="alert"
   >
     <div
-      class="w-full max-w-xl bg-base-100 p-6 rounded-lg shadow-lg"
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-base-100 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg overflow-auto"
     >
       <h1
-        class="text-3xl font-bold mb-4 text-error"
+        class="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-error"
       >
         Oops! Something went wrong.
       </h1>
-      <div
-        class="mb-4"
+      <p
+        class="mb-4 text-sm sm:text-base md:text-lg"
       >
-        <p
-          class="text-base mb-4"
-        >
-          Something went wrong while processing your request. Please refresh the page or try again later.
-        </p>
-      </div>
+        Something went wrong while processing your request. Please refresh the page or try again later.
+      </p>
       <pre
-        aria-live="polite"
-        class="whitespace-pre-wrap text-sm text-base-content bg-error bg-opacity-10 p-4 rounded-lg font-mono mb-6"
+        class="whitespace-pre-wrap text-xs sm:text-sm md:text-base text-base-content bg-error bg-opacity-10 p-2 sm:p-4 rounded-lg font-mono mb-4 max-h-40 overflow-auto"
       >
         Test error
       </pre>

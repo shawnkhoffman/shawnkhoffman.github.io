@@ -4,7 +4,6 @@ import { ThemeProvider } from './context/ThemeContext';
 import MainLayout from './layouts/MainLayout';
 import { Suspense, lazy } from 'react';
 import AboutThisSite from './pages/AboutThisSite/AboutThisSite';
-import ErrorBoundary from './components/common/ErrorBoundary';
 
 const Index = lazy(() => import('./pages/Index'));
 const NotFound = lazy(() => import('./pages/404'));
@@ -28,26 +27,24 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
-        <ErrorBoundary>
-          <MainLayout>
-            <GoogleAnalyticsTracker />
-            <Suspense
-              fallback={
-                <div className="flex justify-center items-center" role="status" aria-live="polite">
-                  <span className="loading loading-spinner loading-md text-primary"></span>
-                  <span className="sr-only">Loading...</span>
-                </div>
-              }
-            >
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/about-me" element={<About />} />
-                <Route path="/about-this-site" element={<AboutThisSite />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </MainLayout>
-        </ErrorBoundary>
+        <MainLayout>
+          <GoogleAnalyticsTracker />
+          <Suspense
+            fallback={
+              <div className="flex justify-center items-center" role="status" aria-live="polite">
+                <span className="loading loading-spinner loading-md text-primary"></span>
+                <span className="sr-only">Loading...</span>
+              </div>
+            }
+          >
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/about-me" element={<About />} />
+              <Route path="/about-this-site" element={<AboutThisSite />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </MainLayout>
       </Router>
     </ThemeProvider>
   );
