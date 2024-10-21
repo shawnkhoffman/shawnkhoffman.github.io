@@ -97,16 +97,15 @@ const Modal: React.FC<ModalProps> = ({
   const handleTouchEnd = useCallback(() => {
     const deltaX = touchEndX - touchStartX;
     const deltaY = touchEndY - touchStartY;
+    const minSwipeDistance = 50;
 
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      if (Math.abs(deltaX) > 50) {
-        if (deltaX > 0 && onPrevious) {
-          onPrevious();
-          setShowNavigationHint(false);
-        } else if (deltaX < 0 && onNext) {
-          onNext();
-          setShowNavigationHint(false);
-        }
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+      if (deltaX > 0 && onPrevious) {
+        onPrevious();
+        setShowNavigationHint(false);
+      } else if (deltaX < 0 && onNext) {
+        onNext();
+        setShowNavigationHint(false);
       }
     }
   }, [touchStartX, touchStartY, touchEndX, touchEndY, onNext, onPrevious]);
@@ -180,7 +179,7 @@ const Modal: React.FC<ModalProps> = ({
     };
   }, [isOpen, handleTouchStart, handleTouchMove, handleTouchEnd]);
 
-  if (!isOpen) return null;if (!isOpen) return null;
+  if (!isOpen) return null;
 
   return (
     <div

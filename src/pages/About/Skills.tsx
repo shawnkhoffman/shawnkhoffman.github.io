@@ -32,29 +32,50 @@ const Skills: React.FC = () => {
             icon: <FaCode className="text-4xl text-info mb-4" />,
             content: (
                 <>
-                    <h4 className="font-bold text-lg mb-3">Early Career</h4>
                     <p className="leading-relaxed mb-6">
-                        My career in software engineering began in the early days of the web. Inspired by my love for video games and anime, I built my first websites using tools like Microsoft FrontPage, Netscape Composer, Lycos, GeoCities, AngelFire, and Tripod as early as 1996. By high school in 2001, I transitioned to Macromedia Dreamweaver, laying the foundation for web development and igniting my passion for coding and systems design.
+                        My journey in software engineering started well before it became my profession. Back in the early days of the web, I was inspired by my love for video games and anime, which led me to build my first websites. In 1996, I was using tools like Microsoft FrontPage, Netscape Composer, GeoCities, and Tripod to experiment with web development. By high school in 2002, I had upgraded to Macromedia Dreamweaver, which really solidified my interest in coding and systems design. It wasn't just a hobby anymore—it was something I knew I wanted to do long-term.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">University of Texas at Austin</h4>
                     <p className="leading-relaxed mb-6">
-                        At the University of Texas at Austin, I participated in a summer research project with NASA, where I independently developed control systems for a prototype unmanned space exploration vehicle experiment using C/C++. This experience with large-scale problem-solving shaped my systems engineering approach.
+                        Over the years, my career has evolved into full-stack development across different industries, always with a focus on creating systems that are scalable, maintainable, and high-performance. I'm a big advocate of domain-driven design (DDD), which helps me align technical implementations with the real needs of the business. This approach lets me build around specific business logic, encapsulating it within bounded contexts to keep everything clean and organized.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">Rackspace</h4>
+                    <h4 className="font-bold text-lg mb-3">Frontend Development</h4>
                     <p className="leading-relaxed mb-6">
-                        At Rackspace, I honed my skills in full-stack web development, building scalable, robust web applications for enterprise clients. I worked across AWS, Azure, and OpenStack environments, integrating container orchestration (Docker, Kubernetes) and automating CI/CD workflows, optimizing deployment times.
+                        When it comes to frontend development, I prefer React because it allows me to build reusable, composable components that simplify development, especially in larger applications. For bundling, I rely on Vite for its fast Hot Module Replacement (HMR) and simple setup, which is particularly useful in TypeScript projects where real-time feedback is critical.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">Hewlett Packard Enterprise</h4>
                     <p className="leading-relaxed mb-6">
-                        At HPE, I continued focusing on full-stack web development, building cloud-native applications and automating infrastructure provisioning with ServiceNOW and Terraform. I also worked on Kafka and Spark-powered data integrations, streamlining backend processes for web applications.
+                        For styling, I often combine Tailwind CSS with DaisyUI. Tailwind's utility-first approach lets me quickly prototype UI elements without diving into custom CSS, while DaisyUI provides accessible, pre-styled components that ensure a consistent look and feel across the application.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">Disney</h4>
                     <p className="leading-relaxed mb-6">
-                        At Disney, I developed web applications integrated with AI/ML models for automating film production tasks and enhancing streaming experiences. My work included real-time user recommendation systems for Disney+ and Hulu using Kafka and Spark, delivering personalized content and significantly improving user engagement.
+                        Accessibility is a priority for me because it's simply a non-negotiable part of modern web design. I make sure every interface works seamlessly across devices and assistive technologies by implementing ARIA roles, keyboard navigation, and screen reader support. I also bake in internationalization (i18n) from the start, using tools like react-i18next to make localization easy for global users.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">Crunchyroll</h4>
                     <p className="leading-relaxed mb-6">
-                        Currently, I specialize in full-stack web development and media engineering at scale. I've built media transcoding pipelines and video playback services and am leading efforts to create self-service infrastructure platforms using Backstage, empowering teams to independently manage and deploy services, driving operational efficiency.
+                        For testing, I rely on Vitest (or Jest) for unit and integration tests, especially given Vitest's fast integration with Vite. I also use React Testing Library to verify that my components behave as expected. On top of that, DataDog RUM and Google Analytics help me track real user interactions, which I use to continuously improve both the user experience and performance.
+                    </p>
+                    <h4 className="font-bold text-lg mb-3">Backend Development</h4>
+                    <p className="leading-relaxed mb-6">
+                        On the backend, I focus on building scalable microservices using the right language and framework for the job. Often, I work in TypeScript because many of my projects integrate closely with frontend services, and TypeScript's strict type safety helps minimize runtime errors while keeping development fast and maintainable.
+                    </p>
+                    <p className="leading-relaxed mb-6">
+                        For high-performance systems – whether it's a gRPC or REST API, media transcoding pipeline, or a real-time application – I'll opt for Go. It handles concurrency really well and performs efficiently under heavy loads. If I'm dealing with more flexible workflows, like data pipelines or machine learning tasks, I lean toward Python because its vast ecosystem and tools like Apache Airflow and Spark make it easy to work with large datasets or complex processes.
+                    </p>
+                    <p className="leading-relaxed mb-6">
+                        Data handling is something I take seriously, and I use both SQL and NoSQL databases depending on the project. I tend to choose PostgreSQL or DynamoDB based on the data model and use Redis for caching. I often integrate with messaging systems like SQS or Kafka for handling async workflows.
+                    </p>
+                    <p className="leading-relaxed mb-6">
+                        I like to follow clean architecture principles, focusing on modularity and separation of concerns. This ensures that the codebase stays maintainable and flexible as new features or requirements come up. To monitor everything, I rely on DataDog and Prometheus for real-time insights into service performance, capturing key metrics like response times, memory usage, and error rates. This helps me spot bottlenecks early and optimize proactively.
+                    </p>
+                    <h4 className="font-bold text-lg mb-3">DevOps</h4>
+                    <p className="leading-relaxed mb-6">
+                        I've been working with various version control and CI/CD platforms since 2016, and GitHub and GitLab have become my preferred tools for managing code and automating workflows. I build CI/CD pipelines that cover everything—from linting and testing to deployment and monitoring. I also integrate security scanning tools like Snyk and Veracode to identify vulnerabilities early on.
+                    </p>
+                    <p className="leading-relaxed mb-6">
+                        For release automation, I use Semantic Release with Conventional Commits to ensure that versioning is consistent and releases are automated without any hiccups.
+                    </p>
+                    <p className="leading-relaxed mb-6">
+                        Containerization is a big part of my workflow. I use Docker for local development, especially with LocalStack when building AWS-based services. In production, Kubernetes is my go-to for orchestration, particularly when paired with ArgoCD, Argo Rollouts, Helm, and Istio.
+                    </p>
+                    <p className="leading-relaxed mb-6">
+                        I place a strong emphasis on observability. DataDog is my preferred tool for centralized logs, metrics, and traces because it gives me real-time insights into how systems are performing and how users are interacting with services. DataDog's dashboards and alerting capabilities make it easy to track key metrics and quickly resolve any issues before they impact users. I also integrate OpsGenie or PagerDuty for incident management, making sure that issues are addressed efficiently.
                     </p>
                 </>
             ),
@@ -65,25 +86,20 @@ const Skills: React.FC = () => {
             icon: <FaCloud className="text-4xl text-info mb-4" />,
             content: (
                 <>
-                    <h4 className="font-bold text-lg mb-3">U.S. Department of Veterans Affairs</h4>
                     <p className="leading-relaxed mb-6">
-                        My cloud journey started at the U.S. Department of Veterans Affairs, where I managed a hybrid cloud environment in Azure. I ensured scalability and security for mission-critical systems, building a strong foundation in enterprise cloud integration.
+                        My experience with cloud infrastructure has evolved from managing complex hybrid systems to designing multi-cloud solutions for large-scale production workloads. I've spent a lot of time working with AWS, Azure, and GCP, always looking for ways to leverage cloud-native services to improve scalability, security, and cost efficiency.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">Rackspace</h4>
+                    <h4 className="font-bold text-lg mb-3">Infrastructure as Code (IaC)</h4>
                     <p className="leading-relaxed mb-6">
-                        At Rackspace, I expanded my cloud expertise, working with AWS, Azure, and OpenStack. I designed resilient multi-cloud infrastructures, led container orchestration deployments, and streamlined CI/CD pipelines using Jenkins, GitLab, and Travis CI.
+                        Using tools like Pulumi, Terraform, and Serverless Framework, my preferred approach to IaC emphasizes using pre-built modules from within the service repository — this way, the infrastructure can scale quickly while still maintaining high security and performance standards. The goal is to ensure the infrastructure can evolve alongside the application and business requirements without introducing complexity or risk.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">Hewlett Packard Enterprise</h4>
+                    <h4 className="font-bold text-lg mb-3">Cloud Infrastructure Monitoring</h4>
                     <p className="leading-relaxed mb-6">
-                        At HPE, I designed and deployed cloud solutions across AWS, Azure, and GCP, integrating secure networking solutions like DirectConnect and ExpressRoute. I spearheaded Kubernetes deployments and automated provisioning workflows using Terraform and Puppet, enabling clients to scale effortlessly.
+                        I prefer DataDog and cloud-native solutions to track infrastructure performance and reliability. With DataDog, custom dashboards and alerts help me keep an eye on key metrics like resource utilization, latency, and network traffic so I can detect and fix issues proactively before they turn into bigger problems, which is critical for minimizing downtime. I also tie these monitoring tools into automated incident response workflows with OpsGenie or PagerDuty to make sure any issues are handled quickly and efficiently.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">Disney</h4>
+                    <h4 className="font-bold text-lg mb-3">Networking</h4>
                     <p className="leading-relaxed mb-6">
-                        At Disney, I managed cloud infrastructure supporting AI/ML models for media post-processing and video streaming, improving media workflows and content delivery. My work on EKS clusters helped streamline production pipelines, enhancing video streaming performance.
-                    </p>
-                    <h4 className="font-bold text-lg mb-3">Crunchyroll</h4>
-                    <p className="leading-relaxed mb-6">
-                        Currently, I maintain video streaming services on AWS and lead the development of a global content delivery network (CDN) for smooth playback. I also manage infrastructure automation using Pulumi and Serverless Framework, scaling operations with user demand.
+                        I've worked a lot with VPC architectures to ensure secure and efficient connectivity between services. This has included setting up secure networking solutions like DirectConnect, VPNs, and fine-tuning IAM roles to make sure resources are both secure and accessible only to authorized users. I also make sure that network traffic and security events are continuously monitored, so any threats can be detected and responded to before they become an issue.
                     </p>
                 </>
             ),
@@ -94,17 +110,20 @@ const Skills: React.FC = () => {
             icon: <FaVideo className="text-4xl text-info mb-4" />,
             content: (
                 <>
-                    <h4 className="font-bold text-lg mb-3">Rackspace</h4>
                     <p className="leading-relaxed mb-6">
-                        At Rackspace, I began my media engineering journey, working with clients like the NFL and Live Nation. I gained foundational expertise in video streaming technologies like FFmpeg, HLS, and DASH, laying the groundwork for future media projects.
+                        Media engineering has been a core part of my work, especially with platforms like Disney+ and Crunchyroll. My focus has been on building and optimizing media transcoding, delivery, and playback to ensure video content is processed and delivered efficiently, no matter the device.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">Disney</h4>
+                    <h4 className="font-bold text-lg mb-3">Transcoding</h4>
                     <p className="leading-relaxed mb-6">
-                        At Disney, I played a key role in developing AI/ML models for automating film production workflows, including pixel analysis and visual effects processing using tools like Nuke, Blender, and FFmpeg. I also contributed to AI-driven content recommendations for Disney+ and Hulu, improving user engagement through personalized suggestions.
+                        I've built and fine-tuned media transcoding pipelines using tools like FFmpeg and cloud services such as AWS Elemental MediaConvert, automating transcoding tasks and ensuring efficient delivery across a wide range of devices. Maintaining quality is a big priority for me — I work to ensure videos maintain high resolution and perform well, even when network conditions aren't ideal.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">Crunchyroll</h4>
+                    <h4 className="font-bold text-lg mb-3">Delivery</h4>
                     <p className="leading-relaxed mb-6">
-                        Currently, I build scalable media transcoding pipelines and optimize video playback systems at Crunchyroll, ensuring smooth streaming for millions of users globally. Leveraging FFmpeg, HLS, and DASH, I ensure robust and efficient content delivery at scale.
+                        Smooth, efficient media delivery is essential for a great user experience. I've worked extensively with adaptive bitrate streaming technologies like HLS and DASH to make sure content is optimized for different devices and network conditions. I've also built and integrated Content Delivery Networks (CDNs) on Akamai, Fastly, and AWS CloudFront to reduce latency and offload traffic, ensuring that users can access content quickly and reliably, no matter where they're located.
+                    </p>
+                    <h4 className="font-bold text-lg mb-3">Playback</h4>
+                    <p className="leading-relaxed mb-6">
+                        For me, optimizing video playback is all about giving users the best experience possible, no matter what device they're on or what their network situation looks like. I've implemented adaptive bitrate (ABR) streaming, which adjusts video quality dynamically based on available bandwidth, providing a smoother, more consistent viewing experience even when network conditions change. I constantly monitor playback performance metrics—things like buffering events and user feedback—to proactively address any issues and ensure that playback remains high-quality at all times.
                     </p>
                 </>
             ),
@@ -115,13 +134,20 @@ const Skills: React.FC = () => {
             icon: <FaBrain className="text-4xl text-info mb-4" />,
             content: (
                 <>
-                    <h4 className="font-bold text-lg mb-3">Hewlett Packard Enterprise</h4>
                     <p className="leading-relaxed mb-6">
-                        At HPE, I began working on MLOps pipelines, integrating AWS and Azure services to streamline machine learning workflows.
+                        My work in machine learning focuses on solving practical problems like video analysis, recommendation systems, film production, and automation through AI/ML models. Over the years, I've collaborated with research teams to take models from development all the way to production, using frameworks like TensorFlow and PyTorch. I've built end-to-end machine learning pipelines, managed model lifecycles, and deployed scalable solutions that handle real-time data processing.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">Disney</h4>
+                    <h4 className="font-bold text-lg mb-3">Frameworks & Tools</h4>
                     <p className="leading-relaxed mb-6">
-                        At Disney, I collaborated with research teams to develop AI/ML models for automating visual effects and delivering personalized content recommendations for Disney+ and Hulu. I integrated tools like TensorFlow, PyTorch, and FFmpeg into production pipelines, reducing manual post-production time and optimizing content delivery.
+                        I've primarily worked with computer vision models like U-Net, GroundingDINO, YOLO, Segment Anything, and VMAF. For training and deploying these models, I use TensorFlow and PyTorch. Whether it's for video analysis, film production, or content recommendation, I ensure the models are optimized for performance and scalability. In addition to using AWS SageMaker for model management, I also work with Weights & Biases and MLflow for experiment tracking and model lifecycle management. For monitoring system-level performance, infrastructure health, and model drift, I rely on DataDog and SageMaker Model Monitor to ensure models stay reliable and continue to meet evolving business needs.
+                    </p>
+                    <h4 className="font-bold text-lg mb-3">MLOps & Deployment</h4>
+                    <p className="leading-relaxed mb-6">
+                        Managing the full lifecycle of machine learning models requires a solid MLOps strategy. I lean on tools like MLflow, Weights & Biases, Kubernetes, and AWS SageMaker to automate and streamline processes from model training to evaluation and deployment. By setting up robust pipelines, I ensure that models are continuously monitored and retrained as new data becomes available, keeping them adaptable and effective.
+                    </p>
+                    <h4 className="font-bold text-lg mb-3">Data Pipelines for ML</h4>
+                    <p className="leading-relaxed mb-6">
+                        Building reliable data pipelines is essential to any machine learning project. I work with tools like Apache Kafka, Spark, and Airflow to maintain efficient, real-time data flows that feed into the models. This ensures both training and production data are processed accurately and on time. Reliable, high-performing data pipelines are key to supporting real-time analytics and decision-making, and I continuously monitor them to ensure seamless operation across different environments.
                     </p>
                 </>
             ),
@@ -132,13 +158,20 @@ const Skills: React.FC = () => {
             icon: <FaDatabase className="text-4xl text-info mb-4" />,
             content: (
                 <>
-                    <h4 className="font-bold text-lg mb-3">Hewlett Packard Enterprise</h4>
                     <p className="leading-relaxed mb-6">
-                        At HPE, I built ETL pipelines using Apache Kafka and Airflow, ensuring scalable data processing across enterprise systems. I also integrated AWS Glue and Azure Synapse to optimize data workflows for machine learning.
+                        Data engineering has always been a critical part of my work, especially when it comes to building scalable ETL pipelines that support real-time data processing and analytics. I've designed and managed systems that handle large datasets, focusing on high availability, data integrity, and optimizing data flows to power business-critical applications, machine learning models, and reporting systems. Keeping these pipelines reliable, accurate, and high-performing is always top of mind, with continuous monitoring to ensure uptime and performance.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">Disney</h4>
+                    <h4 className="font-bold text-lg mb-3">Data Pipelines</h4>
                     <p className="leading-relaxed mb-6">
-                        At Disney, I expanded my data engineering expertise, implementing Kafka and Spark to power real-time data processing for personalized content recommendations. This enabled Disney+ and Hulu to handle large-scale data efficiently, ensuring low-latency delivery of content suggestions.
+                        I build data pipelines using tools like Apache Kafka, Airflow, and Spark to handle both real-time and batch data processing. My main goal is to ensure that data flows smoothly from source to destination with minimal latency and maximum accuracy. Whether it's supporting analytics, machine learning workflows, or day-to-day business operations, I make sure the pipelines are efficient and reliable. Monitoring and alerting are essential to keeping the systems running smoothly and ensuring real-time data is processed without bottlenecks.
+                    </p>
+                    <h4 className="font-bold text-lg mb-3">Data Warehousing</h4>
+                    <p className="leading-relaxed mb-6">
+                        I have hands-on experience designing and managing data warehouses using platforms like AWS Redshift and Azure Synapse. My work involves creating efficient schemas, optimizing queries for performance, and ensuring the data is structured to support both transactional and analytical workloads. I keep a close eye on performance metrics and usage patterns, making sure that queries are running efficiently and that data storage is cost-optimized for the long term.
+                    </p>
+                    <h4 className="font-bold text-lg mb-3">Data Governance & Quality</h4>
+                    <p className="leading-relaxed mb-6">
+                        Maintaining trust in data-driven decisions starts with data quality and governance. I implement data governance frameworks to ensure that data is secure, high-quality, and accessible throughout the pipeline. This includes defining data standards, applying access controls, and setting up quality checks to catch issues early. Continuous monitoring is essential to ensure compliance with governance policies and to maintain data integrity at every stage of the process.
                     </p>
                 </>
             ),
@@ -149,33 +182,27 @@ const Skills: React.FC = () => {
             icon: <FaShieldAlt className="text-4xl text-info mb-4" />,
             content: (
                 <>
-                    <h4 className="font-bold text-lg mb-3">CompUSA</h4>
                     <p className="leading-relaxed mb-6">
-                        As a Systems Administrator at CompUSA, I managed the security of local systems, implementing antivirus solutions and securing networks. This role built my foundational knowledge in system security and user access controls.
+                        Security has always been in the fabric of my work, whether I'm building cloud software, deploying machine learning models, or managing media and data engineering pipelines. I've designed and implemented security strategies that protect sensitive data across various systems, ensuring compliance with industry standards like HIPAA and PCI-DSS. From configuring secure cloud architectures to managing vulnerability assessments and incident response, my goal is always to keep systems secure, reliable, and compliant. Continuous security monitoring has been key to identifying and responding to potential threats proactively.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">U.S. Army</h4>
+                    <h4 className="font-bold text-lg mb-3">Application Security</h4>
                     <p className="leading-relaxed mb-6">
-                        During my time in the U.S. Army, I deployed encryption protocols and managed access controls for high-security military networks. I was responsible for securing sensitive data and implementing intrusion detection systems (IDS), which enhanced the security posture of mission-critical systems.
+                        Ensuring security is embedded in the software development process is a key part of my work, starting from the earliest stages of building software. I incorporate security best practices into the codebase, such as secure coding standards, dependency management, and continuous vulnerability assessment. A key aspect of this is generating and maintaining a Software Bill of Materials (SBOM) to ensure full visibility into the open-source components and dependencies used within the software. This helps identify potential risks, such as outdated or vulnerable libraries, before they reach production.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">U.S. Department of Veterans Affairs</h4>
                     <p className="leading-relaxed mb-6">
-                        At the VA, I secured hybrid cloud environments while ensuring compliance with federal cybersecurity standards. I led vulnerability management efforts and implemented multi-factor authentication (MFA) and role-based access controls (RBAC), enhancing the security of cloud and on-premises systems, protecting highly sensitive medical and governmental data.
+                        I also use security in the CI/CD process to ensure that code is thoroughly tested and vetted before deployment. Throughout the pipeline, I use tools like Snyk and Veracode to ensure that security checks are automated and performed early in the development cycle.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">Rackspace</h4>
+                    <h4 className="font-bold text-lg mb-3">Cloud Security</h4>
                     <p className="leading-relaxed mb-6">
-                        At Rackspace, I focused on securing multi-cloud environments for clients in industries with stringent compliance requirements, such as healthcare and finance. I implemented cloud-native security solutions like AWS IAM and Azure AD, ensuring adherence to HIPAA and PCI-DSS standards. My work in vulnerability management, using tools like Snyk and Veracode, improved security posture across client systems.
+                        Securing cloud environments is one of the core aspects of my work. I focus on practices like role-based access control (RBAC), encryption (at-rest, in-use, and in-transit), and multi-factor authentication (MFA) to protect resources in AWS and Azure environments. I've implemented security measures like IAM roles, key management systems, and secure networking configurations, ensuring that cloud resources are both secure and compliant with industry regulations. Using DataDog and AWS CloudTrail, I'm able to detect potential security incidents early and respond quickly to mitigate them.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">Hewlett Packard Enterprise</h4>
+                    <h4 className="font-bold text-lg mb-3">Network Security</h4>
                     <p className="leading-relaxed mb-6">
-                        At HPE, I led security initiatives for Kubernetes deployments, implementing RBAC and network policies. My focus on highly regulated industries ensured compliance with frameworks like FedRAMP and NIST 800-53. I also improved secrets management in Terraform/Ansible scripts, using HashiCorp Vault to securely manage sensitive data.
+                        In terms of network security, I've designed secure network architectures using VPCs, firewalls, and VPNs to ensure data remains protected in transit. My focus has been on zero-trust network principles, where no entity is trusted by default. By setting up continuous monitoring, I ensure that any threats are detected early and mitigated before they escalate. Whether it's securing real-time video streams or ensuring data pipelines are protected, network security plays a critical role in my work across various domains.
                     </p>
-                    <h4 className="font-bold text-lg mb-3">Disney</h4>
+                    <h4 className="font-bold text-lg mb-3">Vulnerability Management & Compliance</h4>
                     <p className="leading-relaxed mb-6">
-                        At Disney, I secured production workflows and video streaming services on AWS, implementing encryption protocols for data storage and delivery. I worked on securing AI/ML models used in media production, ensuring that models were protected with appropriate access controls and API security.
-                    </p>
-                    <h4 className="font-bold text-lg mb-3">Crunchyroll</h4>
-                    <p className="leading-relaxed mb-6">
-                        Currently, I focus on securing cloud-native video streaming services and internal web applications. I led efforts to shut down dozens of piracy apps within my first month, significantly reducing unauthorized access to our content and protecting our intellectual property.
+                        Managing vulnerabilities and ensuring compliance with standards like NIST, FedRAMP, and SOC 2 has been a big part of my work, especially in regulated industries like government, finance, and healthcare. I've used tools like Snyk, Veracode, and AWS Inspector to identify and remediate security risks in both cloud-based applications and machine learning pipelines. Continuous vulnerability scanning and real-time monitoring have been essential for keeping systems secure and compliant, ensuring rapid response to potential threats as they arise.
                     </p>
                 </>
             ),
