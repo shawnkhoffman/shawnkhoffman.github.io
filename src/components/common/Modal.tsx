@@ -11,7 +11,6 @@ interface ModalProps {
   totalPages?: number;
   currentPage?: number;
   showNavigation?: boolean;
-  isMobile?: boolean;
   isExpanded: boolean;
   onToggleExpand: () => void;
   triggerOverflowCheck: number;
@@ -27,21 +26,24 @@ const Modal: React.FC<ModalProps> = ({
   totalPages = 1,
   currentPage = 0,
   showNavigation = true,
-  isMobile = false,
   isExpanded,
   onToggleExpand,
   triggerOverflowCheck,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const expandButtonRef = useRef<HTMLButtonElement>(null);
+  
   const [showNavigationHint, setShowNavigationHint] = useState(true);
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const [scrollIndicatorVisible, setScrollIndicatorVisible] = useState(true);
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchStartY, setTouchStartY] = useState(0);
-  const [touchEndX, setTouchEndX] = useState(0);
-  const [touchEndY, setTouchEndY] = useState(0);
+  const [touchStartTime, setTouchStartTime] = useState(0);
+  
+  const [isTouchDevice] = useState(() => navigator.maxTouchPoints > 0);
 
   const checkContentOverflow = useCallback(() => {
     if (contentRef.current) {
@@ -87,19 +89,26 @@ const Modal: React.FC<ModalProps> = ({
   const handleTouchStart = useCallback((e: TouchEvent) => {
     setTouchStartX(e.touches[0].clientX);
     setTouchStartY(e.touches[0].clientY);
+    setTouchStartTime(Date.now());
   }, []);
 
-  const handleTouchMove = useCallback((e: TouchEvent) => {
-    setTouchEndX(e.touches[0].clientX);
-    setTouchEndY(e.touches[0].clientY);
-  }, []);
+  const handleTouchEnd = useCallback((e: TouchEvent) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const touchEndTime = Date.now();
 
-  const handleTouchEnd = useCallback(() => {
     const deltaX = touchEndX - touchStartX;
     const deltaY = touchEndY - touchStartY;
-    const minSwipeDistance = 50;
+    const deltaTime = touchEndTime - touchStartTime;
 
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+    const minSwipeDistance = 50;
+    const maxSwipeTime = 300;
+
+    if (
+      Math.abs(deltaX) > Math.abs(deltaY) &&
+      Math.abs(deltaX) > minSwipeDistance &&
+      deltaTime < maxSwipeTime
+    ) {
       if (deltaX > 0 && onPrevious) {
         onPrevious();
         setShowNavigationHint(false);
@@ -108,7 +117,7 @@ const Modal: React.FC<ModalProps> = ({
         setShowNavigationHint(false);
       }
     }
-  }, [touchStartX, touchStartY, touchEndX, touchEndY, onNext, onPrevious]);
+  }, [touchStartX, touchStartY, touchStartTime, onNext, onPrevious]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -164,20 +173,18 @@ const Modal: React.FC<ModalProps> = ({
 
   useEffect(() => {
     const modalElement = modalRef.current;
-    if (isOpen && modalElement) {
-      modalElement.addEventListener('touchstart', handleTouchStart);
-      modalElement.addEventListener('touchmove', handleTouchMove);
-      modalElement.addEventListener('touchend', handleTouchEnd);
+    if (isOpen && modalElement && isTouchDevice) {
+      modalElement.addEventListener('touchstart', handleTouchStart, { passive: true });
+      modalElement.addEventListener('touchend', handleTouchEnd, { passive: true });
     }
 
     return () => {
       if (modalElement) {
         modalElement.removeEventListener('touchstart', handleTouchStart);
-        modalElement.removeEventListener('touchmove', handleTouchMove);
         modalElement.removeEventListener('touchend', handleTouchEnd);
       }
     };
-  }, [isOpen, handleTouchStart, handleTouchMove, handleTouchEnd]);
+  }, [isOpen, isTouchDevice, handleTouchStart, handleTouchEnd]);
 
   if (!isOpen) return null;
 
@@ -192,6 +199,7 @@ const Modal: React.FC<ModalProps> = ({
     >
       <div
         ref={modalRef}
+        data-testid="modal-content"
         className={`relative w-full ${
           isExpanded
             ? 'max-w-[95vw] md:max-w-4xl lg:max-w-5xl h-[85vh]'
@@ -204,8 +212,9 @@ const Modal: React.FC<ModalProps> = ({
           <h2 id="modal-title" className="text-xl sm:text-2xl font-semibold text-center flex-grow">
             {title}
           </h2>
+          
           <button
-            ref={closeButtonRef}
+            ref={expandButtonRef}
             onClick={onToggleExpand}
             className="text-xl p-2 hover:text-info focus:outline-none"
             aria-label={isExpanded ? 'Compress modal' : 'Expand modal'}
@@ -214,7 +223,7 @@ const Modal: React.FC<ModalProps> = ({
           </button>
         </div>
 
-        {showNavigation && totalPages > 1 && !isMobile && (
+        {showNavigation && totalPages > 1 && !isTouchDevice && (
           <>
             <button
               className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 p-2 text-5xl text-neutral-content hover:text-info hidden md:block"
@@ -272,7 +281,7 @@ const Modal: React.FC<ModalProps> = ({
         {showNavigation && showNavigationHint && totalPages > 1 && (
           <div className="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2">
             <span className="text-sm text-info">
-              {isMobile ? 'Swipe left or right to navigate' : 'Use ← → arrow keys to navigate'}
+              {isTouchDevice ? 'Swipe left or right to navigate' : 'Use ← → arrow keys to navigate'}
             </span>
           </div>
         )}

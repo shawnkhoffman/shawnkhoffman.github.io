@@ -31,20 +31,6 @@ class ResizeObserverMock {
 
 let resizeObserverInstances: ResizeObserverMock[] = [];
 
-beforeEach(() => {
-  resizeObserverInstances = [];
-
-  global.ResizeObserver = vi.fn((callback: ResizeObserverCallback) => {
-    const instance = new ResizeObserverMock(callback);
-    resizeObserverInstances.push(instance);
-    return instance as unknown as ResizeObserver;
-  });
-});
-
-afterEach(() => {
-  vi.clearAllMocks();
-});
-
 describe('Modal', () => {
   const mockOnClose = vi.fn();
   const mockOnNext = vi.fn();
@@ -61,11 +47,45 @@ describe('Modal', () => {
     totalPages: 3,
     currentPage: 1,
     showNavigation: true,
-    isMobile: false,
     isExpanded: false,
     onToggleExpand: mockOnToggleExpand,
     triggerOverflowCheck: 0,
   };
+
+  beforeEach(() => {
+    resizeObserverInstances = [];
+    global.ResizeObserver = vi.fn((callback: ResizeObserverCallback) => {
+      const instance = new ResizeObserverMock(callback);
+      resizeObserverInstances.push(instance);
+      return instance as unknown as ResizeObserver;
+    });
+
+    vi.useFakeTimers();
+
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: vi.fn().mockImplementation(query => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      })),
+    });
+
+    Object.defineProperty(navigator, 'maxTouchPoints', {
+      writable: true,
+      value: 0,
+    });
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.resetAllMocks();
+  });
 
   it('renders the modal with title and content', () => {
     const { container } = render(<Modal {...modalProps} />);
@@ -118,50 +138,68 @@ describe('Modal', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('navigates to the next page when the right arrow is clicked', () => {
-    const { container, rerender } = render(<Modal {...modalProps} />);
+  it('shows navigation buttons on non-touch devices', () => {
+    Object.defineProperty(navigator, 'maxTouchPoints', { value: 0 });
 
-    const nextButton = screen.getByLabelText('Go to the next page');
+    render(<Modal {...modalProps} />);
+
+    expect(screen.getByLabelText('Go to the next page')).toBeInTheDocument();
+    expect(screen.getByLabelText('Go to the previous page')).toBeInTheDocument();
+  });
+
+  it('hides navigation buttons on touch devices', () => {
+    Object.defineProperty(navigator, 'maxTouchPoints', { value: 1 });
+
+    render(<Modal {...modalProps} />);
+
+    expect(screen.queryByLabelText('Go to the next page')).not.toBeInTheDocument();
+    expect(screen.queryByLabelText('Go to the previous page')).not.toBeInTheDocument();
+  });
+
+  it('navigates to the next page when the right arrow is clicked on non-touch devices', () => {
+    Object.defineProperty(navigator, 'maxTouchPoints', { value: 0 });
+
+    render(<Modal {...modalProps} />);
+
+    act(() => {
+      vi.runAllTimers();
+    });
+
+    const nextButton = screen.getByRole('button', { name: 'Go to the next page' });
     fireEvent.click(nextButton);
 
     expect(mockOnNext).toHaveBeenCalled();
-
-    rerender(<Modal {...modalProps} currentPage={2} />);
-
-    expect(container).toMatchSnapshot();
   });
 
-  it('navigates to the previous page when the left arrow is clicked', () => {
-    const { container, rerender } = render(<Modal {...modalProps} currentPage={2} />);
+  it('navigates to the previous page when the left arrow is clicked on non-touch devices', () => {
+    Object.defineProperty(navigator, 'maxTouchPoints', { value: 0 });
 
-    const prevButton = screen.getByLabelText('Go to the previous page');
+    render(<Modal {...modalProps} currentPage={2} />);
+
+    act(() => {
+      vi.runAllTimers();
+    });
+
+    const prevButton = screen.getByRole('button', { name: 'Go to the previous page' });
     fireEvent.click(prevButton);
 
     expect(mockOnPrevious).toHaveBeenCalled();
-
-    rerender(<Modal {...modalProps} currentPage={1} />);
-
-    expect(container).toMatchSnapshot();
   });
 
   it('triggers next page on right arrow key press', () => {
-    const { container, rerender } = render(<Modal {...modalProps} />);
+    const { container } = render(<Modal {...modalProps} />);
 
     fireEvent.keyDown(document, { key: 'ArrowRight' });
     expect(mockOnNext).toHaveBeenCalled();
-
-    rerender(<Modal {...modalProps} currentPage={2} />);
 
     expect(container).toMatchSnapshot();
   });
 
   it('triggers previous page on left arrow key press', () => {
-    const { container, rerender } = render(<Modal {...modalProps} currentPage={2} />);
+    const { container } = render(<Modal {...modalProps} currentPage={2} />);
 
     fireEvent.keyDown(document, { key: 'ArrowLeft' });
     expect(mockOnPrevious).toHaveBeenCalled();
-
-    rerender(<Modal {...modalProps} currentPage={1} />);
 
     expect(container).toMatchSnapshot();
   });
@@ -184,7 +222,7 @@ describe('Modal', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('shows the scroll indicator if content overflows', async () => {
+  it('shows the scroll indicator if content overflows', () => {
     const { container } = render(<Modal {...modalProps} />);
 
     const contentDiv = screen.getByText('Modal Content').parentElement;
@@ -200,7 +238,8 @@ describe('Modal', () => {
         value: 500,
       });
 
-      await act(async () => {
+      act(() => {
+        vi.runAllTimers();
         resizeObserverInstances[0].trigger();
       });
 
@@ -218,12 +257,6 @@ describe('Modal', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('matches snapshot when modal is in mobile view', () => {
-    const { container } = render(<Modal {...modalProps} isMobile={true} />);
-
-    expect(container).toMatchSnapshot();
-  });
-
   it('matches snapshot for single-page modal without navigation', () => {
     const { container } = render(
       <Modal
@@ -237,5 +270,31 @@ describe('Modal', () => {
     );
 
     expect(container).toMatchSnapshot();
+  });
+
+  it('handles swipe gestures on touch devices', () => {
+    Object.defineProperty(navigator, 'maxTouchPoints', { value: 1 });
+
+    render(<Modal {...modalProps} />);
+    
+    act(() => {
+      vi.runAllTimers();
+    });
+
+    const modalContent = screen.getByTestId('modal-content');
+
+    fireEvent.touchStart(modalContent, { touches: [{ clientX: 500, clientY: 0 }] });
+    vi.advanceTimersByTime(100);
+    fireEvent.touchEnd(modalContent, { changedTouches: [{ clientX: 100, clientY: 0 }] });
+
+    expect(mockOnNext).toHaveBeenCalled();
+
+    mockOnNext.mockClear();
+
+    fireEvent.touchStart(modalContent, { touches: [{ clientX: 100, clientY: 0 }] });
+    vi.advanceTimersByTime(100);
+    fireEvent.touchEnd(modalContent, { changedTouches: [{ clientX: 500, clientY: 0 }] });
+
+    expect(mockOnPrevious).toHaveBeenCalled();
   });
 });

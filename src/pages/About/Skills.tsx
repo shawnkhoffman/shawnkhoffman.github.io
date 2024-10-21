@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
     FaCode,
     FaCloud,
@@ -12,18 +12,8 @@ import Modal from '../../components/common/Modal';
 const Skills: React.FC = () => {
     const [currentModalIndex, setCurrentModalIndex] = useState<number | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
     const [isModalExpanded, setIsModalExpanded] = useState(true);
     const [triggerOverflowCheck, setTriggerOverflowCheck] = useState(0);
-
-    useEffect(() => {
-        const checkIfMobile = () => {
-            setIsMobile('ontouchstart' in window || window.innerWidth <= 640);
-        };
-        checkIfMobile();
-        window.addEventListener('resize', checkIfMobile);
-        return () => window.removeEventListener('resize', checkIfMobile);
-    }, []);
 
     const modals = [
         {
@@ -261,7 +251,6 @@ const Skills: React.FC = () => {
                     onPrevious={handlePrevious}
                     totalPages={modals.length}
                     currentPage={currentModalIndex}
-                    isMobile={isMobile}
                     isExpanded={isModalExpanded}
                     onToggleExpand={toggleModalExpand}
                     triggerOverflowCheck={triggerOverflowCheck}

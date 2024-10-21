@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import Skills from '../../../pages/About/Skills';
 import '@testing-library/jest-dom';
@@ -114,26 +114,5 @@ describe('Skills Component', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /expand modal/i }));
     expect(screen.getByRole('button', { name: /compress modal/i })).toBeInTheDocument();
-  });
-
-  it('updates isMobile state on window resize', () => {
-    render(<Skills />);
-
-    const learnMoreButtons = screen.getAllByRole('button', { name: /learn more/i });
-    fireEvent.click(learnMoreButtons[0]);
-
-    act(() => {
-      Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 500 });
-      window.dispatchEvent(new Event('resize'));
-    });
-
-    expect(screen.getByRole('dialog')).toBeInTheDocument();
-
-    act(() => {
-      Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1024 });
-      window.dispatchEvent(new Event('resize'));
-    });
-
-    expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 });

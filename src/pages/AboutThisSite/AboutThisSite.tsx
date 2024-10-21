@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaReact, FaGithub, FaCode, FaLayerGroup, FaTools, FaBug, FaWrench, FaLaughBeam } from 'react-icons/fa';
 import TechnologyCard from './TechnologyCard';
 import Modal from '../../components/common/Modal';
@@ -8,18 +8,8 @@ import Entertaining404Content from './Entertaining404Content';
 const AboutThisSite: React.FC = () => {
   const [currentFeatureIndex, setCurrentFeatureIndex] = useState<number | null>(null);
   const [isFeatureModalOpen, setIsFeatureModalOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [isFeatureModalExpanded, setIsFeatureModalExpanded] = useState(true);
   const [triggerOverflowCheck, setTriggerOverflowCheck] = useState(0);
-
-  useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile('ontouchstart' in window || window.innerWidth <= 640);
-    };
-    checkIfMobile();
-    window.addEventListener('resize', checkIfMobile);
-    return () => window.removeEventListener('resize', checkIfMobile);
-  }, []);
 
   const modalFeatures = [
     {
@@ -80,66 +70,66 @@ const AboutThisSite: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6">
+    <main 
+      className="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6" 
+      role="main" 
+      aria-label="About This Site Section"
+    >
       <h1 className="text-4xl font-bold mb-8">About This Site</h1>
 
-      <section className="card w-full max-w-5xl mb-10 bg-base-100 shadow-xl">
-        <div className="card-body">
-          <h2 className="card-title text-2xl font-semibold mb-6 text-center">Technologies Used</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-            <TechnologyCard
-              icon={<FaReact className="text-4xl text-info mb-2" aria-hidden="true" />}
-              title="React"
-              description="Fast, component-based UI development"
-              link="https://reactjs.org"
-            />
-            <TechnologyCard
-              icon={<FaCode className="text-4xl text-info mb-2" aria-hidden="true" />}
-              title="TypeScript"
-              description="Type-safe development environment"
-              link="https://www.typescriptlang.org"
-            />
-            <TechnologyCard
-              icon={<FaLayerGroup className="text-4xl text-info mb-2" aria-hidden="true" />}
-              title="Tailwind CSS & DaisyUI"
-              description="Utility-first CSS framework"
-              link="https://daisyui.com"
-            />
-            <TechnologyCard
-              icon={<FaGithub className="text-4xl text-info mb-2" aria-hidden="true" />}
-              title="GitHub Pages"
-              description="For static site deployment"
-              link="https://pages.github.com"
-            />
-            <TechnologyCard
-              icon={<FaTools className="text-4xl text-info mb-2" aria-hidden="true" />}
-              title="Vite"
-              description="Fast development builds"
-              link="https://vitejs.dev"
-            />
-          </div>
+      <section className="w-full max-w-5xl mb-10 bg-base-100 rounded-lg shadow-xl p-6">
+        <h2 className="text-2xl font-semibold mb-6 text-center">Technologies Used</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
+          <TechnologyCard
+            icon={<FaReact className="text-4xl text-info mb-2" aria-hidden="true" />}
+            title="React"
+            description="Fast, component-based UI development"
+            link="https://reactjs.org"
+          />
+          <TechnologyCard
+            icon={<FaCode className="text-4xl text-info mb-2" aria-hidden="true" />}
+            title="TypeScript"
+            description="Type-safe development environment"
+            link="https://www.typescriptlang.org"
+          />
+          <TechnologyCard
+            icon={<FaLayerGroup className="text-4xl text-info mb-2" aria-hidden="true" />}
+            title="Tailwind CSS & DaisyUI"
+            description="Utility-first CSS framework"
+            link="https://daisyui.com"
+          />
+          <TechnologyCard
+            icon={<FaGithub className="text-4xl text-info mb-2" aria-hidden="true" />}
+            title="GitHub Pages"
+            description="For static site deployment"
+            link="https://pages.github.com"
+          />
+          <TechnologyCard
+            icon={<FaTools className="text-4xl text-info mb-2" aria-hidden="true" />}
+            title="Vite"
+            description="Fast development builds"
+            link="https://vitejs.dev"
+          />
         </div>
       </section>
 
-      <section className="card w-full max-w-5xl mb-10 bg-base-100 shadow-xl">
-        <div className="card-body">
-          <h2 className="card-title text-2xl font-semibold mb-6 text-center">Site Features</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allFeatures.map((feature, index) => (
-              <div key={feature.id} className="flex flex-col items-center text-center">
-                {feature.icon}
-                <h3 className="font-semibold mb-2">{feature.category}</h3>
-                <button
-                  className="btn btn-sm mt-4"
-                  onClick={() => showFeatureModal(index)}
-                  disabled={feature.id === 'coming-soon'}
-                  aria-label={feature.id === 'coming-soon' ? 'Feature coming soon' : `Learn more about ${feature.category}`}
-                >
-                  {feature.id === 'coming-soon' ? 'Under Construction' : 'Learn More'}
-                </button>
-              </div>
-            ))}
-          </div>
+      <section className="w-full max-w-5xl mb-10 bg-base-100 rounded-lg shadow-xl p-6">
+        <h2 className="text-2xl font-semibold mb-6 text-center">Site Features</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {allFeatures.map((feature, index) => (
+            <div key={feature.id} className="flex flex-col items-center text-center">
+              {feature.icon}
+              <h3 className="font-semibold mb-2">{feature.category}</h3>
+              <button
+                className="btn btn-sm mt-4"
+                onClick={() => showFeatureModal(index)}
+                disabled={feature.id === 'coming-soon'}
+                aria-label={feature.id === 'coming-soon' ? 'Feature coming soon' : `Learn more about ${feature.category}`}
+              >
+                {feature.id === 'coming-soon' ? 'Under Construction' : 'Learn More'}
+              </button>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -153,7 +143,6 @@ const AboutThisSite: React.FC = () => {
           onPrevious={handleFeaturePrevious}
           totalPages={modalFeatures.length}
           currentPage={currentFeatureIndex}
-          isMobile={isMobile}
           isExpanded={isFeatureModalExpanded}
           onToggleExpand={toggleFeatureModalExpand}
           triggerOverflowCheck={triggerOverflowCheck}
@@ -170,7 +159,7 @@ const AboutThisSite: React.FC = () => {
           View Source Code
         </button>
       </section>
-    </div>
+    </main>
   );
 };
 
