@@ -13,7 +13,7 @@ exports[`AboutThisSite > matches the snapshot in desktop view 1`] = `
       About This Site
     </h1>
     <section
-      class="w-full max-w-5xl mb-10 bg-base-100 rounded-lg shadow-xl p-6"
+      class="w-full max-w-5xl mb-10 p-6 bg-base-100 rounded-lg shadow-lg"
     >
       <h2
         class="text-2xl font-semibold mb-6 text-center"
@@ -216,7 +216,7 @@ exports[`AboutThisSite > matches the snapshot in desktop view 1`] = `
       </div>
     </section>
     <section
-      class="w-full max-w-5xl mb-10 bg-base-100 rounded-lg shadow-xl p-6"
+      class="w-full max-w-5xl mb-10 p-6 bg-base-100 rounded-lg shadow-lg"
     >
       <h2
         class="text-2xl font-semibold mb-6 text-center"
@@ -361,7 +361,7 @@ exports[`AboutThisSite > matches the snapshot in mobile view 1`] = `
       About This Site
     </h1>
     <section
-      class="w-full max-w-5xl mb-10 bg-base-100 rounded-lg shadow-xl p-6"
+      class="w-full max-w-5xl mb-10 p-6 bg-base-100 rounded-lg shadow-lg"
     >
       <h2
         class="text-2xl font-semibold mb-6 text-center"
@@ -564,7 +564,7 @@ exports[`AboutThisSite > matches the snapshot in mobile view 1`] = `
       </div>
     </section>
     <section
-      class="w-full max-w-5xl mb-10 bg-base-100 rounded-lg shadow-xl p-6"
+      class="w-full max-w-5xl mb-10 p-6 bg-base-100 rounded-lg shadow-lg"
     >
       <h2
         class="text-2xl font-semibold mb-6 text-center"
@@ -709,7 +709,7 @@ exports[`AboutThisSite > matches the snapshot when a modal is open 1`] = `
       About This Site
     </h1>
     <section
-      class="w-full max-w-5xl mb-10 bg-base-100 rounded-lg shadow-xl p-6"
+      class="w-full max-w-5xl mb-10 p-6 bg-base-100 rounded-lg shadow-lg"
     >
       <h2
         class="text-2xl font-semibold mb-6 text-center"
@@ -912,7 +912,7 @@ exports[`AboutThisSite > matches the snapshot when a modal is open 1`] = `
       </div>
     </section>
     <section
-      class="w-full max-w-5xl mb-10 bg-base-100 rounded-lg shadow-xl p-6"
+      class="w-full max-w-5xl mb-10 p-6 bg-base-100 rounded-lg shadow-lg"
     >
       <h2
         class="text-2xl font-semibold mb-6 text-center"
@@ -1084,7 +1084,7 @@ exports[`AboutThisSite > renders without crashing and matches the snapshot 1`] =
       About This Site
     </h1>
     <section
-      class="w-full max-w-5xl mb-10 bg-base-100 rounded-lg shadow-xl p-6"
+      class="w-full max-w-5xl mb-10 p-6 bg-base-100 rounded-lg shadow-lg"
     >
       <h2
         class="text-2xl font-semibold mb-6 text-center"
@@ -1287,7 +1287,7 @@ exports[`AboutThisSite > renders without crashing and matches the snapshot 1`] =
       </div>
     </section>
     <section
-      class="w-full max-w-5xl mb-10 bg-base-100 rounded-lg shadow-xl p-6"
+      class="w-full max-w-5xl mb-10 p-6 bg-base-100 rounded-lg shadow-lg"
     >
       <h2
         class="text-2xl font-semibold mb-6 text-center"

@@ -77,7 +77,7 @@ const AboutThisSite: React.FC = () => {
     >
       <h1 className="text-4xl font-bold mb-8">About This Site</h1>
 
-      <section className="w-full max-w-5xl mb-10 bg-base-100 rounded-lg shadow-xl p-6">
+      <section className="w-full max-w-5xl mb-10 p-6 bg-base-100 rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold mb-6 text-center">Technologies Used</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
           <TechnologyCard
@@ -113,7 +113,7 @@ const AboutThisSite: React.FC = () => {
         </div>
       </section>
 
-      <section className="w-full max-w-5xl mb-10 bg-base-100 rounded-lg shadow-xl p-6">
+      <section className="w-full max-w-5xl mb-10 p-6 bg-base-100 rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold mb-6 text-center">Site Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {allFeatures.map((feature, index) => (
