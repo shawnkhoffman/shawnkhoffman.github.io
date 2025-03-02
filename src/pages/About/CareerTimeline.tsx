@@ -15,33 +15,33 @@ interface CareerTimelineProps {
 const CareerTimeline: React.FC<CareerTimelineProps> = ({ timelineData }) => {
   const defaultTimelineData: CareerTimelineData[] = [
     {
-      date: '2024 - Present',
+      date: '2024 - 2025',
       title: 'Senior Software Engineer - Crunchyroll',
-      description: 'Developing next generation video streaming experience for millions of concurrent users.',
+      description: 'Developed the next generation video streaming experience for millions of concurrent users during high-traffic content releases like Demon Slayer, Kaiju No. 8, and Dragon Ball Daima.',
       position: 'start',
     },
     {
       date: '2021 - 2023',
-      title: 'Staff Systems Reliability Engineer - Disney Studios',
-      description: 'Developed cloud services and MLOps, and led end-to-end systems reliability, for Disney film production studios, StudioLab, and Disney Research.',
+      title: 'Staff Software Engineer - Disney Research',
+      description: 'Using AI/ML, automated video post-production and quality control for Disney, Lucasfilm, Marvel, and Pixar films, enhancing theatrical and streaming experiences on Disney+ and Hulu.',
       position: 'end',
     },
     {
       date: '2019 - 2021',
-      title: 'Lead Consultant - HPE Services',
-      description: 'Led cloud platform engineering and software development projects for Fortune 500 enterprise clients.',
+      title: 'Lead Software Engineer - HPE Services',
+      description: 'Developed cloud self-service platforms, enabling enterprises to deploy and manage infrastructure faster, reducing downtime and improving scalability for business-critical applications.',
       position: 'start',
     },
     {
       date: '2016 - 2019',
       title: 'Senior DevOps Engineer - Rackspace',
-      description: 'Built and maintained cloud software for Fortune 500 enterprise clients.',
+      description: 'Optimized cloud deployments for enterprise clients, improving reliability, reducing costs, and ensuring seamless application performance for millions of end users.',
       position: 'end',
     },
     {
       date: '2013 - 2016',
       title: 'Senior System Engineer - U.S. Department of Veterans Affairs',
-      description: 'Managed cloud infrastructure and systems for VA hospitals and clinics.',
+      description: 'Improved healthcare system reliability and security, ensuring medical staff could provide care without disruption and patients had uninterrupted access to critical medical services.',
       position: 'start',
     },
     {
@@ -52,7 +52,7 @@ const CareerTimeline: React.FC<CareerTimelineProps> = ({ timelineData }) => {
     },
     {
       date: '2005 - 2013',
-      title: 'System Engineer - U.S. Army',
+      title: 'Systems Engineer - U.S. Army',
       description: 'Maintained secure communications systems and network infrastructure for military operations.',
       position: 'end',
     },
