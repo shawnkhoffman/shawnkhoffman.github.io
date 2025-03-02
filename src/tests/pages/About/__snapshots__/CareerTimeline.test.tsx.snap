@@ -43,7 +43,7 @@ exports[`CareerTimeline > Accessibility > provides semantic timeline structure 1
           <time
             class="font-mono italic"
           >
-            2024 - Present
+            2024 - 2025
           </time>
           <h3
             class="text-lg font-black"
@@ -53,7 +53,7 @@ exports[`CareerTimeline > Accessibility > provides semantic timeline structure 1
           <p
             role="article"
           >
-            Developing next generation video streaming experience for millions of concurrent users.
+            Developed the next generation video streaming experience for millions of concurrent users during high-traffic content releases like Demon Slayer, Kaiju No. 8, and Dragon Ball Daima.
           </p>
         </div>
         <hr />
@@ -92,12 +92,12 @@ exports[`CareerTimeline > Accessibility > provides semantic timeline structure 1
           <h3
             class="text-lg font-black"
           >
-            Staff Systems Reliability Engineer - Disney Studios
+            Staff Software Engineer - Disney Research
           </h3>
           <p
             role="article"
           >
-            Developed cloud services and MLOps, and led end-to-end systems reliability, for Disney film production studios, StudioLab, and Disney Research.
+            Using AI/ML, automated video post-production and quality control for Disney, Lucasfilm, Marvel, and Pixar films, enhancing theatrical and streaming experiences on Disney+ and Hulu.
           </p>
         </div>
         <hr />
@@ -136,12 +136,12 @@ exports[`CareerTimeline > Accessibility > provides semantic timeline structure 1
           <h3
             class="text-lg font-black"
           >
-            Lead Consultant - HPE Services
+            Lead Software Engineer - HPE Services
           </h3>
           <p
             role="article"
           >
-            Led cloud platform engineering and software development projects for Fortune 500 enterprise clients.
+            Developed cloud self-service platforms, enabling enterprises to deploy and manage infrastructure faster, reducing downtime and improving scalability for business-critical applications.
           </p>
         </div>
         <hr />
@@ -185,7 +185,7 @@ exports[`CareerTimeline > Accessibility > provides semantic timeline structure 1
           <p
             role="article"
           >
-            Built and maintained cloud software for Fortune 500 enterprise clients.
+            Optimized cloud deployments for enterprise clients, improving reliability, reducing costs, and ensuring seamless application performance for millions of end users.
           </p>
         </div>
         <hr />
@@ -229,7 +229,7 @@ exports[`CareerTimeline > Accessibility > provides semantic timeline structure 1
           <p
             role="article"
           >
-            Managed cloud infrastructure and systems for VA hospitals and clinics.
+            Improved healthcare system reliability and security, ensuring medical staff could provide care without disruption and patients had uninterrupted access to critical medical services.
           </p>
         </div>
         <hr />
@@ -312,7 +312,7 @@ exports[`CareerTimeline > Accessibility > provides semantic timeline structure 1
           <h3
             class="text-lg font-black"
           >
-            System Engineer - U.S. Army
+            Systems Engineer - U.S. Army
           </h3>
           <p
             role="article"
