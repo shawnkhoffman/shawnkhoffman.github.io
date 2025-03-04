@@ -16,14 +16,14 @@ jobs:
         with:
           bun-version: latest
       - run: bun install
-      - run: bun test -- --coverage
+      - run: bun test --coverage-directory=./coverage --coverage
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/*.json
+          directory: ./coverage/
           flags: unittests
           verbose: true
 
