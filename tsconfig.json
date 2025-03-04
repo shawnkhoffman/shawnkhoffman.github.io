@@ -13,6 +13,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
+    "types": ["bun-types"],
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
@@ -21,8 +22,7 @@
       "@styles/*": ["src/styles/*"],
       "@tests/*": ["src/tests/*"],
       "@layouts/*": ["src/layouts/*"]
-    },
-    "types": ["vitest/globals"]
+    }
   },
   "include": ["src"]
 }

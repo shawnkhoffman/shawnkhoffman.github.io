@@ -8,8 +8,8 @@ import Entertaining404Content from './Entertaining404Content';
 interface Feature {
   id: string;
   category: string;
-  icon: JSX.Element;
-  content: JSX.Element;
+  icon: React.ReactElement;
+  content: React.ReactElement;
   title?: string;
 }
 

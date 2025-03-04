@@ -3,7 +3,7 @@ import { datadogRum } from '@datadog/browser-rum';
 
 interface Props {
   children: ReactNode;
-  fallback?: ReactNode;
+  fallback?: ReactNode | ((error: Error) => ReactNode);
   onError?: (error: Error, errorInfo: ErrorInfo) => void;
   onReset?: () => void;
   resetKeys?: unknown[];
@@ -68,7 +68,7 @@ const ERROR_STORAGE_KEY = 'error_boundary_state';
 let isHandlingTestError = false;
 
 class ErrorBoundary extends Component<Props, State> {
-  private retryTimeoutId: NodeJS.Timeout | null = null;
+  private retryTimeoutId: ReturnType<typeof setTimeout> | null = null;
   private errorCardRef = createRef<HTMLDivElement>();
 
   public state: State = {
@@ -248,6 +248,7 @@ class ErrorBoundary extends Component<Props, State> {
       children, 
       fallback, 
       showReloadButton = true,
+      showRetryButton = false,
       isTestError = false,
       className = '',
     } = this.props;
@@ -264,7 +265,10 @@ class ErrorBoundary extends Component<Props, State> {
     }
 
     if (fallback) {
-      return fallback;
+      if (typeof fallback === 'function' && error) {
+        return <>{fallback(error)}</>;
+      }
+      return <>{fallback as Exclude<typeof fallback, (error: Error) => ReactNode>}</>;
     }
 
     return (
@@ -310,7 +314,7 @@ class ErrorBoundary extends Component<Props, State> {
               </button>
             )}
 
-            {!isTestError && (
+            {(showRetryButton || (!isTestError && !showRetryButton)) && (
               <button
                 data-testid="reset-error-button"
                 className="btn btn-secondary btn-sm"

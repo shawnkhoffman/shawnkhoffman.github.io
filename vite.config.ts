@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import sitemap from 'vite-plugin-sitemap';
-import { configDefaults } from 'vitest/config';
 import compression from 'vite-plugin-compression';
 import { version } from './package.json';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -45,21 +44,6 @@ export default defineConfig({
   },
   define: {
     __APP_VERSION__: JSON.stringify(version),
-  },
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/tests/setupTests.ts',
-    include: ['src/**/*.{test,spec}.{js,ts,jsx,tsx}'],
-    exclude: [...configDefaults.exclude, 'e2e/*'],
-    environmentOptions: {
-      jsdom: {
-        resources: 'usable',
-      },
-    },
-    testTimeout: 10000,
-    hookTimeout: 10000,
-    silent: true,
   },
   resolve: {
     alias: {

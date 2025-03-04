@@ -4,7 +4,7 @@ A modern, accessible portfolio website built with React, TypeScript, and Vite. V
 
 ## 🚀 Features
 
-- **Modern Stack**: Built with React 18, TypeScript, and Vite for optimal development experience
+- **Modern Stack**: Built with React 19, TypeScript, and Vite for optimal development experience
 - **Responsive Design**: Mobile-first approach using Tailwind CSS and DaisyUI
 - **Internationalization**: Multi-language support with i18next
 - **Accessibility**: ARIA-compliant with keyboard navigation and screen reader support
@@ -16,7 +16,7 @@ A modern, accessible portfolio website built with React, TypeScript, and Vite. V
 
 - **Frontend**: React, TypeScript, Tailwind CSS, DaisyUI
 - **Build Tool**: Vite
-- **Testing**: Vitest, React Testing Library
+- **Testing**: Bun Test, React Testing Library
 - **CI/CD**: GitHub Actions
 - **Analytics**: DataDog RUM, Google Analytics
 - **Deployment**: GitHub Pages
@@ -33,7 +33,7 @@ A modern, accessible portfolio website built with React, TypeScript, and Vite. V
 2. Install dependencies:
 
     ```bash
-    npm install
+    bun install
     ```
 
 3. Create a `.env` file with required environment variables:
@@ -51,40 +51,44 @@ A modern, accessible portfolio website built with React, TypeScript, and Vite. V
 Start the development server:
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 Other available scripts:
 
 ```bash
-npm run build            # Build for production
-npm run lint            # Run ESLint
-npm run test            # Run tests
-npm run test:coverage   # Run tests with coverage
-npm run test:ui         # Run tests with UI
-npm run lighthouse      # Run Lighthouse audit
-npm run preview         # Preview production build
-npm run analyze         # Analyze bundle size
-npm run deploy          # Deploy to GitHub Pages
+bun run build           # Build for production
+bun run lint            # Run ESLint
+bun run test            # Run tests
+bun run test:coverage   # Run tests with coverage
+bun run test:ui         # Run tests with UI
+bun run test:specific   # Run specific tests
+bun run lighthouse      # Run Lighthouse audit
+bun run preview         # Preview production build
+bun run analyze         # Analyze bundle size
+bun run deploy          # Deploy to GitHub Pages
 ```
 
 ## 🧪 Testing
 
-The project uses Vitest for testing with comprehensive configuration including:
+The project uses Bun's native test runner for testing with comprehensive configuration including:
 
-- JSDOM environment for DOM testing
+- Happy DOM environment for DOM testing
 - Thread pooling for parallel test execution
 - Coverage reporting
-- Snapshot testing
 - Integration with React Testing Library
 
 Run tests:
 
 ```bash
-npm run test          # Run tests
-npm run test:coverage # Run tests with coverage
-npm run test:ui       # Run tests with UI
+bun run test           # Run tests
+bun run test:coverage  # Run tests with coverage
+bun run test:ui        # Run tests with UI
+bun run test:watch     # Run tests in watch mode
+bun run test:specific  # Run specific tests
 ```
+
+For more details about the testing setup, see the [BUN_TESTING.md](src/tests/BUN_TESTING.md) file.
 
 ## 📝 Code Style
 

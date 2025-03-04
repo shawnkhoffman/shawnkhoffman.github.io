@@ -1,6 +1,7 @@
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import { FaSun, FaMoon, FaDesktop, FaMobileAlt, FaTabletAlt } from 'react-icons/fa';
+import { Theme } from '@/types/theme';
 
 const useMediaQuery = (query: string): boolean => {
   const getMatches = (mediaQuery: string): boolean => {
@@ -33,10 +34,9 @@ const useMediaQuery = (query: string): boolean => {
   return matches;
 };
 
-type Theme = 'light' | 'dark' | 'system';
-type DeviceType = 'desktop' | 'mobile' | 'tablet';
+export type DeviceType = 'desktop' | 'mobile' | 'tablet';
 
-interface ThemeControllerProps {
+export interface ThemeControllerProps {
   showLabel?: boolean;
   className?: string;
   labelPosition?: 'left' | 'right';
@@ -194,4 +194,3 @@ const ThemeController = memo<ThemeControllerProps>(({
 ThemeController.displayName = 'ThemeController';
 
 export default ThemeController;
-export type { Theme, DeviceType, ThemeControllerProps };

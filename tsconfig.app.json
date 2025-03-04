@@ -36,8 +36,7 @@
       "@styles/*": ["src/styles/*"],
       "@tests/*": ["src/tests/*"],
       "@layouts/*": ["src/layouts/*"]
-    },
-    "types": ["vitest/globals"]
+    }
   },
   "include": ["src"]
 }

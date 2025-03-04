@@ -1,0 +1,28 @@
+# Bun configuration file
+# See: https://bun.sh/docs/runtime/bunfig
+
+[test]
+# Use happy-dom for browser-like environment
+environment = "happy-dom"
+
+# Setup files
+preload = ["./src/tests/setup.ts"]
+
+# Coverage settings
+coverage = true
+coverageThreshold = 0
+
+# Test file patterns
+testPattern = ["**/*.test.{ts,tsx,js,jsx}"]
+
+# Browser testing options
+browser = { enabled = false }
+
+# Test timeout in ms
+timeout = 10000
+
+# The directory to search for tests
+includeSource = ["src/**/*.{ts,tsx,js,jsx}"]
+
+# Whether assertions should be required in tests
+assertType = true
