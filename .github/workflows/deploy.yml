@@ -16,7 +16,7 @@ jobs:
         with:
           bun-version: latest
       - run: bun install
-      - run: bun test --coverage-directory=./coverage --coverage
+      - run: bun test --environment=jsdom --coverage-directory=./coverage --coverage
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
