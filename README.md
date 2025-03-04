@@ -4,7 +4,7 @@ A modern, accessible portfolio website built with React, TypeScript, and Vite. V
 
 ## 🚀 Features
 
-- **Modern Stack**: Built with React 18, TypeScript, and Vite for optimal development experience
+- **Modern Stack**: Built with React 19, TypeScript, and Vite for optimal development experience
 - **Responsive Design**: Mobile-first approach using Tailwind CSS and DaisyUI
 - **Internationalization**: Multi-language support with i18next
 - **Accessibility**: ARIA-compliant with keyboard navigation and screen reader support
