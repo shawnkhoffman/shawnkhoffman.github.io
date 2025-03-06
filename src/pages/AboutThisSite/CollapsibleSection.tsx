@@ -35,7 +35,7 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
   return (
     <div
       data-testid={testId}
-      className={`collapse collapse-arrow bg-base-200 ${isOpen ? 'collapse-open' : ''}`}
+      className={`collapse collapse-arrow bg-base-200 ${isOpen ? 'collapse-open' : 'collapse-close'}`}
     >
       <button
         type="button"

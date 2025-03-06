@@ -15,34 +15,28 @@ interface CareerTimelineProps {
 const CareerTimeline: React.FC<CareerTimelineProps> = ({ timelineData }) => {
   const defaultTimelineData: CareerTimelineData[] = [
     {
-      date: '2024 - 2025',
-      title: 'Senior Software Engineer - Crunchyroll',
-      description: 'Developed the next generation video streaming experience for millions of concurrent users during high-traffic content releases like Demon Slayer, Kaiju No. 8, and Dragon Ball Daima.',
+      date: '2024 - Present',
+      title: 'Senior Platform Engineer - Crunchyroll',
+      description: 'Using cloud infrastructure, developed the next generation video streaming experience for millions of concurrent users during high-traffic content releases like Demon Slayer, Kaiju No. 8, and Dragon Ball Daima.',
       position: 'start',
     },
     {
       date: '2021 - 2023',
-      title: 'Staff Software Engineer - Disney Research',
-      description: 'Using AI/ML, automated video post-production and quality control for Disney, Lucasfilm, Marvel, and Pixar films, enhancing theatrical and streaming experiences on Disney+ and Hulu.',
+      title: 'Staff SRE in AI/ML - Disney Research',
+      description: 'Designed and optimized reliable, high-performance infrastructure for machine learning workflows that automated video post-production and quality control for Disney, Lucasfilm, Marvel, and Pixar films, enhancing theatrical and streaming experiences on Disney+ and Hulu.',
       position: 'end',
     },
     {
       date: '2019 - 2021',
-      title: 'Lead Software Engineer - HPE Services',
-      description: 'Developed cloud self-service platforms, enabling enterprises to deploy and manage infrastructure faster, reducing downtime and improving scalability for business-critical applications.',
+      title: 'Lead PLatform Engineer - HPE Services',
+      description: 'Developed cloud self-service infrastructure platforms, enabling enterprises to deploy and manage infrastructure faster, reducing downtime and improving scalability for business-critical applications.',
       position: 'start',
     },
     {
-      date: '2016 - 2019',
+      date: '2015 - 2019',
       title: 'Senior DevOps Engineer - Rackspace',
-      description: 'Optimized cloud deployments for enterprise clients, improving reliability, reducing costs, and ensuring seamless application performance for millions of end users.',
+      description: 'Optimized cloud infrastructure deployments for enterprise clients, improving reliability, reducing costs, and ensuring seamless application performance for millions of end users.',
       position: 'end',
-    },
-    {
-      date: '2013 - 2016',
-      title: 'Senior System Engineer - U.S. Department of Veterans Affairs',
-      description: 'Improved healthcare system reliability and security, ensuring medical staff could provide care without disruption and patients had uninterrupted access to critical medical services.',
-      position: 'start',
     },
     {
       date: '2012 - 2016',
@@ -51,16 +45,22 @@ const CareerTimeline: React.FC<CareerTimelineProps> = ({ timelineData }) => {
       position: 'start',
     },
     {
-      date: '2005 - 2013',
-      title: 'Systems Engineer - U.S. Army',
-      description: 'Maintained secure communications systems and network infrastructure for military operations.',
+      date: '2011 - 2014',
+      title: 'Senior Web Developier - RWI Studios',
+      description: 'Built, optimized, and maintained websites and web applications, ensuring functionality, responsiveness, and user-friendly experiences tailored to client needs.',
       position: 'end',
     },
     {
-      date: '2004 - 2005',
-      title: 'System Administrator - CompUSA',
-      description: 'Managed network infrastructure and system administration for retail operations.',
+      date: '2009 - 2011',
+      title: 'ISP Network Engineer - Frontier Internet',
+      description: 'Maintained network infrastructure stability, scalability, and performance, enabling seamless connectivity for residential and business customers.',
       position: 'start',
+    },
+    {
+      date: '2004 - 2007',
+      title: 'System Administrator - TigerDirect Business',
+      description: 'Managed network infrastructure and system administration for retail operations.',
+      position: 'end',
     },
   ];
 

@@ -6,6 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shawn Hoffman's Portfolio</title>
 
+    <!-- Theme initialization to prevent flash -->
+    <script>
+      (function() {
+        var savedTheme = localStorage.getItem('theme') || 'system';
+        
+        if (savedTheme === 'system') {
+          var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          savedTheme = systemPrefersDark ? 'dark' : 'light';
+        }
+        
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.documentElement.classList.add(savedTheme);
+      })();
+    </script>
+
     <!-- Meta Tags for SEO -->
     <meta name="description" content="Portfolio showcasing Shawn Hoffman's professional portfolio. Explore projects, contact details, and more." />
     <meta name="keywords" content="Shawn Hoffman, React Developer, TypeScript, Portfolio, Web Development" />
