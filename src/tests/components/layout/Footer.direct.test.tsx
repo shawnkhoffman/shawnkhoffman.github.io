@@ -1,6 +1,6 @@
 import { describe, test, expect, beforeEach, afterEach } from 'bun:test';
 import Footer from '@components/layout/Footer';
-import { render, mockGtag, fireEvent } from '@tests/utils/test-helpers';
+import { render, mockGtag, fireEvent } from '@tests/utils';
 
 describe('Footer', () => {
   let gtagMock: ReturnType<typeof mockGtag>;
