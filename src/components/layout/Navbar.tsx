@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, memo, useMemo } from 'react';
-import { lazy, Suspense } from 'react';
 import { FaBars, FaCaretDown } from 'react-icons/fa';
+import ThemeController from '../common/ThemeController';
 import logo from '../../assets/images/react.svg';
-
-const ThemeController = lazy(() => import('../common/ThemeController'));
 
 interface SubmenuItem {
   href: string;
@@ -376,12 +374,10 @@ const MobileMenu = memo(({
             ))}
           </nav>
           <div className="mt-auto px-4 py-4 border-t border-base-300">
-            <Suspense fallback={<div className="p-2 text-center">Loading theme options...</div>}>
-              <ThemeController
-                showLabel={true}
-                className="block px-3 py-2 text-base font-medium rounded-md hover:bg-base-200 w-full focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-            </Suspense>
+            <ThemeController
+              showLabel={true}
+              className="block px-3 py-2 text-base font-medium rounded-md hover:bg-base-200 w-full focus:outline-none focus:ring-2 focus:ring-primary"
+            />
           </div>
         </div>
       </div>
@@ -519,9 +515,7 @@ const Navbar: React.FC = () => {
               </div>
             ))}
             <div className="relative">
-              <Suspense fallback={<div className="p-2">Loading theme...</div>}>
-                <ThemeController />
-              </Suspense>
+              <ThemeController />
             </div>
           </div>
 
