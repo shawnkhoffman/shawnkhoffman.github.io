@@ -41,7 +41,7 @@ const AboutThisSite: React.FC = () => {
     {
       id: 'coming-soon',
       category: 'Coming Soon',
-      icon: <FaWrench className="text-4xl text-content mb-4" aria-hidden="true" />,
+      icon: <FaWrench className="text-4xl text-base-content mb-4" aria-hidden="true" />,
       content: <p>This feature is currently under development.</p>,
     },
   ];

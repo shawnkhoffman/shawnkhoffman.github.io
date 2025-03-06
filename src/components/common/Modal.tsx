@@ -481,7 +481,7 @@ const Modal = memo<ModalProps>(({
         <div className="p-4 border-t border-base-300 flex justify-end space-x-2">
           <button
             ref={closeButtonRef}
-            className="btn btn-sm"
+            className="btn btn-sm btn-neutral"
             onClick={onClose}
             aria-label="Close modal"
           >

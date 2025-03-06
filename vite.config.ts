@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import sitemap from 'vite-plugin-sitemap';
 import compression from 'vite-plugin-compression';
 import { version } from './package.json';
@@ -10,6 +11,7 @@ import path from 'path';
 export default defineConfig({
   plugins: [
     react(),
+    tailwindcss(),
     tsconfigPaths(),
     sitemap({
       hostname: 'https://shawnkhoffman.dev',

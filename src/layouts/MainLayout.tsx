@@ -5,7 +5,7 @@ import ErrorBoundary from '../components/common/ErrorBoundary';
 
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen text-base-content">
       <a 
         href="#main-content" 
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:p-4 focus:bg-primary focus:text-primary-content focus:rounded-md"
