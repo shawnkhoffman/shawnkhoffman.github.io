@@ -39,7 +39,7 @@ const Skills: React.FC = () => {
                         Accessibility is a priority for me because it's simply a non-negotiable part of modern web design. I make sure every interface works seamlessly across devices and assistive technologies by implementing ARIA roles, keyboard navigation, and screen reader support. I also bake in internationalization (i18n) from the start, using tools like react-i18next to make localization easy for global users.
                     </p>
                     <p className="leading-relaxed mb-6">
-                        For testing, I go with Vitest (or Jest) for unit and integration tests, especially given Vitest's fast integration with Vite. I also use React Testing Library to verify that my components behave as expected. On top of that, DataDog RUM and Google Analytics help me track real user interactions, which I use to continuously improve both the user experience and performance.
+                        For testing, I go with Bun Test for unit and integration tests, especially given its fast performance and native integration with the Bun runtime. I also use React Testing Library to verify that my components behave as expected. On top of that, DataDog RUM and Google Analytics help me track real user interactions, which I use to continuously improve both the user experience and performance.
                     </p>
                     <h4 className="font-bold text-lg mb-3">Backend Development</h4>
                     <p className="leading-relaxed mb-6">

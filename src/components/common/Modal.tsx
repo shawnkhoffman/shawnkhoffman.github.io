@@ -24,7 +24,7 @@ const ScrollIndicator = lazy(() =>
   import('./ModalIcons').then((module) => ({ default: module.ScrollIndicator }))
 );
 
-interface ModalProps {
+export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   content: React.ReactNode;
@@ -84,10 +84,10 @@ function modalReducer(state: ModalState, action: ModalAction): ModalState {
   }
 }
 
-type DebouncedFunction<T extends (...args: unknown[]) => void> = {
+interface DebouncedFunction<T extends (...args: unknown[]) => void> {
   (...args: Parameters<T>): void;
   cancel: () => void;
-};
+}
 
 type ThrottledFunction<T extends (...args: unknown[]) => void> = {
   (...args: Parameters<T>): void;
@@ -118,7 +118,7 @@ const debounce = <T extends (...args: unknown[]) => void>(
   fn: T,
   ms: number
 ): DebouncedFunction<T> => {
-  let timeoutId: NodeJS.Timeout;
+  let timeoutId: ReturnType<typeof setTimeout>;
 
   const debouncedFn = (...args: Parameters<T>) => {
     clearTimeout(timeoutId);

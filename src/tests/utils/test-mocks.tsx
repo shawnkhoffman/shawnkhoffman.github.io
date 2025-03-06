@@ -1,8 +1,8 @@
 import React from 'react';
 import { TEST_IDS } from './test-constants';
-import { vi } from 'vitest';
+import { spyOn } from 'bun:test';
 
-export const mockModal = vi.fn(({ 
+export const mockModal = spyOn(({ 
   isOpen, 
   onClose, 
   title, 
@@ -35,7 +35,7 @@ export const mockModal = vi.fn(({
   ) : null
 );
 
-export const mockTechnologyCard = vi.fn(({ 
+export const mockTechnologyCard = spyOn(({ 
   icon, 
   title, 
   description, 

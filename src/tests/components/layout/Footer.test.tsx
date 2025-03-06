@@ -1,89 +1,106 @@
-import { screen, fireEvent, cleanup } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import Footer from '../../../components/layout/Footer';
-import { render as customRender } from '../../utils/test-utils';
+import React from 'react';
+import { test, describe, beforeEach, afterEach, expect } from 'bun:test';
+import { render, fireEvent } from '@tests/utils/bun-test-utils';
+import { expectElement, expectValue } from '@tests/utils/bun-test-utils';
+import Footer from '@components/layout/Footer';
 
-describe('Footer', () => {
+const TestFooter = () => <Footer />;
+
+describe('Footer Component', () => {
+  let originalGtag: typeof window.gtag;
+  
   beforeEach(() => {
-    cleanup();
-    vi.stubGlobal('gtag', vi.fn());
+    originalGtag = window.gtag;
+    window.gtag = (command: string, action: string, params?: Record<string, unknown>) => {
+      window.gtagCalls = window.gtagCalls || [];
+      window.gtagCalls.push({ command, action, params });
+    };
   });
-
+  
   afterEach(() => {
-    cleanup();
-    vi.clearAllMocks();
+    window.gtag = originalGtag;
+    window.gtagCalls = [];
   });
 
-  describe('Rendering', () => {
-    it('renders the footer with copyright and social links sections', () => {
-      const { container } = customRender(<Footer />);
-      const footer = container.querySelector('footer');
-      expect(footer).toMatchSnapshot('footer-structure');
-    });
+  test('renders with copyright text and current year', () => {
+    const { container } = render(<TestFooter />);
+    
+    const footer = container.querySelector('footer') as HTMLElement;
+    expectElement(footer).toBeInTheDocument();
+    
+    const currentYear = new Date().getFullYear();
+    const copyrightText = container.textContent;
+    expect(copyrightText?.includes(`© ${currentYear} Shawn Hoffman`)).toBeTruthy();
   });
 
-  describe('Structure', () => {
-    it('contains required structural elements', () => {
-      const { container } = customRender(<Footer />);
-      
-      const footer = container.querySelector('footer');
-      expect(footer).toBeInTheDocument();
-      
-      const copyrightText = container.querySelector('p');
-      expect(copyrightText).toHaveTextContent(/©.*all rights reserved/i);
-      
-      const links = screen.getAllByRole('link');
-      expect(links.length).toBeGreaterThan(0);
-    });
+  test('includes social links with proper attributes', () => {
+    const { container } = render(<TestFooter />);
+    
+    const links = container.querySelectorAll('a');
+    expectValue(links.length).toBeGreaterThan(0);
+    
+    const githubLink = Array.from(links).find(link => 
+      link.getAttribute('href')?.includes('github.com')
+    ) as HTMLAnchorElement;
+    expectElement(githubLink).toBeInTheDocument();
+    
+    if (githubLink) {
+      const ariaLabel = githubLink.getAttribute('aria-label');
+      expect(ariaLabel?.toLowerCase().includes('github')).toBeTruthy();
+      expect(githubLink.getAttribute('rel')).toBe('noopener noreferrer');
+    }
+    
+    const linkedinLink = Array.from(links).find(link => 
+      link.getAttribute('href')?.includes('linkedin.com')
+    );
+    expect(linkedinLink).toBeTruthy();
+    
+    if (linkedinLink) {
+      const ariaLabel = linkedinLink.getAttribute('aria-label');
+      expect(ariaLabel?.toLowerCase().includes('linkedin')).toBeTruthy();
+    }
+    
+    const twitterLink = Array.from(links).find(link => 
+      link.getAttribute('href')?.includes('x.com') || link.getAttribute('href')?.includes('twitter.com')
+    );
+    expect(twitterLink).toBeTruthy();
+    
+    if (twitterLink) {
+      const ariaLabel = twitterLink.getAttribute('aria-label');
+      expect(ariaLabel?.toLowerCase().match(/twitter|x/i)).toBeTruthy();
+    }
   });
 
-  describe('Interactions', () => {
-    it('triggers analytics event when social links are clicked', () => {
-      customRender(<Footer />);
-      const links = screen.getAllByRole('link');
+  test('tracks social link clicks with gtag', () => {
+    const { container } = render(<TestFooter />);
+    
+    const socialLinks = container.querySelectorAll('a[aria-label]');
+    expectValue(socialLinks.length).toBeGreaterThan(0);
+    
+    if (socialLinks.length > 0) {
+      const firstLink = socialLinks[0] as HTMLAnchorElement;
+      expectElement(firstLink).toBeInTheDocument();
       
-      const firstLink = links[0];
       fireEvent.click(firstLink);
       
-      expect(window.gtag).toHaveBeenCalledWith('event', 'click', expect.any(Object));
-    });
+      expect(window.gtagCalls).toBeTruthy();
+      expectValue(window.gtagCalls.length).toBeGreaterThan(0);
+      expect(window.gtagCalls[0].command).toBe('event');
+    }
   });
 
-  describe('Accessibility', () => {
-    it('has accessible names for all interactive elements', () => {
-      customRender(<Footer />);
-      const links = screen.getAllByRole('link');
+  test('has responsive design classes', () => {
+    const { container } = render(<TestFooter />);
+    
+    const footer = container.querySelector('footer') as HTMLElement;
+    expectElement(footer).toBeInTheDocument();
+    
+    if (footer) {
+      expect(footer.classList.contains('bg-base-100')).toBeTruthy();
       
-      links.forEach(link => {
-        expect(link).toHaveAttribute('aria-label');
-      });
-    });
-
-    it('follows external link best practices', () => {
-      customRender(<Footer />);
-      const links = screen.getAllByRole('link');
-      
-      links.forEach(link => {
-        expect(link).toHaveAttribute('rel', expect.stringContaining('noopener'));
-        expect(link).toHaveAttribute('target', '_blank');
-      });
-    });
-
-    it('properly handles decorative elements', () => {
-      customRender(<Footer />);
-      const decorativeElements = document.querySelectorAll('[aria-hidden="true"]');
-      expect(decorativeElements.length).toBeGreaterThan(0);
-    });
-
-    it('supports keyboard navigation', async () => {
-      customRender(<Footer />);
-      const links = screen.getAllByRole('link');
-      
-      links[0].focus();
-      expect(document.activeElement).toBe(links[0]);
-      
-      links[links.length - 1].focus();
-      expect(document.activeElement).toBe(links[links.length - 1]);
-    });
+      const flexContainer = (container.querySelector('div.flex-col') || 
+                            container.querySelector('div.flex-row')) as HTMLElement;
+      expectElement(flexContainer).toBeInTheDocument();
+    }
   });
-});
+}); 

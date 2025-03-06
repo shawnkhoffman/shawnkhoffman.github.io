@@ -23,6 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-.vitest
-.vitestcache
-.vitest/cache
+# Backups
+backups/

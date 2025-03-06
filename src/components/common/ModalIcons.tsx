@@ -3,13 +3,15 @@ import { FaChevronLeft, FaChevronRight, FaChevronDown, FaExpand, FaCompress } fr
 
 interface ExpandButtonProps {
   isExpanded: boolean;
-  onClick: () => void;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 interface NavigationButtonsProps {
-  onPrevious: () => void;
-  onNext: () => void;
-  prefersReducedMotion: boolean;
+  onPrevious: React.MouseEventHandler<HTMLButtonElement>;
+  onNext: React.MouseEventHandler<HTMLButtonElement>;
+  showPrevious?: boolean;
+  showNext?: boolean;
+  prefersReducedMotion?: boolean;
 }
 
 interface ScrollIndicatorProps {
@@ -60,34 +62,40 @@ const ExpandButton = forwardRef<HTMLButtonElement, ExpandButtonProps>(
 const NavigationButtons: React.FC<NavigationButtonsProps> = ({
   onPrevious,
   onNext,
-  prefersReducedMotion,
+  showPrevious = true,
+  showNext = true,
+  prefersReducedMotion = false,
 }) => {
   const animationClass = prefersReducedMotion ? '' : 'hover:scale-110 transition-transform';
 
   return (
     <>
-      <button
-        className={`${BUTTON_CLASSES.navigation} -translate-x-16 left-0`}
-        onClick={onPrevious}
-        aria-label="Previous page"
-        title="Previous page"
-      >
-        <FaChevronLeft
-          className={`${ICON_CLASSES.chevron} ${animationClass}`}
-          aria-hidden="true"
-        />
-      </button>
-      <button
-        className={`${BUTTON_CLASSES.navigation} translate-x-16 right-0`}
-        onClick={onNext}
-        aria-label="Next page"
-        title="Next page"
-      >
-        <FaChevronRight
-          className={`${ICON_CLASSES.chevron} ${animationClass}`}
-          aria-hidden="true"
-        />
-      </button>
+      {showPrevious && (
+        <button
+          className={`${BUTTON_CLASSES.navigation} -translate-x-16 left-0`}
+          onClick={onPrevious}
+          aria-label="Previous page"
+          title="Previous page"
+        >
+          <FaChevronLeft
+            className={`${ICON_CLASSES.chevron} ${animationClass}`}
+            aria-hidden="true"
+          />
+        </button>
+      )}
+      {showNext && (
+        <button
+          className={`${BUTTON_CLASSES.navigation} translate-x-16 right-0`}
+          onClick={onNext}
+          aria-label="Next page"
+          title="Next page"
+        >
+          <FaChevronRight
+            className={`${ICON_CLASSES.chevron} ${animationClass}`}
+            aria-hidden="true"
+          />
+        </button>
+      )}
     </>
   );
 };
@@ -128,7 +136,7 @@ const ModalIcons = {
 
 interface ExpandButtonProps {
   isExpanded: boolean;
-  onClick: () => void;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export type ModalIconsType = typeof ModalIcons;
