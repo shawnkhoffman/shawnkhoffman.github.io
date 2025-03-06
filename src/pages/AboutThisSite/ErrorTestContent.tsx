@@ -37,7 +37,6 @@ const BuggyComponent: React.FC<{ errorType: string }> = ({ errorType }) => {
 const ErrorTestContent: React.FC<ErrorTestContentProps> = ({ onClose }) => {
   const [errorType, setErrorType] = useState<string | null>(null);
   const [selectedError, setSelectedError] = useState<string | null>(null);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   
   const resetSourceRef = useRef<'selectingError' | 'clearingError' | null>(null);
   
@@ -54,12 +53,21 @@ const ErrorTestContent: React.FC<ErrorTestContentProps> = ({ onClose }) => {
     { label: 'Generic Error', value: 'generic' },
   ];
 
-  const handleErrorSelection = (errorValue: string) => {
+  const handleErrorSelection = (errorValue: string, event?: React.MouseEvent) => {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    
     resetSourceRef.current = 'selectingError';
     setSelectedError(errorValue);
     setErrorType(null);
     errorBoundaryRef.current?.resetError();
-    setIsDropdownOpen(false);
+    
+    const detailsElement = document.querySelector('.dropdown details');
+    if (detailsElement instanceof HTMLDetailsElement) {
+      detailsElement.open = false;
+    }
   };
 
   const simulateError = () => {
@@ -107,44 +115,40 @@ const ErrorTestContent: React.FC<ErrorTestContentProps> = ({ onClose }) => {
       </div>
 
       <div className="flex-grow flex flex-col items-center justify-center space-y-6">
-        <div className="dropdown mb-6 w-full max-w-xs sm:max-w-xl">
-          <div
-            data-testid="error-dropdown-button"
-            role="combobox"
-            aria-controls="error-type-listbox"
-            aria-expanded={isDropdownOpen}
-            aria-haspopup="listbox"
-            className="btn flex items-center w-full justify-between"
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            tabIndex={0}
-          >
-            {errorTypes.find((error) => error.value === selectedError)?.label || 'Select Error'}
-            <FaChevronDown className="ml-2" />
-          </div>
-          <ul
-            id="error-type-listbox"
-            role="listbox"
-            tabIndex={-1}
-            aria-label="Select error type"
-            className={`dropdown-content menu bg-base-100 rounded-box z-[1] w-full p-2 shadow mt-2 ${
-              isDropdownOpen ? '' : 'hidden'
-            }`}
-            data-testid="error-dropdown-list"
-          >
-            {errorTypes.map((errorType) => (
-              <li 
-                key={errorType.value} 
-                role="option" 
-                aria-selected={selectedError === errorType.value}
-                data-testid={`error-option-${errorType.value}`}
-                onClick={() => handleErrorSelection(errorType.value)}
-              >
-                <button className="w-full text-left">
-                  {errorType.label}
-                </button>
-              </li>
-            ))}
-          </ul>
+        <div className="dropdown dropdown-bottom mb-6 w-full max-w-xs sm:max-w-xl">
+          <details className="w-full">
+            <summary
+              data-testid="error-dropdown-button"
+              className="btn w-full flex items-center justify-between"
+            >
+              {errorTypes.find((error) => error.value === selectedError)?.label || 'Select Error'}
+              <FaChevronDown className="ml-2" />
+            </summary>
+            <ul
+              id="error-type-listbox"
+              role="listbox"
+              aria-label="Select error type"
+              className="dropdown-content menu bg-base-100 rounded-box p-2 shadow mt-2 w-full z-[1]"
+              data-testid="error-dropdown-list"
+            >
+              {errorTypes.map((errorType) => (
+                <li 
+                  key={errorType.value} 
+                  role="option" 
+                  aria-selected={selectedError === errorType.value}
+                  data-testid={`error-option-${errorType.value}`}
+                >
+                  <a 
+                    onClick={(e) => handleErrorSelection(errorType.value, e)}
+                    href="#"
+                    className="block w-full"
+                  >
+                    {errorType.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
         </div>
 
         <div className="flex justify-center gap-4 mb-6">

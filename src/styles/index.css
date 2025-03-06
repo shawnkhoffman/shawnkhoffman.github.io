@@ -1,3 +1,94 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  --color-primary: oklch(61% 0.24 275); /* #570df8 */
+  --color-primary-content: #ffffff;
+  --color-secondary: oklch(69% 0.22 183); /* #f000b8 */
+  --color-secondary-content: #ffffff;
+  --color-accent: oklch(82% 0.18 93); /* #37cdbe */
+  --color-accent-content: #ffffff;
+  --color-neutral: oklch(33% 0.01 240); /* #3d4451 */
+  --color-neutral-content: #ffffff;
+  --color-base-100: #ffffff;
+  --color-base-200: #f2f2f2;
+  --color-base-300: #e5e6e6;
+  --color-base-content: #1f2937;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  --color-primary: oklch(61% 0.24 275); /* #570df8 */
+  --color-primary-content: #ffffff;
+  --color-secondary: oklch(69% 0.22 183); /* #f000b8 */
+  --color-secondary-content: #ffffff;
+  --color-accent: oklch(82% 0.18 93); /* #37cdbe */
+  --color-accent-content: #ffffff;
+  --color-neutral: oklch(33% 0.01 240); /* #3d4451 */
+  --color-neutral-content: #ffffff;
+  --color-base-100: #1d232a;
+  --color-base-200: #191e24;
+  --color-base-300: #15191e;
+  --color-base-content: #a6adbb;
+}
+
+@keyframes rotate-clockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes rotate-counterclockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 
+ * Animation classes - use a specific class for triggering animations
+ * These classes will only define the animation properties but not trigger them
+ * A separate class will be used to trigger the animation only on theme change
+ */
+.animate-rotate-sun {
+  animation-name: rotate-clockwise;
+  animation-duration: 0.15s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.animate-rotate-moon {
+  animation-name: rotate-counterclockwise;
+  animation-duration: 0.1s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+[data-theme-changed="true"] .animate-rotate-sun,
+[data-theme-changed="true"] .animate-rotate-moon {
+  animation-play-state: running;
+}
+
+.animate-spinSlow {
+  animation: spin 20s linear infinite;
+}
+
+:root {
+  font-family: system-ui, sans-serif;
+}
+
+/* Specific adjustments for small buttons */
+.btn-sm {
+  font-size: 0.85rem;
+}

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import MainLayout from './layouts/MainLayout';
 import RouteWrapper from './components/common/RouteWrapper';
+import PageTransition from './components/common/PageTransition';
 import routes from './routes/routes';
 
 const GoogleAnalyticsTracker = () => {
@@ -25,15 +26,17 @@ function App() {
       <Router>
         <MainLayout>
           <GoogleAnalyticsTracker />
-          <Routes>
-            {routes.map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                element={<RouteWrapper {...route} />}
-              />
-            ))}
-          </Routes>
+          <PageTransition>
+            <Routes>
+              {routes.map((route) => (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={<RouteWrapper {...route} />}
+                />
+              ))}
+            </Routes>
+          </PageTransition>
         </MainLayout>
       </Router>
     </ThemeProvider>

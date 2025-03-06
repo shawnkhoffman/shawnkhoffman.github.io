@@ -108,6 +108,7 @@ const ThemeController = memo<ThemeControllerProps>(
     const isTablet = useMediaQuery(
       `(max-width: ${DEVICE_BREAKPOINTS.tablet}px)`
     );
+    const [themeChanged, setThemeChanged] = useState(false);
 
     const deviceType = useMemo((): DeviceType => {
       if (isMobile) return "mobile";
@@ -131,7 +132,13 @@ const ThemeController = memo<ThemeControllerProps>(
 
     const handleThemeChange = useCallback(() => {
       setTheme(getNextTheme(theme as Theme));
-    }, [theme, setTheme, getNextTheme]);
+      if (shouldAnimate) {
+        setThemeChanged(true);
+        setTimeout(() => {
+          setThemeChanged(false);
+        }, theme === "light" ? 150 : 100);
+      }
+    }, [theme, setTheme, getNextTheme, shouldAnimate]);
 
     useEffect(() => {
       if (theme === "system") {
@@ -153,14 +160,14 @@ const ThemeController = memo<ThemeControllerProps>(
         case "light":
           return (
             <FaSun
-              className={`text-content ${combinedClasses}`}
+              className={`text-base-content ${combinedClasses}`}
               aria-hidden="true"
             />
           );
         case "dark":
           return (
             <FaMoon
-              className={`text-content ${combinedClasses}`}
+              className={`text-base-content ${combinedClasses}`}
               aria-hidden="true"
             />
           );
@@ -220,6 +227,7 @@ const ThemeController = memo<ThemeControllerProps>(
         aria-label={`Switch theme to ${getNextTheme(theme as Theme)} mode`}
         title={showTooltip ? THEME_LABELS[theme as Theme] : undefined}
         data-theme-controller
+        data-theme-changed={themeChanged}
         role="switch"
         aria-checked={theme === "dark"}
         data-testid={`theme-switch-${theme}`}
