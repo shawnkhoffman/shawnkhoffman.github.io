@@ -2,8 +2,6 @@
  * DOM test utilities to safely handle element operations
  */
 
-import { fireEvent } from '@testing-library/react';
-
 /**
  * Safely clicks on an element, checking if it exists first
  * @param element The element to click
@@ -11,7 +9,7 @@ import { fireEvent } from '@testing-library/react';
  */
 export const safeClick = (element: Element | null): void => {
   if (element) {
-    fireEvent.click(element);
+    element.click();
   } else {
     console.warn('Attempted to click on a null element');
   }
@@ -51,4 +49,4 @@ export const containsText = (element: Element | null, text: string): boolean => 
  */
 export const isHTMLElement = (element: Element | null): element is HTMLElement => {
   return element !== null && element instanceof HTMLElement;
-}; 
+};

@@ -1,10 +1,10 @@
 # Personal Portfolio Website
 
-A modern, accessible portfolio website built with React, TypeScript, and Vite. View the live site at [shawnkhoffman.dev](https://shawnkhoffman.dev).
+A modern, accessible portfolio website built with Vue 3, TypeScript, and Vite. View the live site at [shawnkhoffman.dev](https://shawnkhoffman.dev).
 
 ## 🚀 Features
 
-- **Modern Stack**: Built with React 19, TypeScript, and Vite for optimal development experience
+- **Modern Stack**: Built with Vue 3, TypeScript, and Vite for optimal development experience
 - **Responsive Design**: Mobile-first approach using Tailwind CSS and DaisyUI
 - **Internationalization**: Multi-language support with i18next
 - **Accessibility**: ARIA-compliant with keyboard navigation and screen reader support
@@ -14,9 +14,9 @@ A modern, accessible portfolio website built with React, TypeScript, and Vite. V
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React, TypeScript, Tailwind CSS, DaisyUI
+- **Frontend**: Vue 3, TypeScript, Tailwind CSS, DaisyUI
 - **Build Tool**: Vite
-- **Testing**: Bun Test, React Testing Library
+- **Testing**: Vitest, Vue Test Utils
 - **CI/CD**: GitHub Actions
 - **Analytics**: DataDog RUM, Google Analytics
 - **Deployment**: GitHub Pages
@@ -71,12 +71,12 @@ bun run deploy          # Deploy to GitHub Pages
 
 ## 🧪 Testing
 
-The project uses Bun's native test runner for testing with comprehensive configuration including:
+The project uses Vitest for testing with comprehensive configuration including:
 
-- Happy DOM environment for DOM testing
-- Thread pooling for parallel test execution
+- jsdom environment for DOM testing
+- Vue Test Utils for component testing
 - Coverage reporting
-- Integration with React Testing Library
+- Parallel test execution
 
 Run tests:
 
@@ -88,14 +88,14 @@ bun run test:watch     # Run tests in watch mode
 bun run test:specific  # Run specific tests
 ```
 
-For more details about the testing setup, see the [BUN_TESTING.md](src/tests/BUN_TESTING.md) file.
+For more details about the testing setup, see the [tests README](src/tests/README.md) file.
 
 ## 📝 Code Style
 
 The project uses TypeScript with strict type checking and ESLint for code quality. ESLint is configured with:
 
 - TypeScript-aware rules
-- React-specific plugins
+- Vue-specific plugins
 - Strict type checking
 - Custom rules for consistent code style
 

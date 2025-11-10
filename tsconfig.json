@@ -11,17 +11,19 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "baseUrl": ".",
-    "types": ["bun-types"],
+    "types": ["bun-types", "vite/client"],
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
       "@utils/*": ["src/utils/*"],
-      "@hooks/*": ["src/hooks/*"],
+      "@composables/*": ["src/composables/*"],
       "@styles/*": ["src/styles/*"],
       "@tests/*": ["src/tests/*"],
-      "@layouts/*": ["src/layouts/*"]
+      "@layouts/*": ["src/layouts/*"],
+      "@views/*": ["src/views/*"],
+      "@router/*": ["src/router/*"]
     }
   },
   "include": ["src"]
