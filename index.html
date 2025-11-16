@@ -1,66 +1,72 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shawn Hoffman's Portfolio</title>
 
-    <!-- Theme initialization to prevent flash -->
-    <script>
-      (function() {
-        var savedTheme = localStorage.getItem('theme') || 'system';
-        
-        if (savedTheme === 'system') {
-          var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          savedTheme = systemPrefersDark ? 'dark' : 'light';
-        }
-        
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        document.documentElement.classList.add(savedTheme);
-      })();
-    </script>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shawn Hoffman's Portfolio</title>
 
-    <!-- Meta Tags for SEO -->
-    <meta name="description" content="Portfolio showcasing Shawn Hoffman's professional portfolio. Explore projects, contact details, and more." />
-    <meta name="keywords" content="Shawn Hoffman, Vue Developer, TypeScript, Portfolio, Web Development" />
-    <meta name="author" content="Shawn Hoffman" />
+  <script>
+    (function () {
+      var savedTheme = localStorage.getItem('theme') || 'system';
 
-    <!-- Open Graph for Social Sharing -->
-    <meta property="og:title" content="Shawn Hoffman's Portfolio" />
-    <meta property="og:description" content="A showcase of Shawn Hoffman's professional portfolio." />
-    <meta property="og:image" content="/favicon.svg" />
-    <meta property="og:url" content="https://shawnhoffman.dev" />
-    <meta property="og:type" content="website" />
+      if (savedTheme === 'system') {
+        var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        savedTheme = systemPrefersDark ? 'dark' : 'light';
+      }
 
-    <!-- Twitter Card for Social Sharing -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Shawn Hoffman's Portfolio" />
-    <meta name="twitter:description" content="Showcasing projects, contact details, and more." />
-    <meta name="twitter:image" content="/favicon.svg" />
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.documentElement.classList.add(savedTheme);
+    })();
+  </script>
 
-    <!-- Preload critical resources -->
-    <link rel="preload" href="data:video/mp2t;base64,aW1wb3J0IHsgY3JlYXRlQXBwIH0gZnJvbSAndnVlJzsKaW1wb3J0IHsgZGF0YWRvZ1J1bSB9IGZyb20gJ0BkYXRhZG9nL2Jyb3dzZXItcnVtJzsKaW1wb3J0IEFwcCBmcm9tICcuL0FwcC52dWUnOwppbXBvcnQgcm91dGVyIGZyb20gJy4vcm91dGVyJzsKaW1wb3J0ICcuL3N0eWxlcy9pbmRleC5jc3MnOwoKZGF0YWRvZ1J1bS5pbml0KHsKICBhcHBsaWNhdGlvbklkOiBpbXBvcnQubWV0YS5lbnYuVklURV9EQVRBRE9HX0FQUExJQ0FUSU9OX0lELAogIGNsaWVudFRva2VuOiBpbXBvcnQubWV0YS5lbnYuVklURV9EQVRBRE9HX0NMSUVOVF9UT0tFTiwKICBzaXRlOiBpbXBvcnQubWV0YS5lbnYuVklURV9EQVRBRE9HX1NJVEUsCiAgc2VydmljZTogaW1wb3J0Lm1ldGEuZW52LlZJVEVfREFUQURPR19TRVJWSUNFLAogIGVudjogaW1wb3J0Lm1ldGEuZW52Lk1PREUsCiAgdmVyc2lvbjogX19BUFBfVkVSU0lPTl9fLAogIHNlc3Npb25TYW1wbGVSYXRlOiAxMDAsCiAgc2Vzc2lvblJlcGxheVNhbXBsZVJhdGU6IDIwLAogIHRyYWNrVXNlckludGVyYWN0aW9uczogdHJ1ZSwKICB0cmFja1Jlc291cmNlczogdHJ1ZSwKICB0cmFja0xvbmdUYXNrczogdHJ1ZSwKICBkZWZhdWx0UHJpdmFjeUxldmVsOiAnbWFzay11c2VyLWlucHV0JywKfSk7Cgpjb25zdCBhcHAgPSBjcmVhdGVBcHAoQXBwKTsKYXBwLnVzZShyb3V0ZXIpOwphcHAubW91bnQoJyNyb290Jyk7Cgo=" as="script" />
+  <!-- Meta Tags for SEO -->
+  <meta name="description"
+    content="Portfolio showcasing Shawn Hoffman's professional portfolio. Explore projects, contact details, and more." />
+  <meta name="keywords" content="Shawn Hoffman, Vue Developer, TypeScript, Portfolio, Web Development" />
+  <meta name="author" content="Shawn Hoffman" />
 
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Open Graph for Social Sharing -->
+  <meta property="og:title" content="Shawn Hoffman's Portfolio" />
+  <meta property="og:description" content="A showcase of Shawn Hoffman's professional portfolio." />
+  <meta property="og:image" content="/favicon.svg" />
+  <meta property="og:url" content="https://shawnhoffman.dev" />
+  <meta property="og:type" content="website" />
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_MEASUREMENT_ID}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${import.meta.env.VITE_GA_MEASUREMENT_ID}', { 'anonymize_ip': true });
-    </script>
-    <script type="module" crossorigin src="/assets/index-oeZZXMOs.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/vendor-CWSGjIKd.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DSW0lKON.css">
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+  <!-- Twitter Card for Social Sharing -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Shawn Hoffman's Portfolio" />
+  <meta name="twitter:description" content="Showcasing projects, contact details, and more." />
+  <meta name="twitter:image" content="/favicon.svg" />
+
+  <!-- Preload critical resources -->
+  <link rel="preload" href="data:video/mp2t;base64,aW1wb3J0IHsgY3JlYXRlQXBwIH0gZnJvbSAndnVlJzsKaW1wb3J0IHsgZGF0YWRvZ1J1bSB9IGZyb20gJ0BkYXRhZG9nL2Jyb3dzZXItcnVtJzsKaW1wb3J0IEFwcCBmcm9tICcuL0FwcC52dWUnOwppbXBvcnQgcm91dGVyIGZyb20gJy4vcm91dGVyJzsKaW1wb3J0ICcuL3N0eWxlcy9pbmRleC5jc3MnOwoKZGF0YWRvZ1J1bS5pbml0KHsKICBhcHBsaWNhdGlvbklkOiBpbXBvcnQubWV0YS5lbnYuVklURV9EQVRBRE9HX0FQUExJQ0FUSU9OX0lELAogIGNsaWVudFRva2VuOiBpbXBvcnQubWV0YS5lbnYuVklURV9EQVRBRE9HX0NMSUVOVF9UT0tFTiwKICBzaXRlOiBpbXBvcnQubWV0YS5lbnYuVklURV9EQVRBRE9HX1NJVEUsCiAgc2VydmljZTogaW1wb3J0Lm1ldGEuZW52LlZJVEVfREFUQURPR19TRVJWSUNFLAogIGVudjogaW1wb3J0Lm1ldGEuZW52Lk1PREUsCiAgdmVyc2lvbjogX19BUFBfVkVSU0lPTl9fLAogIHNlc3Npb25TYW1wbGVSYXRlOiAxMDAsCiAgc2Vzc2lvblJlcGxheVNhbXBsZVJhdGU6IDIwLAogIHRyYWNrVXNlckludGVyYWN0aW9uczogdHJ1ZSwKICB0cmFja1Jlc291cmNlczogdHJ1ZSwKICB0cmFja0xvbmdUYXNrczogdHJ1ZSwKICBkZWZhdWx0UHJpdmFjeUxldmVsOiAnbWFzay11c2VyLWlucHV0JywKfSk7Cgpjb25zdCBhcHAgPSBjcmVhdGVBcHAoQXBwKTsKYXBwLnVzZShyb3V0ZXIpOwphcHAubW91bnQoJyNyb290Jyk7Cg==" as="script" />
+
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_MEASUREMENT_ID}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '${import.meta.env.VITE_GA_MEASUREMENT_ID}', { 'anonymize_ip': true });
+  </script>
+  <script type="module" crossorigin src="/assets/index-DSekPTIO.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-CWSGjIKd.js">
+  <link rel="stylesheet" crossorigin href="/assets/index-D8n5yQT6.css">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
 </html>
