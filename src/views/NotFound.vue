@@ -1,14 +1,7 @@
 <template>
-  <div 
-    class="flex flex-col justify-center items-center text-center bg-base-200 p-4"
-    data-testid="404-container"
-  >
-    <img
-      v-if="gifs[currentIndex]"
-      :src="gifs[currentIndex]"
-      alt="A funny gif representing a 404 error"
-      class="w-full max-w-xs sm:max-w-md rounded-lg shadow-lg mb-4"
-    />
+  <div class="flex flex-col justify-center items-center text-center bg-base-200 p-4" data-testid="404-container">
+    <img v-if="gifs[currentIndex]" :src="gifs[currentIndex]" alt="A funny gif representing a 404 error"
+      class="w-full max-w-xs sm:max-w-md rounded-lg shadow-lg mb-4" />
     <h1 class="text-2xl sm:text-4xl font-bold mb-4">404 - Page Not Found</h1>
     <p class="text-base sm:text-lg mb-6">{{ messages[currentIndex] }}</p>
     <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
@@ -100,4 +93,3 @@ const handleNextMeme = () => {
   currentIndex.value = (currentIndex.value + 1) % messages.length;
 };
 </script>
-

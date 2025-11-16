@@ -33,4 +33,3 @@ export const TestThemeProvider = defineComponent({
     return () => slots.default?.();
   },
 });
-

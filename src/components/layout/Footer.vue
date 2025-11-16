@@ -8,44 +8,24 @@
           </p>
         </div>
         <div class="flex items-center space-x-4">
-          <a
-            href="https://shawnkhoffman.medium.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <a href="https://shawnkhoffman.medium.com" target="_blank" rel="noopener noreferrer"
             class="text-base-content hover:text-primary transition-colors duration-200"
-            @click="handleLinkClick('Medium')"
-            aria-label="Visit my Medium profile"
-          >
+            @click="handleLinkClick('Medium')" aria-label="Visit my Medium profile">
             <Icon icon="fa6-brands:medium" class="w-5 h-5" aria-hidden="true" />
           </a>
-          <a
-            href="https://github.com/shawnkhoffman"
-            target="_blank"
-            rel="noopener noreferrer"
+          <a href="https://github.com/shawnkhoffman" target="_blank" rel="noopener noreferrer"
             class="text-base-content hover:text-primary transition-colors duration-200"
-            @click="handleLinkClick('GitHub')"
-            aria-label="Visit my GitHub profile"
-          >
+            @click="handleLinkClick('GitHub')" aria-label="Visit my GitHub profile">
             <Icon icon="fa6-brands:github" class="w-5 h-5" aria-hidden="true" />
           </a>
-          <a
-            href="https://www.linkedin.com/in/shawnkhoffman"
-            target="_blank"
-            rel="noopener noreferrer"
+          <a href="https://www.linkedin.com/in/shawnkhoffman" target="_blank" rel="noopener noreferrer"
             class="text-base-content hover:text-primary transition-colors duration-200"
-            @click="handleLinkClick('LinkedIn')"
-            aria-label="Visit my LinkedIn profile"
-          >
+            @click="handleLinkClick('LinkedIn')" aria-label="Visit my LinkedIn profile">
             <Icon icon="fa6-brands:linkedin" class="w-5 h-5" aria-hidden="true" />
           </a>
-          <a
-            href="https://x.com/shawnkhoffman"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-base-content hover:text-primary transition-colors duration-200"
-            @click="handleLinkClick('X')"
-            aria-label="Visit my X (formerly Twitter) profile"
-          >
+          <a href="https://x.com/shawnkhoffman" target="_blank" rel="noopener noreferrer"
+            class="text-base-content hover:text-primary transition-colors duration-200" @click="handleLinkClick('X')"
+            aria-label="Visit my X (formerly Twitter) profile">
             <Icon icon="fa6-brands:x-twitter" class="w-5 h-5" aria-hidden="true" />
           </a>
         </div>
@@ -69,4 +49,3 @@ const handleLinkClick = (platform: string) => {
   }
 };
 </script>
-

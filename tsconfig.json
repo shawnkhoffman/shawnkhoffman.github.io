@@ -2,7 +2,11 @@
   "compilerOptions": {
     "target": "ES2022",
     "useDefineForClassFields": true,
-    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2023",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "skipLibCheck": true,
@@ -13,18 +17,41 @@
     "noEmit": true,
     "jsx": "preserve",
     "baseUrl": ".",
-    "types": ["bun-types", "vite/client"],
+    "types": [
+      "bun-types",
+      "vite/client"
+    ],
     "paths": {
-      "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@utils/*": ["src/utils/*"],
-      "@composables/*": ["src/composables/*"],
-      "@styles/*": ["src/styles/*"],
-      "@tests/*": ["src/tests/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@views/*": ["src/views/*"],
-      "@router/*": ["src/router/*"]
+      "@/*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@composables/*": [
+        "src/composables/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@tests/*": [
+        "src/tests/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
+      "@views/*": [
+        "src/views/*"
+      ],
+      "@router/*": [
+        "src/router/*"
+      ]
     }
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }

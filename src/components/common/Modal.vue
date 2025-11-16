@@ -1,81 +1,41 @@
 <template>
   <Teleport to="body">
-    <div
-      v-if="isOpen"
-      data-testid="modal-overlay"
+    <div v-if="isOpen" data-testid="modal-overlay"
       class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 pointer-events-auto overflow-hidden"
-      @click="handleOutsideClick"
-      role="dialog"
-      aria-modal="true"
-      :aria-labelledby="`modal-title-${modalId}`"
-      tabindex="-1"
-    >
-      <div
-        ref="modalRef"
-        data-testid="modal-content"
-        :class="`relative w-full ${modalSize.width} ${modalSize.height} 
+      @click="handleOutsideClick" role="dialog" aria-modal="true" :aria-labelledby="`modal-title-${modalId}`"
+      tabindex="-1">
+      <div ref="modalRef" data-testid="modal-content" :class="`relative w-full ${modalSize.width} ${modalSize.height} 
           flex flex-col bg-base-100 rounded-lg shadow-xl 
           ${prefersReducedMotion ? '' : 'transition-all duration-300'} 
-          p-4 sm:p-6 lg:p-8 ${className}`"
-        tabindex="-1"
-      >
+          p-4 sm:p-6 lg:p-8 ${className}`" tabindex="-1">
         <div class="p-4 border-b border-base-300 flex justify-between items-center">
-          <h2
-            :id="`modal-title-${modalId}`"
-            class="text-xl sm:text-2xl font-semibold text-center flex-grow"
-          >
+          <h2 :id="`modal-title-${modalId}`" class="text-xl sm:text-2xl font-semibold text-center flex-grow">
             {{ title }}
           </h2>
 
-          <ExpandButton
-            ref="expandButtonRef"
-            :is-expanded="isExpanded"
-            @click="onToggleExpand"
-          />
+          <ExpandButton ref="expandButtonRef" :is-expanded="isExpanded" @click="onToggleExpand" />
         </div>
 
-        <NavigationButtons
-          v-if="isNavigationEnabled"
-          :on-previous="handlePrevious"
-          :on-next="handleNext"
-          :prefers-reduced-motion="prefersReducedMotion"
-        />
+        <NavigationButtons v-if="isNavigationEnabled" :on-previous="handlePrevious" :on-next="handleNext"
+          :prefers-reduced-motion="prefersReducedMotion" />
 
-        <div
-          ref="contentRef"
-          :class="`p-6 pb-10 flex-grow overflow-y-auto relative scroll-smooth
-            ${contentClassName}`"
-          @scroll="handleScroll"
-          role="region"
-          aria-label="Modal content"
-          tabindex="0"
-        >
+        <div ref="contentRef" :class="`p-6 pb-10 flex-grow overflow-y-auto relative scroll-smooth
+            ${contentClassName}`" @scroll="handleScroll" role="region" aria-label="Modal content" tabindex="0">
           <slot />
 
-          <ScrollIndicator
-            v-if="state.isContentOverflowing && state.scrollIndicatorVisible"
-            :prefers-reduced-motion="prefersReducedMotion"
-            message="Scroll down to see more"
-          />
+          <ScrollIndicator v-if="state.isContentOverflowing && state.scrollIndicatorVisible"
+            :prefers-reduced-motion="prefersReducedMotion" message="Scroll down to see more" />
         </div>
 
         <div class="p-4 border-t border-base-300 flex justify-end space-x-2">
-          <button
-            ref="closeButtonRef"
-            class="btn btn-sm btn-neutral"
-            @click="onClose"
-            aria-label="Close modal"
-          >
+          <button ref="closeButtonRef" class="btn btn-sm btn-neutral" @click="onClose" aria-label="Close modal">
             Close
           </button>
         </div>
 
-        <div
-          v-if="showNavigation && state.showNavigationHint && totalPages > 1"
-          class="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2"
-          role="status"
-          aria-live="polite"
-        >
+        <div v-if="showNavigation && state.showNavigationHint && totalPages > 1"
+          class="absolute bottom-2 left-2 bg-base-200 p-2 rounded-lg flex items-center space-x-2" role="status"
+          aria-live="polite">
           <span class="text-sm text-info">
             {{ isTouchDevice
               ? 'Swipe left or right to navigate'
@@ -83,22 +43,12 @@
           </span>
         </div>
 
-        <div
-          v-if="totalPages > 1"
-          class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2"
-          role="navigation"
-          :aria-label="`Page ${currentPage + 1} of ${totalPages}`"
-        >
-          <div
-            v-for="(_, index) in totalPages"
-            :key="index"
-            :class="`w-3 h-3 rounded-full transition-colors duration-200
-              ${currentPage === index ? 'bg-info' : 'bg-neutral-content'}`"
-            role="tab"
-            :aria-selected="currentPage === index"
-            :aria-label="`Page ${index + 1}`"
-            tabindex="-1"
-          />
+        <div v-if="totalPages > 1"
+          class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 flex space-x-2" role="navigation"
+          :aria-label="`Page ${currentPage + 1} of ${totalPages}`">
+          <div v-for="(_, index) in totalPages" :key="index" :class="`w-3 h-3 rounded-full transition-colors duration-200
+              ${currentPage === index ? 'bg-info' : 'bg-neutral-content'}`" role="tab"
+            :aria-selected="currentPage === index" :aria-label="`Page ${index + 1}`" tabindex="-1" />
         </div>
       </div>
     </div>
@@ -184,7 +134,7 @@ const isTouchDevice = useMediaQuery('(pointer: coarse)');
 
 useLockedBody(computed(() => props.isOpen));
 
-const modalSize = computed(() => 
+const modalSize = computed(() =>
   props.isExpanded ? MODAL_SIZES.expanded : MODAL_SIZES.normal
 );
 
@@ -225,7 +175,7 @@ const throttle = <T extends (...args: unknown[]) => void>(
 
 const handleOutsideClick = (e: MouseEvent) => {
   if (!props.closeOnOutsideClick) return;
-  
+
   const target = e.target as HTMLElement;
   if (target.dataset.testid === 'modal-overlay') {
     props.onClose();
@@ -441,4 +391,3 @@ onUnmounted(() => {
   document.removeEventListener('keydown', focusTrap);
 });
 </script>
-

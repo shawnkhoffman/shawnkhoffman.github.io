@@ -23,7 +23,7 @@ describe('ErrorBoundary', () => {
 
   beforeAll(() => {
     errorSpy = vi.spyOn(console, 'error');
-    errorSpy.mockImplementation(() => {});
+    errorSpy.mockImplementation(() => { });
   });
 
   afterEach(() => {
@@ -117,4 +117,3 @@ describe('ErrorBoundary', () => {
     });
   });
 });
-

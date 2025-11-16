@@ -9,8 +9,8 @@
 
 export { TestThemeProvider } from './test-components';
 
-export { 
-  render, 
+export {
+  render,
   fireEvent,
   screen,
   waitFor,

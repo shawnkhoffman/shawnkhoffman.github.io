@@ -62,7 +62,7 @@ export const fetchGitHubRepos = async (): Promise<GitHubRepo[]> => {
   try {
     const response = await fetchWithRetry('https://api.github.com/users/shawnkhoffman/repos');
     const data: GitHubRepo[] = await response.json();
-    
+
     setCache(data);
     return data;
   } catch (error) {

@@ -8,4 +8,3 @@ describe('ErrorTestContent Component', () => {
     expect(wrapper.exists()).toBe(true);
   });
 });
-

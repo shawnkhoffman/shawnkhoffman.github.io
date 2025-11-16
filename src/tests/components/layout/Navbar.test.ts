@@ -61,4 +61,3 @@ describe('Navbar', () => {
     expect(links.length).toBeGreaterThan(0);
   });
 });
-

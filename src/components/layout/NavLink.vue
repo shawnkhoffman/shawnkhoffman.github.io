@@ -1,11 +1,7 @@
 <template>
-  <router-link
-    :to="href"
+  <router-link :to="href"
     class="px-3 py-2 rounded-md text-base font-medium text-base-content hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-primary transition-colors duration-200"
-    @click="handleClick"
-    :aria-label="label"
-    role="menuitem"
-  >
+    @click="handleClick" :aria-label="label" role="menuitem">
     {{ label }}
   </router-link>
 </template>
@@ -27,4 +23,3 @@ const handleClick = () => {
   router.push(props.href);
 };
 </script>
-

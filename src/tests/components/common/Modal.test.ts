@@ -114,7 +114,7 @@ describe('Modal Component', () => {
           default: 'Test content',
         },
       });
-      
+
       // Verify component mounts with correct props
       expect(wrapper.exists()).toBe(true);
       expect(wrapper.props('isOpen')).toBe(true);
@@ -135,4 +135,3 @@ describe('Modal Component', () => {
     });
   });
 });
-

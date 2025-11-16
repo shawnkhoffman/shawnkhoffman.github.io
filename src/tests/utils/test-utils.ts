@@ -54,4 +54,3 @@ const customRender = (
 export { customRender as render };
 export { mount };
 export type { VueWrapper };
-

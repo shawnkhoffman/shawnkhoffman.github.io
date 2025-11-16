@@ -20,10 +20,10 @@ describe('ThemeController', () => {
 
   const setup = async (initialTheme: Theme = 'light', props: Partial<Record<string, unknown>> = {}) => {
     localStorageMock.getItem = vi.fn(() => initialTheme);
-    
+
     // Create a proper wrapper component using defineComponent
     const { defineComponent } = await import('vue');
-    
+
     const TestWrapper = defineComponent({
       components: {
         ThemeController,
@@ -39,7 +39,7 @@ describe('ThemeController', () => {
     });
 
     const wrapper = mount(TestWrapper);
-    
+
     // Wait for the component to fully mount and theme provider to initialize
     await wrapper.vm.$nextTick();
     await new Promise(resolve => {
@@ -69,10 +69,10 @@ describe('ThemeController', () => {
       global.matchMedia = ((query: string) => ({
         matches: true,
         media: query,
-        addEventListener: () => {},
-        removeEventListener: () => {},
-        addListener: () => {},
-        removeListener: () => {},
+        addEventListener: () => { },
+        removeEventListener: () => { },
+        addListener: () => { },
+        removeListener: () => { },
         onchange: null,
         dispatchEvent: () => true,
       })) as typeof window.matchMedia;
@@ -84,10 +84,10 @@ describe('ThemeController', () => {
       global.matchMedia = ((query: string) => ({
         matches: false,
         media: query,
-        addEventListener: () => {},
-        removeEventListener: () => {},
-        addListener: () => {},
-        removeListener: () => {},
+        addEventListener: () => { },
+        removeEventListener: () => { },
+        addListener: () => { },
+        removeListener: () => { },
         onchange: null,
         dispatchEvent: () => true,
       })) as typeof window.matchMedia;
@@ -103,17 +103,17 @@ describe('ThemeController', () => {
       const { wrapper, container } = await setup();
       await wrapper.vm.$nextTick();
       await new Promise(resolve => setTimeout(resolve, 100));
-      
+
       const button = container.querySelector('button');
       expect(button).toBeDefined();
 
       // With mocked Icon component, check for the mock icon or button content
       // The mocked Icon renders as <span class="icon-mock"></span>
       // But it might be rendered differently, so check multiple ways
-      const iconElement = button?.querySelector('.icon-mock') || 
-                         button?.querySelector('[aria-hidden="true"]') ||
-                         button?.querySelector('span');
-      
+      const iconElement = button?.querySelector('.icon-mock') ||
+        button?.querySelector('[aria-hidden="true"]') ||
+        button?.querySelector('span');
+
       // Verify button exists and has required structure
       expect(button).toBeDefined();
       if (button) {
@@ -130,7 +130,7 @@ describe('ThemeController', () => {
     test('handles theme cycling correctly', async () => {
       const { wrapper } = await setup('light');
       await wrapper.vm.$nextTick();
-      
+
       const button = wrapper.find('button');
       expect(button.exists()).toBe(true);
 
@@ -144,7 +144,7 @@ describe('ThemeController', () => {
     test('responds to keyboard events', async () => {
       const { wrapper } = await setup('light');
       await wrapper.vm.$nextTick();
-      
+
       const button = wrapper.find('button');
       expect(button.exists()).toBe(true);
 
@@ -172,10 +172,10 @@ describe('ThemeController', () => {
       global.matchMedia = ((query: string) => ({
         matches: query.includes('reduced-motion'),
         media: query,
-        addEventListener: () => {},
-        removeEventListener: () => {},
-        addListener: () => {},
-        removeListener: () => {},
+        addEventListener: () => { },
+        removeEventListener: () => { },
+        addListener: () => { },
+        removeListener: () => { },
         onchange: null,
         dispatchEvent: () => false,
       })) as typeof window.matchMedia;
@@ -186,4 +186,3 @@ describe('ThemeController', () => {
     });
   });
 });
-

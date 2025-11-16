@@ -16,32 +16,16 @@
     <div class="flex-grow flex flex-col items-center justify-center space-y-6">
       <div class="dropdown dropdown-bottom mb-6 w-full max-w-xs sm:max-w-xl">
         <details class="w-full" ref="detailsRef">
-          <summary
-            data-testid="error-dropdown-button"
-            class="btn w-full flex items-center justify-between"
-          >
-            {{ errorTypes.find((error) => error.value === selectedError)?.label || 'Select Error' }}
+          <summary data-testid="error-dropdown-button" class="btn w-full flex items-center justify-between">
+            {{errorTypes.find((error) => error.value === selectedError)?.label || 'Select Error'}}
             <Icon icon="fa6-solid:chevron-down" class="ml-2" />
           </summary>
-          <ul
-            id="error-type-listbox"
-            role="listbox"
-            aria-label="Select error type"
+          <ul id="error-type-listbox" role="listbox" aria-label="Select error type"
             class="dropdown-content menu bg-base-100 rounded-box p-2 shadow mt-2 w-full z-[1]"
-            data-testid="error-dropdown-list"
-          >
-            <li
-              v-for="errorType in errorTypes"
-              :key="errorType.value"
-              role="option"
-              :aria-selected="selectedError === errorType.value"
-              :data-testid="`error-option-${errorType.value}`"
-            >
-              <a
-                @click.prevent="() => handleErrorSelection(errorType.value)"
-                href="#"
-                class="block w-full"
-              >
+            data-testid="error-dropdown-list">
+            <li v-for="errorType in errorTypes" :key="errorType.value" role="option"
+              :aria-selected="selectedError === errorType.value" :data-testid="`error-option-${errorType.value}`">
+              <a @click.prevent="() => handleErrorSelection(errorType.value)" href="#" class="block w-full">
                 {{ errorType.label }}
               </a>
             </li>
@@ -50,31 +34,20 @@
       </div>
 
       <div class="flex justify-center gap-4 mb-6">
-        <button
-          data-testid="test-error-button"
-          :class="`btn btn-sm btn-outline btn-primary ${selectedError ? '' : 'btn-disabled'}`"
-          @click="simulateError"
-          :disabled="!selectedError"
-        >
+        <button data-testid="test-error-button"
+          :class="`btn btn-sm btn-outline btn-primary ${selectedError ? '' : 'btn-disabled'}`" @click="simulateError"
+          :disabled="!selectedError">
           Test
         </button>
-        <button
-          data-testid="clear-error-button"
-          :class="`btn btn-sm btn-outline btn-accent ${errorType ? '' : 'btn-disabled'}`"
-          @click="clearError"
-          :disabled="!errorType"
-        >
+        <button data-testid="clear-error-button"
+          :class="`btn btn-sm btn-outline btn-accent ${errorType ? '' : 'btn-disabled'}`" @click="clearError"
+          :disabled="!errorType">
           Clear Error
         </button>
       </div>
 
       <div class="w-full max-w-xs sm:max-w-xl bg-base-200 p-4 sm:p-6 rounded-lg shadow-md mx-auto">
-        <ErrorBoundary
-          ref="errorBoundaryRef"
-          :show-reload-button="false"
-          :is-test-error="true"
-          @reset="handleReset"
-        >
+        <ErrorBoundary ref="errorBoundaryRef" :show-reload-button="false" :is-test-error="true" @reset="handleReset">
           <div v-if="errorType" class="text-error text-center">
             <BuggyComponent :error-type="errorType" />
           </div>
@@ -157,4 +130,3 @@ onMounted(async () => {
   }
 });
 </script>
-

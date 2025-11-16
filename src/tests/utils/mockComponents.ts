@@ -19,16 +19,16 @@ export const MockModal = vi.fn(
       return () =>
         props.isOpen
           ? h('div', {
-              'data-testid': TEST_IDS.MODAL,
-              class: props.isExpanded ? 'expanded' : '',
-            }, [
-              h('h2', props.title),
-              h('div', props.content),
-              props.onPrevious && h('button', { onClick: props.onPrevious }, 'Previous'),
-              props.onNext && h('button', { onClick: props.onNext }, 'Next'),
-              h('button', { onClick: props.onClose }, 'Close'),
-              h('button', { onClick: props.onToggleExpand }, props.isExpanded ? 'Compress Modal' : 'Expand Modal'),
-            ])
+            'data-testid': TEST_IDS.MODAL,
+            class: props.isExpanded ? 'expanded' : '',
+          }, [
+            h('h2', props.title),
+            h('div', props.content),
+            props.onPrevious && h('button', { onClick: props.onPrevious }, 'Previous'),
+            props.onNext && h('button', { onClick: props.onNext }, 'Next'),
+            h('button', { onClick: props.onClose }, 'Close'),
+            h('button', { onClick: props.onToggleExpand }, props.isExpanded ? 'Compress Modal' : 'Expand Modal'),
+          ])
           : null;
     },
   })
@@ -60,4 +60,3 @@ export const MockTechnologyCard = vi.fn(
     },
   })
 );
-

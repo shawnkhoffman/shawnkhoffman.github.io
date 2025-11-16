@@ -13,4 +13,3 @@ describe('AboutThisSite Component', () => {
     expect(wrapper.text()).toContain('Technologies');
   });
 });
-

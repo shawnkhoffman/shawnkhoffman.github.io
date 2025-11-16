@@ -10,12 +10,12 @@ export function useThemeProvider() {
     const root = document.documentElement;
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const appliedTheme = currentTheme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : currentTheme;
-    
+
     root.setAttribute('data-theme', appliedTheme);
-    
+
     root.classList.remove('light', 'dark');
     root.classList.add(appliedTheme);
-    
+
     document.body.classList.remove('light', 'dark');
     document.body.classList.add(appliedTheme);
   };
@@ -41,7 +41,7 @@ export function useThemeProvider() {
         applyTheme('system');
       }
     };
-    
+
     mediaQuery.addEventListener('change', handleChange);
   });
 
@@ -68,11 +68,10 @@ export function useThemeProvider() {
 
 export function useTheme() {
   const context = inject<{ theme: Ref<Theme>; setTheme: (theme: Theme) => void }>(THEME_KEY);
-  
+
   if (!context) {
     throw new Error('useTheme must be used within a ThemeProvider');
   }
-  
+
   return context;
 }
-

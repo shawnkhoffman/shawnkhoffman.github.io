@@ -1,9 +1,6 @@
 <template>
-  <div
-    :class="`transition-opacity duration-150 ${
-      isTransitioning ? 'opacity-0' : 'opacity-100'
-    }`"
-  >
+  <div :class="`transition-opacity duration-150 ${isTransitioning ? 'opacity-0' : 'opacity-100'
+    }`">
     <slot />
   </div>
 </template>
@@ -21,11 +18,11 @@ watch(
   () => route.path,
   () => {
     isTransitioning.value = true;
-    
+
     if (transitionTimeout) {
       clearTimeout(transitionTimeout);
     }
-    
+
     transitionTimeout = setTimeout(() => {
       requestAnimationFrame(() => {
         isTransitioning.value = false;
@@ -40,4 +37,3 @@ onUnmounted(() => {
   }
 });
 </script>
-
