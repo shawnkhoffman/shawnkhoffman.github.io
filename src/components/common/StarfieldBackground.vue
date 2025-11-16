@@ -8,7 +8,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch, computed } from 'vue';
-import { useTheme } from '@/composables/useTheme';
 
 type StarShape = 'circle' | 'cross' | 'diamond' | 'star' | 'dot';
 
@@ -47,7 +46,6 @@ interface CosmicGas {
 }
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
-const { theme } = useTheme();
 let animationFrameId: number | null = null;
 let stars: Star[] = [];
 let shootingStars: ShootingStar[] = [];
@@ -55,14 +53,11 @@ let lastShootingStarTime = -3;
 let cosmicGases: CosmicGas[] = [];
 let lastGasSpawnTime = 0;
 
-let mouseX = 0;
-let mouseY = 0;
 let lastMouseX: number | null = null;
 let lastMouseY: number | null = null;
 let lastMouseMoveTime = 0;
 let velocityX = 0;
 let velocityY = 0;
-let isMouseOver = false;
 let lastFrameTime = Date.now();
 
 const BASELINE_SPEED = 50;
@@ -663,7 +658,7 @@ const drawStar = (
       ctx.fill();
       break;
       
-    case 'star':
+    case 'star': {
       const starSize = size * 0.9;
       const innerSize = starSize * 0.4;
       ctx.beginPath();
@@ -684,6 +679,7 @@ const drawStar = (
       ctx.closePath();
       ctx.fill();
       break;
+    }
       
     case 'dot':
       ctx.beginPath();
@@ -882,13 +878,9 @@ const handleMouseMove = (event: MouseEvent) => {
   lastMouseX = newMouseX;
   lastMouseY = newMouseY;
   lastMouseMoveTime = currentTime;
-  mouseX = newMouseX;
-  mouseY = newMouseY;
-  isMouseOver = true;
 };
 
 const handleMouseLeave = () => {
-  isMouseOver = false;
   lastMouseX = null;
   lastMouseY = null;
   lastMouseMoveTime = 0;

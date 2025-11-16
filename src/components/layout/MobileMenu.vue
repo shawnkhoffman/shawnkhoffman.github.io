@@ -23,7 +23,7 @@
       <div ref="focusTrapRef" class="h-full flex flex-col">
         <div class="px-4 pt-5 pb-4 flex items-center justify-between border-b border-base-300">
           <div class="flex items-center">
-            <span class="text-xl font-bold">My Portfolio</span>
+            <span class="text-xl font-bold">shawnkhoffman.dev</span>
             <img
               src="/src/assets/images/react.svg"
               class="animate-spinSlow w-6 h-6 ml-2"

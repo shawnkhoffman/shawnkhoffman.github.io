@@ -16,7 +16,7 @@
             @click="() => handleLinkClick('Home')"
             aria-label="Home"
           >
-            My Portfolio
+            shawnkhoffman.dev
           </router-link>
         </div>
 
