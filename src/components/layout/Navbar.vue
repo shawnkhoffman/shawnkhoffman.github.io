@@ -10,13 +10,13 @@
         <div class="flex-shrink-0 flex items-center">
           <router-link
             to="/"
-            :class="`text-xl font-bold transform transition-all duration-300 ${
+            :class="`text-xl font-bold text-base-content transform transition-all duration-300 ${
               isDrawerOpen ? 'translate-x-[-100%] opacity-0' : 'translate-x-0 opacity-100'
             }`"
             @click="() => handleLinkClick('Home')"
             aria-label="Home"
           >
-            My Portfolio
+            shawnkhoffman.dev
           </router-link>
         </div>
 
@@ -27,7 +27,7 @@
                 ref="aboutRef"
                 class="group list-none"
                 :open="isAboutOpen"
-                @toggle="(e) => setIsAboutOpen((e.target as HTMLDetailsElement).open)"
+                @toggle="(e: Event) => setIsAboutOpen((e.target as HTMLDetailsElement).open)"
               >
                 <summary
                   class="flex items-center w-full px-3 py-2 text-base font-medium rounded-md hover:bg-base-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"

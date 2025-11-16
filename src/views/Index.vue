@@ -5,8 +5,8 @@
       class="animate-spinSlow w-32 h-32 mb-8 dark:shadow-none"
       alt="React Logo"
     />
-    <h1 class="text-3xl font-bold mb-2">Welcome to My Portfolio</h1>
-    <p class="text-lg mb-6">Built in Vue</p>
+    <h1 class="text-3xl font-bold mb-2 text-base-content">Welcome to My Portfolio</h1>
+    <p class="text-lg mb-6 text-base-content">Built in Vue</p>
 
     <a
       href="https://github.com/shawnkhoffman/shawnkhoffman.github.io"
