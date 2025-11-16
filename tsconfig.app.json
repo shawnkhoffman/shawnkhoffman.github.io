@@ -4,7 +4,10 @@
     "useDefineForClassFields": true,
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
@@ -12,14 +15,15 @@
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
     "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
+    "types": ["bun-types", "vite/client"],
 
     /* Linting */
     "strict": true,
@@ -30,12 +34,15 @@
     /* Paths */
     "baseUrl": "./",
     "paths": {
+      "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
       "@utils/*": ["src/utils/*"],
-      "@hooks/*": ["src/hooks/*"],
+      "@composables/*": ["src/composables/*"],
       "@styles/*": ["src/styles/*"],
       "@tests/*": ["src/tests/*"],
-      "@layouts/*": ["src/layouts/*"]
+      "@layouts/*": ["src/layouts/*"],
+      "@views/*": ["src/views/*"],
+      "@router/*": ["src/router/*"]
     }
   },
   "include": ["src"]

@@ -1,15 +1,17 @@
 import type { Theme } from './theme';
-import type { RenderOptions as RTLRenderOptions } from '@testing-library/react';
+import type { MountingOptions } from '@vue/test-utils';
 import type { Gtag } from 'gtag.js';
 
 declare interface TestModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  children: React.ReactNode;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  children: any;
 }
 
-declare interface RenderOptions extends RTLRenderOptions {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare interface RenderOptions extends Omit<MountingOptions<any>, 'global'> {
   withRouter?: boolean;
   withTheme?: boolean;
   route?: string;

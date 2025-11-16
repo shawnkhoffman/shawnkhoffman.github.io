@@ -1,3 +1,18 @@
 /// <reference types="vite/client" />
 
+declare module '*.vue' {
+  import type { DefineComponent } from 'vue';
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-empty-object-type
+  const component: DefineComponent<Record<string, never>, Record<string, never>, any>;
+  export default component;
+}
+
 declare const __APP_VERSION__: string;
+
+interface Window {
+  gtag?: (
+    command: string,
+    targetId: string | Date,
+    config?: Record<string, unknown>
+  ) => void;
+}
