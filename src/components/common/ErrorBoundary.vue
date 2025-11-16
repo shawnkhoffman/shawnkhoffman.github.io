@@ -2,15 +2,10 @@
   <div v-if="!hasError">
     <slot />
   </div>
-  <div
-    v-else
-    ref="errorCardRef"
-    :class="`flex flex-col items-center justify-center w-full p-4 sm:p-6 ${className}`"
-    role="alert"
-    aria-live="assertive"
-    tabIndex="-1"
-  >
-    <div class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-base-100 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg overflow-auto">
+  <div v-else ref="errorCardRef" :class="`flex flex-col items-center justify-center w-full p-4 sm:p-6 ${className}`"
+    role="alert" aria-live="assertive" tabIndex="-1">
+    <div
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-base-100 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg overflow-auto">
       <h1 class="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-error">
         Oops! Something went wrong.
       </h1>
@@ -20,30 +15,20 @@
       </p>
 
       <template v-if="!isTestError && error?.message">
-        <pre class="whitespace-pre-wrap text-xs sm:text-sm md:text-base text-base-content bg-error bg-opacity-10 p-2 sm:p-4 rounded-lg mb-4 max-h-40 overflow-auto">
+        <pre
+          class="whitespace-pre-wrap text-xs sm:text-sm md:text-base text-base-content bg-error bg-opacity-10 p-2 sm:p-4 rounded-lg mb-4 max-h-40 overflow-auto">
           {{ error.message }}
         </pre>
       </template>
 
       <div class="flex flex-wrap gap-2 mt-4">
-        <button
-          v-if="showReloadButton"
-          class="btn btn-primary btn-sm"
-          @click="handleReload"
-          aria-label="Reload the page"
-          :disabled="isResetting"
-        >
+        <button v-if="showReloadButton" class="btn btn-primary btn-sm" @click="handleReload"
+          aria-label="Reload the page" :disabled="isResetting">
           Reload Page
         </button>
 
-        <button
-          v-if="showRetryButton || (!isTestError && !showRetryButton)"
-          data-testid="reset-error-button"
-          class="btn btn-secondary btn-sm"
-          @click="resetError"
-          aria-label="Try again"
-          :disabled="isResetting"
-        >
+        <button v-if="showRetryButton || (!isTestError && !showRetryButton)" data-testid="reset-error-button"
+          class="btn btn-secondary btn-sm" @click="resetError" aria-label="Try again" :disabled="isResetting">
           {{ isResetting ? 'Retrying...' : 'Try Again' }}
         </button>
       </div>
@@ -161,11 +146,11 @@ const persistError = () => {
 
 const getErrorMessage = (err: Error): string => {
   const errorString = err.message || err.toString();
-  
+
   const matchedError = Object.values(ERROR_MESSAGES).find(
     ({ match }) => match && match.test(errorString)
   );
-  
+
   return matchedError?.message || ERROR_MESSAGES.DEFAULT.message;
 };
 
@@ -186,7 +171,7 @@ const resetError = () => {
     error.value = null;
     errorInfo.value = null;
     isResetting.value = false;
-    
+
     if (props.onReset) {
       props.onReset();
     }
@@ -212,7 +197,7 @@ const resetError = () => {
     error.value = null;
     errorInfo.value = null;
     isResetting.value = false;
-    
+
     if (props.onReset) {
       props.onReset();
     }
@@ -259,15 +244,15 @@ watch(() => props.resetKeys, (newKeys, oldKeys) => {
 
 onMounted(() => {
   loadPersistedError();
-  
+
   const handleGlobalError = (event: ErrorEvent) => {
     if (props.isTestError || isHandlingTestError) {
       event.preventDefault();
     }
   };
-  
+
   window.addEventListener('error', handleGlobalError);
-  
+
   onUnmounted(() => {
     window.removeEventListener('error', handleGlobalError);
   });
@@ -287,4 +272,3 @@ defineExpose({
   resetError,
 });
 </script>
-

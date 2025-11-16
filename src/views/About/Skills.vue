@@ -3,11 +3,7 @@
     <h2 class="text-2xl font-semibold mb-6 text-center">Skills</h2>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
-      <div
-        v-for="(modal, index) in modals"
-        :key="modal.id"
-        class="flex flex-col items-center text-center"
-      >
+      <div v-for="(modal, index) in modals" :key="modal.id" class="flex flex-col items-center text-center">
         <Icon :icon="modal.iconName" class="text-4xl text-info mb-4" aria-hidden="true" />
         <h3 class="font-semibold mb-2">{{ modal.category }}</h3>
         <button class="btn btn-sm mt-4" @click="() => showModal(index)">
@@ -16,19 +12,10 @@
       </div>
     </div>
 
-    <Modal
-      v-if="currentModalIndex !== null"
-      :is-open="isModalOpen"
-      :on-close="closeModal"
-      :title="modals[currentModalIndex].category"
-      :on-next="handleNext"
-      :on-previous="handlePrevious"
-      :total-pages="modals.length"
-      :current-page="currentModalIndex"
-      :is-expanded="isModalExpanded"
-      :on-toggle-expand="toggleModalExpand"
-      :trigger-overflow-check="triggerOverflowCheck"
-    >
+    <Modal v-if="currentModalIndex !== null" :is-open="isModalOpen" :on-close="closeModal"
+      :title="modals[currentModalIndex].category" :on-next="handleNext" :on-previous="handlePrevious"
+      :total-pages="modals.length" :current-page="currentModalIndex" :is-expanded="isModalExpanded"
+      :on-toggle-expand="toggleModalExpand" :trigger-overflow-check="triggerOverflowCheck">
       <template #default>
         <div v-html="modals[currentModalIndex].content"></div>
       </template>
@@ -251,4 +238,3 @@ const toggleModalExpand = () => {
   triggerOverflowCheck.value += 1;
 };
 </script>
-

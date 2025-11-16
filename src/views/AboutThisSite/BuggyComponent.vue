@@ -41,4 +41,3 @@ onBeforeMount(() => {
   shouldThrow = false;
 });
 </script>
-

@@ -4,19 +4,9 @@
       <h2 class="text-4xl font-bold text-base-content mb-2">Career Timeline</h2>
       <p class="text-base-content/70 text-lg">Professional journey and milestones</p>
     </div>
-    <ul 
-      class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical"
-      aria-label="Career Timeline"
-    >
-      <CareerTimelineItem
-        v-for="(item, index) in dataToRender"
-        :key="index"
-        :date="item.date"
-        :title="item.title"
-        :subtitle="item.subtitle"
-        :description="item.description"
-        :position="item.position"
-      />
+    <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical" aria-label="Career Timeline">
+      <CareerTimelineItem v-for="(item, index) in dataToRender" :key="index" :date="item.date" :title="item.title"
+        :subtitle="item.subtitle" :description="item.description" :position="item.position" />
     </ul>
   </div>
 </template>

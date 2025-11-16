@@ -38,4 +38,3 @@ describe('NotFound Component', () => {
     });
   });
 });
-

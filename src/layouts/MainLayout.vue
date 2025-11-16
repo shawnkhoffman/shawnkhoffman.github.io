@@ -1,22 +1,17 @@
 <template>
   <div class="flex flex-col min-h-screen text-base-content">
-    <a 
-      href="#main-content" 
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:p-4 focus:bg-primary focus:text-primary-content focus:rounded-md"
-    >
+    <a href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:p-4 focus:bg-primary focus:text-primary-content focus:rounded-md">
       Skip to content
     </a>
     <Navbar />
-    <main 
-      id="main-content" 
+    <main id="main-content"
       class="flex-grow flex flex-col justify-center items-center text-base-content pt-16 relative bg-base-200"
-      :style="{ scrollMarginTop: '4rem' }"
-    >
+      :style="{ scrollMarginTop: '4rem' }">
       <StarfieldBackground v-if="shouldShowStarfield" />
+      <CloudBackground v-if="shouldShowClouds" />
       <div class="relative z-10 w-full flex-grow flex flex-col justify-center items-center">
-        <ErrorBoundary
-          :on-error="handleError"
-        >
+        <ErrorBoundary :on-error="handleError">
           <slot />
         </ErrorBoundary>
       </div>
@@ -34,6 +29,7 @@ import Navbar from '@/components/layout/Navbar.vue';
 import Footer from '@/components/layout/Footer.vue';
 import ErrorBoundary from '@/components/common/ErrorBoundary.vue';
 import StarfieldBackground from '@/components/common/StarfieldBackground.vue';
+import CloudBackground from '@/components/common/CloudBackground.vue';
 
 const route = useRoute();
 const { theme } = useTheme();
@@ -81,9 +77,9 @@ const isLandingPage = computed(() => route.name === 'Index');
 const isDarkMode = computed(() => appliedTheme.value === 'dark');
 
 const shouldShowStarfield = computed(() => isLandingPage.value && isDarkMode.value);
+const shouldShowClouds = computed(() => isLandingPage.value && !isDarkMode.value);
 
 const handleError = (error: Error, errorInfo: unknown) => {
   console.error('Global ErrorBoundary caught an error:', error, errorInfo);
 };
 </script>
-

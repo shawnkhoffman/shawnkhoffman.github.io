@@ -20,11 +20,11 @@ export function createMock<T = void>() {
  */
 export function mockGtag() {
   const original = window.gtag;
-  
-  const gtagMock = mock(() => {});
-  
+
+  const gtagMock = mock(() => { });
+
   window.gtag = gtagMock as typeof window.gtag;
-  
+
   return {
     mock: gtagMock,
     restore: () => {
@@ -34,4 +34,4 @@ export function mockGtag() {
       gtagMock.mockClear();
     }
   };
-} 
+}

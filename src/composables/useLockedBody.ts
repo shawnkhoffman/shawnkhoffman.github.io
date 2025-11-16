@@ -61,4 +61,3 @@ export default function useLockedBody(locked: Ref<boolean> | boolean = true): vo
     bodyStyle.paddingRight = '';
   });
 }
-

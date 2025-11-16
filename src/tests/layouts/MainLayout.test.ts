@@ -47,10 +47,9 @@ describe('MainLayout Component', () => {
         const hasFlexGrow = classNames.includes('flex-grow') || wrapper.html().includes('flex-grow');
         const hasFlex = classNames.includes('flex') || wrapper.html().includes('flex');
         const hasFlexCol = classNames.includes('flex-col') || wrapper.html().includes('flex-col');
-        
+
         expect(hasFlexGrow || hasFlex || hasFlexCol).toBe(true);
       }
     });
   });
 });
-

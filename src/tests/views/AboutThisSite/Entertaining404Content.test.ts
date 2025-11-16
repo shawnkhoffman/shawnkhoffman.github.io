@@ -8,4 +8,3 @@ describe('Entertaining404Content Component', () => {
     expect(wrapper.exists()).toBe(true);
   });
 });
-

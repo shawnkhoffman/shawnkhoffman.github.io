@@ -2,7 +2,7 @@ import { GlobalRegistrator } from '@happy-dom/global-registrator';
 
 GlobalRegistrator.register();
 
-window.gtag = function(command: string, ...args: Array<string | Record<string, unknown> | undefined>): void {
+window.gtag = function (command: string, ...args: Array<string | Record<string, unknown> | undefined>): void {
   window.gtagCalls = window.gtagCalls || [];
   window.gtagCalls.push({
     command,
@@ -11,22 +11,22 @@ window.gtag = function(command: string, ...args: Array<string | Record<string, u
   });
 };
 
-window.scrollTo = () => {};
+window.scrollTo = () => { };
 window.matchMedia = () => ({
   matches: false,
   media: '',
   onchange: null,
-  addListener: () => {},
-  removeListener: () => {},
-  addEventListener: () => {},
-  removeEventListener: () => {},
+  addListener: () => { },
+  removeListener: () => { },
+  addEventListener: () => { },
+  removeEventListener: () => { },
   dispatchEvent: () => true,
 });
 
 class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
+  observe() { }
+  unobserve() { }
+  disconnect() { }
 }
 
-window.ResizeObserver = ResizeObserver; 
+window.ResizeObserver = ResizeObserver;

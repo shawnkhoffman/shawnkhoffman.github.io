@@ -46,11 +46,11 @@ export async function render(
 
   const router = withRouter
     ? createRouter({
-        history: createWebHistory(),
-        routes: [
-          { path: '/', component: { template: '<div>Test</div>' } },
-        ],
-      })
+      history: createWebHistory(),
+      routes: [
+        { path: '/', component: { template: '<div>Test</div>' } },
+      ],
+    })
     : undefined;
 
   const TestWrapper = {
@@ -154,4 +154,3 @@ export const fireEvent: any = {
     element.blur();
   },
 };
-

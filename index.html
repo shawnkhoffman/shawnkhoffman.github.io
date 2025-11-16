@@ -1,64 +1,70 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shawn Hoffman's Portfolio</title>
 
-    <!-- Theme initialization to prevent flash -->
-    <script>
-      (function() {
-        var savedTheme = localStorage.getItem('theme') || 'system';
-        
-        if (savedTheme === 'system') {
-          var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          savedTheme = systemPrefersDark ? 'dark' : 'light';
-        }
-        
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        document.documentElement.classList.add(savedTheme);
-      })();
-    </script>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shawn Hoffman's Portfolio</title>
 
-    <!-- Meta Tags for SEO -->
-    <meta name="description" content="Portfolio showcasing Shawn Hoffman's professional portfolio. Explore projects, contact details, and more." />
-    <meta name="keywords" content="Shawn Hoffman, Vue Developer, TypeScript, Portfolio, Web Development" />
-    <meta name="author" content="Shawn Hoffman" />
+  <script>
+    (function () {
+      var savedTheme = localStorage.getItem('theme') || 'system';
 
-    <!-- Open Graph for Social Sharing -->
-    <meta property="og:title" content="Shawn Hoffman's Portfolio" />
-    <meta property="og:description" content="A showcase of Shawn Hoffman's professional portfolio." />
-    <meta property="og:image" content="/favicon.svg" />
-    <meta property="og:url" content="https://shawnhoffman.dev" />
-    <meta property="og:type" content="website" />
+      if (savedTheme === 'system') {
+        var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        savedTheme = systemPrefersDark ? 'dark' : 'light';
+      }
 
-    <!-- Twitter Card for Social Sharing -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Shawn Hoffman's Portfolio" />
-    <meta name="twitter:description" content="Showcasing projects, contact details, and more." />
-    <meta name="twitter:image" content="/favicon.svg" />
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.documentElement.classList.add(savedTheme);
+    })();
+  </script>
 
-    <!-- Preload critical resources -->
-    <link rel="preload" href="/src/main.ts" as="script" />
-    <link rel="preload" href="/src/styles/index.css" as="style" />
+  <!-- Meta Tags for SEO -->
+  <meta name="description"
+    content="Portfolio showcasing Shawn Hoffman's professional portfolio. Explore projects, contact details, and more." />
+  <meta name="keywords" content="Shawn Hoffman, Vue Developer, TypeScript, Portfolio, Web Development" />
+  <meta name="author" content="Shawn Hoffman" />
 
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Open Graph for Social Sharing -->
+  <meta property="og:title" content="Shawn Hoffman's Portfolio" />
+  <meta property="og:description" content="A showcase of Shawn Hoffman's professional portfolio." />
+  <meta property="og:image" content="/favicon.svg" />
+  <meta property="og:url" content="https://shawnhoffman.dev" />
+  <meta property="og:type" content="website" />
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_MEASUREMENT_ID}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${import.meta.env.VITE_GA_MEASUREMENT_ID}', { 'anonymize_ip': true });
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+  <!-- Twitter Card for Social Sharing -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Shawn Hoffman's Portfolio" />
+  <meta name="twitter:description" content="Showcasing projects, contact details, and more." />
+  <meta name="twitter:image" content="/favicon.svg" />
+
+  <!-- Preload critical resources -->
+  <link rel="preload" href="/src/main.ts" as="script" />
+  <link rel="preload" href="/src/styles/index.css" as="style" />
+
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_MEASUREMENT_ID}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '${import.meta.env.VITE_GA_MEASUREMENT_ID}', { 'anonymize_ip': true });
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>

@@ -19,4 +19,3 @@
 <script setup lang="ts">
 import NotFound from '@/views/NotFound.vue';
 </script>
-

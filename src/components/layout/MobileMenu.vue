@@ -1,42 +1,22 @@
 <template>
   <div>
-    <div
-      :class="`lg:hidden fixed inset-0 bg-black transition-opacity duration-300 ${
-        isOpen ? 'opacity-25' : 'opacity-0'
-      } ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`"
-      @click="onClose"
-      aria-hidden="true"
-    />
-    <div
-      class="lg:hidden fixed inset-y-0 right-0 w-full max-w-xs bg-base-100 shadow-xl transform"
-      ref="drawerRef"
-      :style="drawerStyle"
-      @touchstart="handleTouchStart"
-      @touchmove="handleTouchMove"
-      @touchend="handleTouchEnd"
-      @touchcancel="handleTouchEnd"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Mobile navigation menu"
-      :data-testid="dataTestId"
-    >
+    <div :class="`lg:hidden fixed inset-0 bg-black transition-opacity duration-300 ${isOpen ? 'opacity-25' : 'opacity-0'
+      } ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`" @click="onClose" aria-hidden="true" />
+    <div class="lg:hidden fixed inset-y-0 right-0 w-full max-w-xs bg-base-100 shadow-xl transform" ref="drawerRef"
+      :style="drawerStyle" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd"
+      @touchcancel="handleTouchEnd" role="dialog" aria-modal="true" aria-label="Mobile navigation menu"
+      :data-testid="dataTestId">
       <div ref="focusTrapRef" class="h-full flex flex-col">
         <div class="px-4 pt-5 pb-4 flex items-center justify-between border-b border-base-300">
           <div class="flex items-center">
             <span class="text-xl font-bold">shawnkhoffman.dev</span>
-            <img
-              src="/src/assets/images/react.svg"
-              class="animate-spinSlow w-6 h-6 ml-2"
-              alt="React Logo"
-              loading="lazy"
-            />
+            <img src="/src/assets/images/react.svg" class="animate-spinSlow w-6 h-6 ml-2" alt="React Logo"
+              loading="lazy" />
           </div>
           <div>
-            <button
-              @click="onClose"
+            <button @click="onClose"
               class="ml-1 p-2 rounded-md hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-primary"
-              aria-label="Close menu"
-            >
+              aria-label="Close menu">
               <span class="sr-only">Close menu</span>
               <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -49,53 +29,31 @@
             <div v-if="link.submenu" class="list-none">
               <button
                 class="flex items-center justify-between w-full px-3 py-2 text-base font-medium rounded-md hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-primary"
-                @click="() => toggleSubmenu(index)"
-                :aria-expanded="openSubmenuIndexes.includes(index)"
-                :aria-controls="`submenu-${index}`"
-              >
+                @click="() => toggleSubmenu(index)" :aria-expanded="openSubmenuIndexes.includes(index)"
+                :aria-controls="`submenu-${index}`">
                 <span>{{ link.label }}</span>
-                <Icon
-                  icon="fa6-solid:caret-down"
-                  :class="`transition-transform duration-300 ${
-                    openSubmenuIndexes.includes(index) ? 'rotate-180' : ''
-                  }`"
-                  aria-hidden="true"
-                />
+                <Icon icon="fa6-solid:caret-down" :class="`transition-transform duration-300 ${openSubmenuIndexes.includes(index) ? 'rotate-180' : ''
+                  }`" aria-hidden="true" />
               </button>
-              <div
-                :id="`submenu-${index}`"
-                :class="`pl-4 mt-2 space-y-1 overflow-hidden transition-all duration-300 ${
-                  openSubmenuIndexes.includes(index) ? 'max-h-48' : 'max-h-0'
-                }`"
-              >
-                <a
-                  v-for="(item, subIndex) in link.submenu"
-                  :key="`mobile-${index}-${subIndex}`"
-                  :href="item.href"
+              <div :id="`submenu-${index}`" :class="`pl-4 mt-2 space-y-1 overflow-hidden transition-all duration-300 ${openSubmenuIndexes.includes(index) ? 'max-h-48' : 'max-h-0'
+                }`">
+                <a v-for="(item, subIndex) in link.submenu" :key="`mobile-${index}-${subIndex}`" :href="item.href"
                   class="block px-3 py-2 text-sm font-medium rounded-md hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-primary"
-                  @click.prevent="() => handleMobileLink(item.href, item.label)"
-                  role="menuitem"
-                >
+                  @click.prevent="() => handleMobileLink(item.href, item.label)" role="menuitem">
                   {{ item.label }}
                 </a>
               </div>
             </div>
-            <a
-              v-else
-              :href="link.href"
+            <a v-else :href="link.href"
               class="block px-3 py-2 text-base font-medium rounded-md hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-primary"
-              @click.prevent="() => handleMobileLink(link.href!, link.label)"
-              role="menuitem"
-            >
+              @click.prevent="() => handleMobileLink(link.href!, link.label)" role="menuitem">
               {{ link.label }}
             </a>
           </div>
         </nav>
         <div class="mt-auto px-4 py-4 border-t border-base-300">
-          <ThemeController
-            :show-label="true"
-            class="block px-3 py-2 text-base font-medium rounded-md hover:bg-base-200 w-full focus:outline-none focus:ring-2 focus:ring-primary"
-          />
+          <ThemeController :show-label="true"
+            class="block px-3 py-2 text-base font-medium rounded-md hover:bg-base-200 w-full focus:outline-none focus:ring-2 focus:ring-primary" />
         </div>
       </div>
     </div>
@@ -227,7 +185,7 @@ const handleTouchMove = (e: TouchEvent) => {
 
 const handleTouchEnd = () => {
   if (!isDrawing.value) return;
-  
+
   const dx = gestureState.value.moveX - gestureState.value.startX;
   const timeDelta = Date.now() - touchStartTimeRef.value;
   const velocity = calculateVelocity(dx, timeDelta);
@@ -283,10 +241,9 @@ onMounted(() => {
   };
 
   document.addEventListener('keydown', handleTabKey);
-  
+
   onUnmounted(() => {
     document.removeEventListener('keydown', handleTabKey);
   });
 });
 </script>
-

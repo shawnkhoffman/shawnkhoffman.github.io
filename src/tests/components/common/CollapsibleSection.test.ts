@@ -25,7 +25,7 @@ describe('CollapsibleSection', () => {
         props: mockProps,
       });
       await wrapper.vm.$nextTick();
-      
+
       const button = wrapper.find('button');
       const contentElement = wrapper.find('[role="region"]');
 
@@ -95,4 +95,3 @@ describe('CollapsibleSection', () => {
     });
   });
 });
-

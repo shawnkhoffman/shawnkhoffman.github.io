@@ -5,7 +5,7 @@ declare module 'bun:test' {
   export function afterEach(fn: () => void | Promise<void>): void;
   export function beforeAll(fn: () => void | Promise<void>): void;
   export function afterAll(fn: () => void | Promise<void>): void;
-  
+
   interface Matchers<R> {
     toBe(expected: unknown): R;
     toEqual(expected: unknown): R;
@@ -22,7 +22,7 @@ declare module 'bun:test' {
     toMatch(expected: RegExp | string): R;
     toMatchObject(expected: unknown): R;
   }
-  
+
   interface ExpectInterface<T = unknown> {
     (value: T): {
       not: Matchers<void>;
@@ -30,19 +30,19 @@ declare module 'bun:test' {
     resolves: Matchers<Promise<void>>;
     rejects: Matchers<Promise<void>>;
   }
-  
+
   export const expect: ExpectInterface;
-  
+
   export function mock<T extends (...args: unknown[]) => unknown>(implementation?: T): jest.Mock<ReturnType<T>, Parameters<T>>;
-  
+
   export function spyOn<T, K extends keyof T>(object: T, method: K): jest.SpyInstance;
   export function spyOn<T extends (...args: unknown[]) => unknown>(fn: T): jest.SpyInstance;
   export function spyOn<T>(object: T): jest.SpyInstance;
-  
+
   export namespace mock {
     function module(moduleName: string, factory: () => unknown): void;
   }
-  
+
   namespace jest {
     interface Mock<T = unknown, Y extends unknown[] = unknown[]> {
       (...args: Y): T;
@@ -60,7 +60,7 @@ declare module 'bun:test' {
       mockReturnValue(value: T): this;
       mockReturnValueOnce(value: T): this;
     }
-    
+
     interface SpyInstance<T = unknown, Y extends unknown[] = unknown[]> extends Mock<T, Y> {
       mockRestore(): void;
     }

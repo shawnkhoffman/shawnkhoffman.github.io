@@ -1,47 +1,23 @@
 <template>
-  <button
-    :class="`
+  <button :class="`
       inline-flex items-center justify-center rounded-full
       hover:bg-base-200 focus:outline-none focus:ring-2
       focus:ring-offset-2 focus:ring-info
       ${buttonSize}
       ${className}
-    `"
-    @click="handleThemeChange"
-    @keydown="handleKeyDown"
+    `" @click="handleThemeChange" @keydown="handleKeyDown"
     :aria-label="`Switch theme to ${getNextTheme(theme) as string} mode`"
-    :title="showTooltip ? THEME_LABELS[theme] : undefined"
-    data-theme-controller
-    :data-theme-changed="themeChanged"
-    role="switch"
-    :aria-checked="theme === 'dark'"
-    :data-testid="`theme-switch-${theme}`"
-  >
+    :title="showTooltip ? THEME_LABELS[theme] : undefined" data-theme-controller :data-theme-changed="themeChanged"
+    role="switch" :aria-checked="theme === 'dark'" :data-testid="`theme-switch-${theme}`">
     <div class="flex items-center justify-center relative">
-      <Icon
-        v-if="theme === 'light'"
-        icon="fa6-solid:sun"
-        :class="`text-base-content ${iconSize} ${baseClasses} ${animationClass}`"
-        aria-hidden="true"
-      />
-      <Icon
-        v-else-if="theme === 'dark'"
-        icon="fa6-solid:moon"
-        :class="`text-base-content ${iconSize} ${baseClasses} ${animationClass}`"
-        aria-hidden="true"
-      />
-      <Icon
-        v-else-if="theme === 'system'"
-        :icon="deviceIcon"
-        :class="`text-info ${iconSize} ${baseClasses} ${animationClass}`"
-        aria-hidden="true"
-      />
-      <span
-        v-if="showLabel"
-        :class="`text-sm font-medium ${
-          labelPosition === 'left' ? 'ml-2' : 'mr-2'
-        }`"
-      >
+      <Icon v-if="theme === 'light'" icon="fa6-solid:sun"
+        :class="`text-base-content ${iconSize} ${baseClasses} ${animationClass}`" aria-hidden="true" />
+      <Icon v-else-if="theme === 'dark'" icon="fa6-solid:moon"
+        :class="`text-base-content ${iconSize} ${baseClasses} ${animationClass}`" aria-hidden="true" />
+      <Icon v-else-if="theme === 'system'" :icon="deviceIcon"
+        :class="`text-info ${iconSize} ${baseClasses} ${animationClass}`" aria-hidden="true" />
+      <span v-if="showLabel" :class="`text-sm font-medium ${labelPosition === 'left' ? 'ml-2' : 'mr-2'
+        }`">
         Theme
       </span>
     </div>
@@ -172,4 +148,3 @@ watch(() => theme.value, (newTheme) => {
   }
 });
 </script>
-

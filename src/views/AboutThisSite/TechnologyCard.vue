@@ -1,11 +1,7 @@
 <template>
-  <a
-    :href="link"
-    target="_blank"
-    rel="noopener noreferrer"
+  <a :href="link" target="_blank" rel="noopener noreferrer"
     class="flex flex-col items-center text-center hover:bg-base-200 p-4 rounded-lg transition duration-300"
-    :aria-label="`Learn more about ${title}`"
-  >
+    :aria-label="`Learn more about ${title}`">
     <span aria-hidden="true">
       <slot name="icon" />
     </span>
@@ -23,4 +19,3 @@ interface Props {
 
 defineProps<Props>();
 </script>
-

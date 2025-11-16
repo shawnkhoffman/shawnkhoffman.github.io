@@ -1,26 +1,11 @@
 <template>
-  <div
-    :data-testid="testId"
-    :class="`collapse collapse-arrow bg-base-200 ${isOpen ? 'collapse-open' : 'collapse-close'}`"
-  >
-    <button
-      type="button"
-      class="collapse-title text-xl font-medium"
-      :aria-expanded="isOpen"
-      :aria-controls="contentId"
-      @click="handleToggle"
-      @keydown="handleKeyDown"
-      @touchend="handleTouchEnd"
-      tabindex="0"
-    >
+  <div :data-testid="testId"
+    :class="`collapse collapse-arrow bg-base-200 ${isOpen ? 'collapse-open' : 'collapse-close'}`">
+    <button type="button" class="collapse-title text-xl font-medium" :aria-expanded="isOpen" :aria-controls="contentId"
+      @click="handleToggle" @keydown="handleKeyDown" @touchend="handleTouchEnd" tabindex="0">
       {{ title }}
     </button>
-    <div
-      :id="contentId"
-      class="collapse-content"
-      role="region"
-      :aria-hidden="!isOpen"
-    >
+    <div :id="contentId" class="collapse-content" role="region" :aria-hidden="!isOpen">
       <p>{{ content }}</p>
     </div>
   </div>
@@ -58,4 +43,3 @@ const handleTouchEnd = (event: TouchEvent) => {
   handleToggle(event);
 };
 </script>
-
