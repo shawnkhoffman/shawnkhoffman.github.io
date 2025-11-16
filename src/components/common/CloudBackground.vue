@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 interface Cloud {
   x: number;
@@ -53,7 +53,6 @@ let lastFrameTime = Date.now();
 
 const BASELINE_SPEED = 240;
 const baselineDirectionX = -1;
-const baselineDirectionY = 0;
 
 const createStar = (width: number, height: number): Star => {
   let z = Math.random() * 0.8 + 0.1;
@@ -262,7 +261,6 @@ const drawCloud = (
 ) => {
   const speedMultiplier = (1 - cloud.z) * 0.6;
   const deltaX = baselineDirectionX * BASELINE_SPEED * speedMultiplier * deltaTime;
-  const deltaY = 0;
 
   const newX = cloud.x + deltaX;
   const newY = cloud.y;
@@ -383,7 +381,6 @@ const drawCloud = (
   shapes.forEach((shape, index) => {
     const shapeSpeedMultiplier = (1 - shape.z) * 0.15;
     const shapeDeltaX = baselineDirectionX * BASELINE_SPEED * shapeSpeedMultiplier * deltaTime;
-    const shapeDeltaY = 0;
 
     const newX = shape.x + shapeDeltaX;
     const newY = shape.y;
