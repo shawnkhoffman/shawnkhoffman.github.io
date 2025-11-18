@@ -1,6 +1,11 @@
 <template>
   <div class="flex flex-col justify-center items-center text-center drop-shadow-2xl">
-    <img src="/src/assets/images/react.svg" class="animate-spinSlow w-32 h-32 mb-8 dark:shadow-none" alt="React Logo" />
+    <div
+      class="w-96 h-96 mb-0 flex items-center justify-center"
+      :style="{ transform: `rotate(${astronautRotation}deg)` }"
+    >
+      <img src="/src/assets/images/shawn-astronaut.svg" class="w-full h-full dark:shadow-none" alt="Astronaut" />
+    </div>
     <h1 class="text-3xl font-bold mb-2 text-base-content">Welcome to My Portfolio</h1>
     <p class="text-lg mb-6 text-base-content">Built in Vue.js</p>
 
@@ -15,7 +20,91 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { Icon } from '@iconify/vue';
+import { useRoute } from 'vue-router';
+import { useTheme } from '@/composables/useTheme';
+import { useMediaQuery } from '@/composables/useMediaQuery';
+import { useStarfieldVelocity } from '@/composables/useStarfieldVelocity';
+
+const route = useRoute();
+const { theme } = useTheme();
+const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
+const { velocityX, velocityY } = useStarfieldVelocity();
+
+const isLandingPage = computed(() => route.name === 'Index');
+
+const appliedTheme = computed(() => {
+  if (theme.value === 'dark') {
+    return 'dark';
+  } else if (theme.value === 'light') {
+    return 'light';
+  } else {
+    return prefersDark.value ? 'dark' : 'light';
+  }
+});
+
+const shouldShowStarfield = computed(() => isLandingPage.value && appliedTheme.value === 'dark');
+
+const astronautRotation = ref(0);
+let lastFrameTime = Date.now();
+let animationFrameId: number | null = null;
+
+const updateAstronautPosition = () => {
+  const now = Date.now();
+  const deltaTime = (now - lastFrameTime) / 1000;
+  lastFrameTime = now;
+
+  if (shouldShowStarfield.value && velocityX && velocityY) {
+    const vx = velocityX.value;
+    const vy = velocityY.value;
+    const speed = Math.sqrt(vx * vx + vy * vy);
+    
+    const astronautZ = 0.5;
+    const speedMultiplier = (1 - astronautZ) * 0.6;
+    const baselineSpeed = 50;
+    const baselineDirectionX = -0.707;
+
+    let rotationSpeed: number;
+    let rotationDirection: number;
+
+    if (speed > 0.5) {
+      rotationSpeed = speed * speedMultiplier * 2.5;
+      rotationDirection = vx / speed;
+    } else {
+      rotationSpeed = baselineSpeed * speedMultiplier * 2.5;
+      rotationDirection = baselineDirectionX;
+    }
+
+    const maxRotationSpeed = 120;
+    rotationSpeed = Math.min(rotationSpeed, maxRotationSpeed);
+
+    const rotationDelta = rotationDirection * rotationSpeed * deltaTime;
+    astronautRotation.value += rotationDelta;
+    
+    while (astronautRotation.value >= 360) {
+      astronautRotation.value -= 360;
+    }
+    while (astronautRotation.value < 0) {
+      astronautRotation.value += 360;
+    }
+  } else {
+    astronautRotation.value = 0;
+  }
+
+  animationFrameId = requestAnimationFrame(updateAstronautPosition);
+};
+
+onMounted(() => {
+  lastFrameTime = Date.now();
+  updateAstronautPosition();
+});
+
+onUnmounted(() => {
+  if (animationFrameId !== null) {
+    cancelAnimationFrame(animationFrameId);
+  }
+});
 
 const handleLinkClick = () => {
   if (window.gtag) {
