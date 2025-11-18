@@ -21,15 +21,24 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch, ref, onMounted, onUnmounted } from 'vue';
+import { computed, watch, ref, onMounted, onUnmounted, provide } from 'vue';
 import { useRoute } from 'vue-router';
 import { useTheme } from '@/composables/useTheme';
 import { useMediaQuery } from '@/composables/useMediaQuery';
+import { STARFIELD_VELOCITY_KEY } from '@/composables/useStarfieldVelocity';
 import Navbar from '@/components/layout/Navbar.vue';
 import Footer from '@/components/layout/Footer.vue';
 import ErrorBoundary from '@/components/common/ErrorBoundary.vue';
 import StarfieldBackground from '@/components/common/StarfieldBackground.vue';
 import CloudBackground from '@/components/common/CloudBackground.vue';
+
+const starfieldVelocityX = ref(0);
+const starfieldVelocityY = ref(0);
+
+provide(STARFIELD_VELOCITY_KEY, {
+  velocityX: starfieldVelocityX,
+  velocityY: starfieldVelocityY,
+});
 
 const route = useRoute();
 const { theme } = useTheme();

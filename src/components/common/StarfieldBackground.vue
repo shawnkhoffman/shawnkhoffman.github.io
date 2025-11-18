@@ -3,7 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch, computed } from 'vue';
+import { ref, onMounted, onUnmounted, watch, computed, inject, type Ref } from 'vue';
+import { STARFIELD_VELOCITY_KEY } from '@/composables/useStarfieldVelocity';
 
 type StarShape = 'circle' | 'cross' | 'diamond' | 'star' | 'dot';
 
@@ -52,8 +53,10 @@ let lastGasSpawnTime = 0;
 let lastMouseX: number | null = null;
 let lastMouseY: number | null = null;
 let lastMouseMoveTime = 0;
-let velocityX = 0;
-let velocityY = 0;
+
+const injectedVelocity = inject<{ velocityX: Ref<number>; velocityY: Ref<number> }>(STARFIELD_VELOCITY_KEY);
+const velocityX = injectedVelocity ? injectedVelocity.velocityX : ref(0);
+const velocityY = injectedVelocity ? injectedVelocity.velocityY : ref(0);
 let lastFrameTime = Date.now();
 
 const BASELINE_SPEED = 50;
@@ -370,15 +373,15 @@ const initStars = (width: number, height: number) => {
 const getStarPosition = (star: Star, width: number, height: number, deltaTime: number): { x: number; y: number } => {
   const speedMultiplier = (1 - star.z) * 0.6;
 
-  const cursorSpeed = Math.sqrt(velocityX * velocityX + velocityY * velocityY);
+  const cursorSpeed = Math.sqrt(velocityX.value * velocityX.value + velocityY.value * velocityY.value);
 
   let activeDirectionX: number;
   let activeDirectionY: number;
   let activeSpeed: number;
 
   if (cursorSpeed > 0.5) {
-    activeDirectionX = velocityX / cursorSpeed;
-    activeDirectionY = velocityY / cursorSpeed;
+    activeDirectionX = velocityX.value / cursorSpeed;
+    activeDirectionY = velocityY.value / cursorSpeed;
     activeSpeed = cursorSpeed;
     baselineDirectionX = activeDirectionX;
     baselineDirectionY = activeDirectionY;
@@ -704,27 +707,27 @@ const animate = (startTime: number) => {
   const deltaTime = (now - lastFrameTime) / 1000;
   lastFrameTime = now;
 
-  const currentSpeed = Math.sqrt(velocityX * velocityX + velocityY * velocityY);
+  const currentSpeed = Math.sqrt(velocityX.value * velocityX.value + velocityY.value * velocityY.value);
 
   if (currentSpeed > BASELINE_SPEED) {
     const friction = 0.99;
     const newSpeed = Math.max(BASELINE_SPEED, currentSpeed * friction);
 
     if (currentSpeed > 0) {
-      const directionX = velocityX / currentSpeed;
-      const directionY = velocityY / currentSpeed;
-      velocityX = directionX * newSpeed;
-      velocityY = directionY * newSpeed;
+      const directionX = velocityX.value / currentSpeed;
+      const directionY = velocityY.value / currentSpeed;
+      velocityX.value = directionX * newSpeed;
+      velocityY.value = directionY * newSpeed;
     }
   } else {
     if (currentSpeed > 0) {
-      const directionX = velocityX / currentSpeed;
-      const directionY = velocityY / currentSpeed;
-      velocityX = directionX * BASELINE_SPEED;
-      velocityY = directionY * BASELINE_SPEED;
+      const directionX = velocityX.value / currentSpeed;
+      const directionY = velocityY.value / currentSpeed;
+      velocityX.value = directionX * BASELINE_SPEED;
+      velocityY.value = directionY * BASELINE_SPEED;
     } else {
-      velocityX = baselineDirectionX * BASELINE_SPEED;
-      velocityY = baselineDirectionY * BASELINE_SPEED;
+      velocityX.value = baselineDirectionX * BASELINE_SPEED;
+      velocityY.value = baselineDirectionY * BASELINE_SPEED;
     }
   }
 
@@ -738,14 +741,14 @@ const animate = (startTime: number) => {
     lastShootingStarTime = currentTime;
   }
 
-  const cursorSpeed = Math.sqrt(velocityX * velocityX + velocityY * velocityY);
+  const cursorSpeed = Math.sqrt(velocityX.value * velocityX.value + velocityY.value * velocityY.value);
   let activeDirectionX: number;
   let activeDirectionY: number;
   let activeSpeed: number;
 
   if (cursorSpeed > 0.5) {
-    activeDirectionX = velocityX / cursorSpeed;
-    activeDirectionY = velocityY / cursorSpeed;
+    activeDirectionX = velocityX.value / cursorSpeed;
+    activeDirectionY = velocityY.value / cursorSpeed;
     activeSpeed = cursorSpeed;
   } else {
     activeDirectionX = baselineDirectionX;
@@ -863,12 +866,12 @@ const handleMouseMove = (event: MouseEvent) => {
       const speedX = deltaX / deltaTime;
       const speedY = deltaY / deltaTime;
 
-      velocityX = -speedX * 0.3;
-      velocityY = -speedY * 0.3;
+      velocityX.value = -speedX * 0.3;
+      velocityY.value = -speedY * 0.3;
     }
   } else {
-    velocityX = 0;
-    velocityY = 0;
+    velocityX.value = 0;
+    velocityY.value = 0;
   }
 
   lastMouseX = newMouseX;
