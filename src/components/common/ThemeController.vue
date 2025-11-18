@@ -51,7 +51,9 @@ const props = withDefaults(defineProps<ThemeControllerProps>(), {
   animated: true,
 });
 
-const THEME_ORDER: Theme[] = ['light', 'dark', 'system'];
+// TEMPORARY: Light mode disabled - only dark theme available
+// TODO: Re-enable: const THEME_ORDER: Theme[] = ['light', 'dark', 'system'];
+const THEME_ORDER: Theme[] = ['dark'];
 
 const DEVICE_BREAKPOINTS = {
   mobile: 768,

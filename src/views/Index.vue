@@ -23,28 +23,19 @@
 import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { Icon } from '@iconify/vue';
 import { useRoute } from 'vue-router';
-import { useTheme } from '@/composables/useTheme';
-import { useMediaQuery } from '@/composables/useMediaQuery';
 import { useStarfieldVelocity } from '@/composables/useStarfieldVelocity';
 
 const route = useRoute();
-const { theme } = useTheme();
-const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
 const { velocityX, velocityY } = useStarfieldVelocity();
 
 const isLandingPage = computed(() => route.name === 'Index');
 
-const appliedTheme = computed(() => {
-  if (theme.value === 'dark') {
-    return 'dark';
-  } else if (theme.value === 'light') {
-    return 'light';
-  } else {
-    return prefersDark.value ? 'dark' : 'light';
-  }
-});
-
-const shouldShowStarfield = computed(() => isLandingPage.value && appliedTheme.value === 'dark');
+// TEMPORARY: Light mode disabled - always show starfield
+// TODO: Re-enable theme detection:
+//   - Add back: useTheme, useMediaQuery imports
+//   - Add back: appliedTheme computed property
+//   - Change to: shouldShowStarfield = isLandingPage.value && appliedTheme.value === 'dark'
+const shouldShowStarfield = computed(() => isLandingPage.value);
 
 const astronautRotation = ref(0);
 let lastFrameTime = Date.now();
