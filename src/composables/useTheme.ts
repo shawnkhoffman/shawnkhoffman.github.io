@@ -8,6 +8,7 @@ export function useThemeProvider() {
   // TODO: Re-enable light mode by restoring: ref<Theme>((localStorage.getItem('theme') as Theme) || 'system')
   const theme = ref<Theme>('dark');
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const applyTheme = (currentTheme: Theme) => {
     const root = document.documentElement;
     // TEMPORARY: Light mode disabled - always apply dark theme
@@ -39,6 +40,7 @@ export function useThemeProvider() {
   // TODO: Re-enable system theme watching with media query listener
 
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const setTheme = (newTheme: Theme) => {
     // TEMPORARY: Light mode disabled - always set to dark
     // TODO: Re-enable: theme.value = newTheme;
