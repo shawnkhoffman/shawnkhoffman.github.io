@@ -1,15 +1,20 @@
-import { ref, watch, onMounted, onUnmounted, provide, inject, type Ref } from 'vue';
+import { ref, watch, onMounted, provide, inject, type Ref } from 'vue';
 import type { Theme } from '@/types/theme';
 
 const THEME_KEY = Symbol('theme');
 
 export function useThemeProvider() {
-  const theme = ref<Theme>((localStorage.getItem('theme') as Theme) || 'system');
+  // TEMPORARY: Light mode disabled - always use dark mode
+  // TODO: Re-enable light mode by restoring: ref<Theme>((localStorage.getItem('theme') as Theme) || 'system')
+  const theme = ref<Theme>('dark');
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const applyTheme = (currentTheme: Theme) => {
     const root = document.documentElement;
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const appliedTheme = currentTheme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : currentTheme;
+    // TEMPORARY: Light mode disabled - always apply dark theme
+    // TODO: Restore theme selection logic: const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // TODO: Restore: const appliedTheme = currentTheme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : currentTheme;
+    const appliedTheme = 'dark';
 
     root.setAttribute('data-theme', appliedTheme);
 
@@ -27,32 +32,19 @@ export function useThemeProvider() {
 
   watch(theme, (newTheme) => {
     applyTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
+    // TEMPORARY: Light mode disabled - localStorage saving removed
+    // TODO: Re-enable: localStorage.setItem('theme', newTheme);
   }, { immediate: true });
 
-  // Watch for system theme changes
-  let mediaQuery: MediaQueryList | null = null;
-  let handleChange: (() => void) | null = null;
+  // TEMPORARY: Light mode disabled - system theme watching removed
+  // TODO: Re-enable system theme watching with media query listener
 
-  onMounted(() => {
-    mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    handleChange = () => {
-      if (theme.value === 'system') {
-        applyTheme('system');
-      }
-    };
 
-    mediaQuery.addEventListener('change', handleChange);
-  });
-
-  onUnmounted(() => {
-    if (mediaQuery && handleChange) {
-      mediaQuery.removeEventListener('change', handleChange);
-    }
-  });
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const setTheme = (newTheme: Theme) => {
-    theme.value = newTheme;
+    // TEMPORARY: Light mode disabled - always set to dark
+    // TODO: Re-enable: theme.value = newTheme;
+    theme.value = 'dark';
   };
 
   provide(THEME_KEY, {

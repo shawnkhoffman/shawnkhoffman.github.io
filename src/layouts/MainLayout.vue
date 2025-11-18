@@ -21,10 +21,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch, ref, onMounted, onUnmounted, provide } from 'vue';
+import { computed, provide, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { useTheme } from '@/composables/useTheme';
-import { useMediaQuery } from '@/composables/useMediaQuery';
 import { STARFIELD_VELOCITY_KEY } from '@/composables/useStarfieldVelocity';
 import Navbar from '@/components/layout/Navbar.vue';
 import Footer from '@/components/layout/Footer.vue';
@@ -41,52 +39,17 @@ provide(STARFIELD_VELOCITY_KEY, {
 });
 
 const route = useRoute();
-const { theme } = useTheme();
-const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
-const appliedTheme = ref<string>('light');
-
-const updateAppliedTheme = () => {
-  if (theme.value === 'dark') {
-    appliedTheme.value = 'dark';
-  } else if (theme.value === 'light') {
-    appliedTheme.value = 'light';
-  } else {
-    appliedTheme.value = prefersDark.value ? 'dark' : 'light';
-  }
-};
-
-watch([theme, prefersDark], () => {
-  updateAppliedTheme();
-});
-
-let observer: MutationObserver | null = null;
-
-onMounted(() => {
-  updateAppliedTheme();
-  observer = new MutationObserver(() => {
-    const dataTheme = document.documentElement.getAttribute('data-theme');
-    if (dataTheme && theme.value === 'system') {
-      appliedTheme.value = dataTheme;
-    }
-  });
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['data-theme'],
-  });
-});
-
-onUnmounted(() => {
-  if (observer) {
-    observer.disconnect();
-  }
-});
 
 const isLandingPage = computed(() => route.name === 'Index');
 
-const isDarkMode = computed(() => appliedTheme.value === 'dark');
-
-const shouldShowStarfield = computed(() => isLandingPage.value && isDarkMode.value);
-const shouldShowClouds = computed(() => isLandingPage.value && !isDarkMode.value);
+// TEMPORARY: Light mode disabled - always show starfield, never show clouds
+// TODO: Re-enable theme detection:
+//   - Add back: useTheme, useMediaQuery, watch, onMounted, onUnmounted imports
+//   - Add back: appliedTheme, isDarkMode computed properties
+//   - Change to: shouldShowStarfield = isLandingPage.value && isDarkMode.value
+//   - Change to: shouldShowClouds = isLandingPage.value && !isDarkMode.value
+const shouldShowStarfield = computed(() => isLandingPage.value);
+const shouldShowClouds = computed(() => false);
 
 const handleError = (error: Error, errorInfo: unknown) => {
   console.error('Global ErrorBoundary caught an error:', error, errorInfo);
