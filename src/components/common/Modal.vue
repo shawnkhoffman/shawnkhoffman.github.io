@@ -7,7 +7,8 @@
       <div ref="modalRef" data-testid="modal-content" :class="`relative w-full ${modalSize.width} ${modalSize.height} 
           flex flex-col bg-base-100 rounded-lg shadow-xl 
           ${prefersReducedMotion ? '' : 'transition-all duration-300'} 
-          p-4 sm:p-6 lg:p-8 ${className}`" tabindex="-1">
+          p-4 sm:p-6 lg:p-8 select-none outline-none ${className}`"
+          @mousedown.prevent="handleModalMouseDown">
         <div class="p-4 border-b border-base-300 flex justify-between items-center">
           <h2 :id="`modal-title-${modalId}`" class="text-xl sm:text-2xl font-semibold text-center flex-grow">
             {{ title }}
@@ -182,6 +183,15 @@ const handleOutsideClick = (e: MouseEvent) => {
   }
 };
 
+const handleModalMouseDown = (e: MouseEvent) => {
+  if (e.target === modalRef.value) {
+    e.preventDefault();
+  }
+  if (modalRef.value) {
+    modalRef.value.blur();
+  }
+};
+
 const checkContentOverflow = () => {
   if (contentRef.value) {
     const isOverflowing =
@@ -265,28 +275,48 @@ const handleNext = () => {
 };
 
 const handleKeyDown = (e: KeyboardEvent) => {
-  switch (e.key) {
-    case 'ArrowRight':
-      if (props.onNext) {
-        props.onNext();
-        state.value.showNavigationHint = false;
-        state.value.hasInteracted = true;
-      }
-      break;
-    case 'ArrowLeft':
-      if (props.onPrevious) {
-        props.onPrevious();
-        state.value.showNavigationHint = false;
-        state.value.hasInteracted = true;
-      }
-      break;
-    case 'Escape':
-      if (props.closeOnEscape) {
-        props.onClose();
-      }
-      break;
-    default:
-      break;
+  if (!props.isOpen) return;
+
+  if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft' && e.key !== 'Escape') {
+    return;
+  }
+
+  const target = e.target as HTMLElement;
+  const isInputFocused = target.tagName === 'INPUT' || 
+                         target.tagName === 'TEXTAREA' || 
+                         target.isContentEditable ||
+                         (target.closest('input, textarea, [contenteditable="true"]') !== null);
+
+  if (isInputFocused && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+    return;
+  }
+
+  if (e.key === 'ArrowRight') {
+    if (props.onNext && props.totalPages > 1) {
+      e.preventDefault();
+      e.stopPropagation();
+      props.onNext();
+      state.value.showNavigationHint = false;
+      state.value.hasInteracted = true;
+    }
+    return;
+  }
+
+  if (e.key === 'ArrowLeft') {
+    if (props.onPrevious && props.totalPages > 1) {
+      e.preventDefault();
+      e.stopPropagation();
+      props.onPrevious();
+      state.value.showNavigationHint = false;
+      state.value.hasInteracted = true;
+    }
+    return;
+  }
+
+  if (e.key === 'Escape' && props.closeOnEscape) {
+    e.preventDefault();
+    e.stopPropagation();
+    props.onClose();
   }
 };
 
@@ -316,10 +346,13 @@ const debouncedCheckContentOverflow = debounce(checkContentOverflow, RESIZE_DEBO
 useResizeObserver(contentRef, checkContentOverflow);
 
 watch(() => props.isOpen, (open) => {
-  if (!open) return;
-
-  document.addEventListener('keydown', handleKeyDown);
-  document.addEventListener('keydown', focusTrap);
+  if (open) {
+    document.addEventListener('keydown', handleKeyDown, true);
+    document.addEventListener('keydown', focusTrap);
+  } else {
+    document.removeEventListener('keydown', handleKeyDown, true);
+    document.removeEventListener('keydown', focusTrap);
+  }
 
   nextTick(() => {
     setTimeout(() => {
@@ -337,8 +370,8 @@ watch(() => props.isOpen, (open) => {
           const closeBtn = closeButtonRef.value;
           if (closeBtn && !closeBtn.hasAttribute('disabled')) {
             closeBtn.focus();
-          } else {
-            modalRef.value?.focus();
+          } else if (modalRef.value) {
+            modalRef.value.blur();
           }
           break;
         }
@@ -349,7 +382,7 @@ watch(() => props.isOpen, (open) => {
 
 watch(() => props.isOpen, (open) => {
   if (!open) {
-    document.removeEventListener('keydown', handleKeyDown);
+    document.removeEventListener('keydown', handleKeyDown, true);
     document.removeEventListener('keydown', focusTrap);
   }
 });
@@ -359,6 +392,9 @@ watch(
   () => {
     if (props.isOpen) {
       debouncedCheckContentOverflow();
+      if (modalRef.value && document.activeElement === modalRef.value) {
+        modalRef.value.blur();
+      }
     }
   }
 );
@@ -367,18 +403,31 @@ onMounted(() => {
   if (contentRef.value) {
     contentRef.value.addEventListener('wheel', preventScrollPropagation, { passive: false });
   }
+  
+  if (props.isOpen) {
+    document.addEventListener('keydown', handleKeyDown, true);
+    document.addEventListener('keydown', focusTrap);
+  }
+});
 
-  watch(() => props.isOpen, (open) => {
-    const modalElement = modalRef.value;
-    if (!open || !modalElement || !isTouchDevice.value) return;
-
-    modalElement.addEventListener('touchstart', handleTouchStart, { passive: true });
-    modalElement.addEventListener('touchend', handleTouchEnd, { passive: true });
-
-    return () => {
+watch(() => props.isOpen, (open) => {
+  const modalElement = modalRef.value;
+  
+  if (!open) {
+    if (modalElement) {
       modalElement.removeEventListener('touchstart', handleTouchStart);
       modalElement.removeEventListener('touchend', handleTouchEnd);
-    };
+    }
+    return;
+  }
+
+  if (!modalElement || !isTouchDevice.value || props.totalPages <= 1) return;
+
+  nextTick(() => {
+    if (modalElement) {
+      modalElement.addEventListener('touchstart', handleTouchStart, { passive: true });
+      modalElement.addEventListener('touchend', handleTouchEnd, { passive: true });
+    }
   });
 });
 
@@ -386,8 +435,24 @@ onUnmounted(() => {
   if (contentRef.value) {
     contentRef.value.removeEventListener('wheel', preventScrollPropagation);
   }
+  if (modalRef.value) {
+    modalRef.value.removeEventListener('touchstart', handleTouchStart);
+    modalRef.value.removeEventListener('touchend', handleTouchEnd);
+  }
   debouncedCheckContentOverflow.cancel();
-  document.removeEventListener('keydown', handleKeyDown);
+  document.removeEventListener('keydown', handleKeyDown, true);
   document.removeEventListener('keydown', focusTrap);
 });
 </script>
+
+<style scoped>
+[data-testid="modal-content"] {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+[data-testid="modal-content"]:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style>
