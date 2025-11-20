@@ -1,12 +1,27 @@
 <template>
   <div class="w-full max-w-5xl mb-10 p-6 bg-base-100 rounded-lg shadow-lg">
-    <h2 class="text-2xl font-semibold mb-6 text-center">Skills</h2>
+    <h2 class="text-2xl font-semibold mb-6 text-center">Skills & Interests</h2>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
-      <div v-for="(modal, index) in modals" :key="modal.id" class="flex flex-col items-center text-center">
-        <Icon :icon="modal.iconName" class="text-4xl text-info mb-4" aria-hidden="true" />
-        <h3 class="font-semibold mb-2">{{ modal.category }}</h3>
-        <button class="btn btn-sm mt-4" @click="() => showModal(index)">
+      <div 
+        v-for="(modal, index) in modals" 
+        :key="modal.id" 
+        class="flex flex-col items-center text-center p-4 rounded-lg cursor-pointer transition-all duration-200 hover:bg-base-200 hover:shadow-md group"
+        @click="() => showModal(index)"
+        role="button"
+        tabindex="0"
+        @keydown.enter="() => showModal(index)"
+        @keydown.space.prevent="() => showModal(index)"
+      >
+        <Icon 
+          :icon="modal.iconName" 
+          class="text-4xl text-info mb-4 transition-all duration-200 group-hover:scale-110" 
+          aria-hidden="true"
+        />
+        <h3 class="font-semibold mb-2 transition-all duration-200 group-hover:text-info">
+          {{ modal.category }}
+        </h3>
+        <button class="btn btn-sm mt-4 transition-all duration-200 group-hover:btn-primary" @click.stop="() => showModal(index)">
           Learn More
         </button>
       </div>
@@ -46,50 +61,26 @@ const modals: ModalData[] = [
     category: 'Software Engineering',
     iconName: 'fa6-solid:code',
     content: `
+      <div class="flex justify-center mb-6">
+        <img src="/src/assets/images/shawn-software-engineering.png" alt="Software Engineering" class="max-w-full h-auto max-h-[500px]" />
+      </div>
       <p class="leading-relaxed mb-6">
-        My journey in software engineering started well before it became my profession. Back in the early days of the web, I was inspired by my love for video games and anime, which led me to build my first websites. In 1996, I was using tools like Microsoft FrontPage, Netscape Composer, GeoCities, and Tripod to experiment with web development. By high school in 2002, I had upgraded to Macromedia Dreamweaver, which really solidified my interest in coding and systems design. It wasn't just a hobby anymore – it was something I knew I wanted to do long-term.
+        My journey in software began in the early days of the web, building small sites on GeoCities and Tripod to see how pages were assembled. By high school, I was using Dreamweaver, which pushed me toward understanding how larger systems fit together and why some approaches hold up better as they grow. That early curiosity set the direction for the work I do today.
       </p>
       <p class="leading-relaxed mb-6">
-        Over the years, my career has evolved into full-stack development across different industries, always with a focus on creating systems that are scalable, maintainable, and high-performance. I'm a big advocate of domain-driven design (DDD), which helps me align technical implementations with the real needs of the business. This approach lets me build around specific business logic, encapsulating it within bounded contexts to keep everything clean and organized.
-      </p>
-      <h4 class="font-bold text-lg mb-3">Frontend Development</h4>
-      <p class="leading-relaxed mb-6">
-        When it comes to frontend development, I prefer Vue because it allows me to build reusable, composable components that simplify development, especially in larger applications. For bundling, I like Vite for its fast Hot Module Replacement (HMR) and simple setup, which is particularly useful in TypeScript projects where real-time feedback is critical.
+        Most of my professional work centers on backend services and distributed workflows in media environments. These systems run continuously and respond to shifts in workload, timing, and ordering. Small changes in one area can affect several others, so I focus on how services interact within a larger workflow rather than treating them as isolated pieces. This matters when the output depends on stages completing in the proper sequence under real load, not just under test conditions.
       </p>
       <p class="leading-relaxed mb-6">
-        For styling, I often combine Tailwind CSS with DaisyUI. Tailwind's utility-first approach lets me quickly prototype UI elements without diving into custom CSS, while DaisyUI provides accessible, pre-styled components that ensure a consistent look and feel across the application.
+        When designing or adjusting services, I keep the workflow easy to trace. Media pipelines rely on multiple stages and require clarity at each step, making it easier to see where the system is slowing down or where assumptions no longer align with real behavior. It also helps when the system needs to evolve without introducing hidden coupling.
       </p>
       <p class="leading-relaxed mb-6">
-        Accessibility is a priority for me because it's simply a non-negotiable part of modern web design. I make sure every interface works seamlessly across devices and assistive technologies by implementing ARIA roles, keyboard navigation, and screen reader support. I also bake in internationalization (i18n) from the start, using tools like i18next to make localization easy for global users.
+        I occasionally work on frontend code, mainly when the interface needs to reflect the underlying workflow accurately. In those cases, I keep the UI minimal and predictable so it supports the system rather than adding another layer of complexity. It's not a significant part of my role, but it's useful when a project benefits from an end-to-end view.
       </p>
       <p class="leading-relaxed mb-6">
-        For testing, I go with Vitest for unit and integration tests, especially given its fast performance and native integration with Vite. I also use Vue Test Utils to verify that my components behave as expected. On top of that, DataDog RUM and Google Analytics help me track real user interactions, which I use to continuously improve both the user experience and performance.
-      </p>
-      <h4 class="font-bold text-lg mb-3">Backend Development</h4>
-      <p class="leading-relaxed mb-6">
-        On the backend, I focus on building scalable microservices using the right language and framework for the job. Often, I work in TypeScript because many of my projects integrate closely with frontend services, and TypeScript's strict type safety helps minimize runtime errors while keeping development fast and maintainable.
+        My background in SRE and platform engineering influences how I handle software that runs for long periods or processes high-volume workloads. I pay attention to how behavior changes over time, how failures present themselves, and how deployment choices affect the surrounding system. This perspective helps ensure the software behaves consistently once it moves into production.
       </p>
       <p class="leading-relaxed mb-6">
-        For high-performance systems – whether it's a gRPC or REST API, media transcoding pipeline, or a real-time application – I'll opt for Go. It handles concurrency really well and performs efficiently under heavy loads. If I'm dealing with more flexible workflows, like data pipelines or machine learning tasks, I lean toward Python because its vast ecosystem and tools like Apache Airflow and Spark make it easy to work with large datasets or complex processes.
-      </p>
-      <p class="leading-relaxed mb-6">
-        Data handling is something I take seriously, and I use both SQL and NoSQL databases depending on the project. I tend to choose PostgreSQL or DynamoDB based on the data model and use Redis for caching. I often integrate with messaging systems like SQS or Kafka for handling async workflows.
-      </p>
-      <p class="leading-relaxed mb-6">
-        I like to follow clean architecture principles, focusing on modularity and separation of concerns. This ensures that the codebase stays maintainable and flexible as new features or requirements come up. To monitor everything, I use DataDog and Prometheus for real-time insights into service performance, capturing key metrics like response times, memory usage, and error rates. This helps me spot bottlenecks early and optimize proactively.
-      </p>
-      <h4 class="font-bold text-lg mb-3">DevOps</h4>
-      <p class="leading-relaxed mb-6">
-        I've been working with various version control and CI/CD platforms since 2016, and GitHub and GitLab have become my preferred tools for managing code and automating workflows. I build CI/CD pipelines that cover everything—from linting and testing to deployment and monitoring. I also integrate security scanning tools like Snyk and Veracode to identify vulnerabilities early on.
-      </p>
-      <p class="leading-relaxed mb-6">
-        For release automation, I use Semantic Release with Conventional Commits to ensure that versioning is consistent and releases are automated without any hiccups.
-      </p>
-      <p class="leading-relaxed mb-6">
-        Containerization is a big part of my workflow. I use Docker for local development, especially with LocalStack when building AWS-based services. In production, Kubernetes is my go-to for orchestration, particularly when paired with ArgoCD, Argo Rollouts, Helm, and Istio.
-      </p>
-      <p class="leading-relaxed mb-6">
-        I place a strong emphasis on observability. DataDog is my preferred tool for centralized logs, metrics, and traces because it gives me real-time insights into how systems are performing and how users are interacting with services. DataDog's dashboards and alerting capabilities make it easy to track key metrics and quickly resolve any issues before they impact users. I also integrate OpsGenie or PagerDuty for incident management, making sure that issues are addressed efficiently.
+        Most of my work involves understanding how software behaves when it's part of a larger, timing-sensitive workflow, especially in media systems where continuous activity exposes patterns that don't appear in simpler applications. I design with those conditions in mind so the system remains steady as the workload shifts and grows.
       </p>
     `,
   },
@@ -98,42 +89,48 @@ const modals: ModalData[] = [
     category: 'Cloud Infrastructure',
     iconName: 'fa6-solid:cloud',
     content: `
+      <div class="flex justify-center mb-6">
+        <img src="/src/assets/images/shawn-cloud-infrastructure.png" alt="Cloud Infrastructure" class="max-w-full h-auto max-h-[500px]" />
+      </div>
       <p class="leading-relaxed mb-6">
-        My experience with cloud infrastructure has evolved from managing complex hybrid systems to designing multi-cloud solutions for large-scale production workloads. I've spent a lot of time working with AWS, Azure, and GCP, always looking for ways to leverage cloud-native services to improve scalability, security, and cost efficiency.
+        Most of my cloud work supports the systems behind video processing and delivery. These workloads behave differently from typical web services. Transcoding causes sharp, uneven spikes in CPU and memory usage. GPU stages introduce their own patterns, including large data transfers, device-level scheduling, and performance that varies with how work is grouped. Ingest pipelines run continuously and can back up when upstream sources change pace. Quality checks and packaging steps depend on stable environmental behavior, because slowdowns or timing drift can affect the final output.
       </p>
-      <h4 class="font-bold text-lg mb-3">Infrastructure as Code (IaC)</h4>
       <p class="leading-relaxed mb-6">
-        Using tools like Pulumi, Terraform, and Serverless Framework, my preferred approach to IaC emphasizes using pre-built modules from within the service repository — this way, the infrastructure can scale quickly while still maintaining high security and performance standards. The goal is to ensure the infrastructure can evolve alongside the application and business requirements without introducing complexity or risk.
+        I pay close attention to how the platform reacts under real workloads. GPU nodes reveal subtle performance changes driven by queue pressure, memory availability, and how competing processes share the device. Watching where work begins to accumulate, where latency matters, and which parts of the workflow are sensitive to timing helps determine how the environment needs to be structured.
       </p>
-      <h4 class="font-bold text-lg mb-3">Cloud Infrastructure Monitoring</h4>
       <p class="leading-relaxed mb-6">
-        I prefer DataDog and cloud-native solutions to track infrastructure performance and reliability. With DataDog, custom dashboards and alerts help me keep an eye on key metrics like resource utilization, latency, and network traffic so I can detect and fix issues proactively before they turn into bigger problems, which is critical for minimizing downtime. I also tie these monitoring tools into automated incident response workflows with OpsGenie or PagerDuty to make sure any issues are handled quickly and efficiently.
+        When building or adjusting the platform, I keep the layout understandable so the entire workflow can be followed without guesswork. Media systems rely on several independent components passing work from one stage to the next. Once GPU-bound stages are part of the pipeline, the order and timing of these handoffs become even more critical. A clear environment makes it easier to understand where data is slowing down, why throughput is changing, and when utilization no longer matches expectations.
       </p>
-      <h4 class="font-bold text-lg mb-3">Networking</h4>
       <p class="leading-relaxed mb-6">
-        I've worked a lot with VPC architectures to ensure secure and efficient connectivity between services. This has included setting up secure networking solutions like DirectConnect, VPNs, and fine-tuning IAM roles to make sure resources are both secure and accessible only to authorized users. I also make sure that network traffic and security events are continuously monitored, so any threats can be detected and responded to before they become an issue.
+        The paths between services also matter. The sequence in which tasks move, and the time each stage waits for compute or device access, directly affects performance and output consistency. When something begins to drift, being able to trace the path through CPU, network, and GPU stages allows you to pinpoint the cause rather than treating the system as opaque.
+      </p>
+      <p class="leading-relaxed mb-6">
+        The needs of these media workflows define my work in cloud infrastructure. The goal is to build a platform that remains steady as the workload shifts, maintains predictable timing, and avoids introducing instability into the pipeline. The cloud is the environment where these systems run. The workflow dictates how the environment must be designed.
       </p>
     `,
   },
   {
-    id: 'media-engineering-modal',
-    category: 'Media Engineering',
+    id: 'media-systems-modal',
+    category: 'Media Systems',
     iconName: 'fa6-solid:video',
     content: `
+      <div class="flex justify-center mb-6">
+        <img src="/src/assets/images/shawn-media-systems.png" alt="Media Systems" class="max-w-full h-auto max-h-[500px]" />
+      </div>
       <p class="leading-relaxed mb-6">
-        Media engineering has been a core part of my work, especially with platforms like Disney+ and Crunchyroll. My focus has been on building and optimizing media transcoding, delivery, and playback to ensure video content is processed and delivered efficiently, no matter the device.
+        My work in media technology centers on the systems that move video from its source through the stages required for processing and delivery. These pipelines involve several steps, and each step depends on timing, order, and predictable behavior. A slight shift early in the workflow often appears much later, so I pay attention to how each stage influences the next.
       </p>
-      <h4 class="font-bold text-lg mb-3">Transcoding</h4>
       <p class="leading-relaxed mb-6">
-        I've built and fine-tuned media transcoding pipelines using tools like FFmpeg and cloud services such as AWS Elemental MediaConvert, automating transcoding tasks and ensuring efficient delivery across a wide range of devices. Maintaining quality is a big priority for me — I work to ensure videos maintain high resolution and perform well, even when network conditions aren't ideal.
+        A large part of this work involves understanding how video actually flows through the system. Incoming content arrives in one state and undergoes a series of transformations before it is ready for distribution. Each stage responds differently depending on volume, resource pressure, and the quality requirements of the output. Following how the work moves, where it begins to slow, and how the results change under different conditions helps keep the entire process steady.
       </p>
-      <h4 class="font-bold text-lg mb-3">Delivery</h4>
       <p class="leading-relaxed mb-6">
-        Smooth, efficient media delivery is essential for a great user experience. I've worked extensively with adaptive bitrate streaming technologies like HLS and DASH to make sure content is optimized for different devices and network conditions. I've also built and integrated Content Delivery Networks (CDNs) on Akamai, Fastly, and AWS CloudFront to reduce latency and offload traffic, ensuring that users can access content quickly and reliably, no matter where they're located.
+        I also work on the parts of the system that segment and package content for streaming. These stages behave differently from ordinary backend services because playback depends on correct ordering and consistent timing. The system needs to respect those constraints instead of being forced into general patterns that do not fit media workloads.
       </p>
-      <h4 class="font-bold text-lg mb-3">Playback</h4>
       <p class="leading-relaxed mb-6">
-        For me, optimizing video playback is all about giving users the best experience possible, no matter what device they're on or what their network situation looks like. I've implemented adaptive bitrate (ABR) streaming, which adjusts video quality dynamically based on available bandwidth, providing a smoother, more consistent viewing experience even when network conditions change. I constantly monitor playback performance metrics—things like buffering events and user feedback—to proactively address any issues and ensure that playback remains high-quality at all times.
+        Quality analysis tools are another area I spend time on. These tools measure perceptual quality or detect issues in the source, and their results depend on consistent processing conditions. If the environment changes, the quality results can drift, so I pay attention to how the surrounding system affects these measurements.
+      </p>
+      <p class="leading-relaxed mb-6">
+        Media pipelines run continuously and follow real patterns such as release cycles, bursty ingest behavior, and traffic spikes. I design and support them with those conditions in mind. The priority is to keep the workflow stable and predictable so the final output remains consistent even as the volume of work increases.
       </p>
     `,
   },
@@ -142,71 +139,70 @@ const modals: ModalData[] = [
     category: 'Machine Learning',
     iconName: 'fa6-solid:brain',
     content: `
+      <div class="flex justify-center mb-6">
+        <img src="/src/assets/images/shawn-machine-learning.png" alt="Machine Learning" class="max-w-full h-auto max-h-[500px]" />
+      </div>
       <p class="leading-relaxed mb-6">
-        My work in machine learning focuses on solving practical problems like video analysis, recommendation systems, film production, and automation through AI/ML models. Over the years, I've collaborated with research teams to take models from development all the way to production, using frameworks like TensorFlow and PyTorch. I've built end-to-end machine learning pipelines, managed model lifecycles, and deployed scalable solutions that handle real-time data processing.
+        Most of my work with machine learning has been tied to media systems. I have worked with models for video analysis, content understanding, recommendation workflows, and film production tasks. These problems involve significant assets, uneven workloads, and real timing constraints, so the focus is usually on how the model fits into the larger system rather than on the model itself.
       </p>
-      <h4 class="font-bold text-lg mb-3">Frameworks & Tools</h4>
       <p class="leading-relaxed mb-6">
-        I've primarily worked with computer vision models like U-Net, GroundingDINO, YOLO, Segment Anything, and VMAF. For training and deploying these models, I use TensorFlow and PyTorch. Whether it's for video analysis, film production, or content recommendation, I ensure the models are optimized for performance and scalability. In addition to using AWS SageMaker for model management, I also work with Weights & Biases and MLflow for experiment tracking and model lifecycle management. For monitoring system-level performance, infrastructure health, and model drift, I lean on DataDog and SageMaker Model Monitor to ensure models stay reliable and continue to meet evolving business needs.
+        I have collaborated with research teams to bring models out of experimentation and into production environments. That process often requires adapting research code to behave consistently under sustained load, handling significant inputs, and working within the sequencing requirements of media pipelines. The intention is to make the model a stable part of the workflow rather than a fragile piece sitting on the sidelines.
       </p>
-      <h4 class="font-bold text-lg mb-3">MLOps & Deployment</h4>
       <p class="leading-relaxed mb-6">
-        Managing the full lifecycle of machine learning models requires a solid MLOps strategy. I lean on tools like MLflow, Weights & Biases, Kubernetes, and AWS SageMaker to automate and streamline processes from model training to evaluation and deployment. By setting up robust pipelines, I ensure that models are continuously monitored and retrained as new data becomes available, keeping them adaptable and effective.
+        I pay attention to how training data is prepared and how production data is introduced into the system. Media workloads include a mix of structured and unstructured inputs, and the quality and shape of that data influence the entire pipeline. Understanding where the data comes from, how it is produced, and how it changes over time helps guide how the model should be integrated and observed.
       </p>
-      <h4 class="font-bold text-lg mb-3">Data Pipelines for ML</h4>
       <p class="leading-relaxed mb-6">
-        Building reliable data pipelines is essential to any machine learning project. I work with tools like Apache Kafka, Spark, and Airflow to maintain efficient, real-time data flows that feed into the models. This ensures both training and production data are processed accurately and on time. Reliable, high-performing data pipelines are key to supporting real-time analytics and decision-making, and I continuously monitor them to ensure seamless operation across different environments.
+        Deploying models in these environments involves several moving parts. The model, the services that support it, the workflow that triggers it, and the systems that depend on its output all influence one another. I focus on making these interactions predictable so that when performance shifts or drift appear, the underlying cause can be identified without guesswork.
       </p>
-    `,
-  },
-  {
-    id: 'data-engineering-modal',
-    category: 'Data Engineering',
-    iconName: 'fa6-solid:database',
-    content: `
       <p class="leading-relaxed mb-6">
-        Data engineering has always been a critical part of my work, especially when it comes to building scalable ETL pipelines that support real-time data processing and analytics. I've designed and managed systems that handle large datasets, focusing on high availability, data integrity, and optimizing data flows to power business-critical applications, machine learning models, and reporting systems. Keeping these pipelines reliable, accurate, and high-performing is always top of mind, with continuous monitoring to ensure uptime and performance.
-      </p>
-      <h4 class="font-bold text-lg mb-3">Data Pipelines</h4>
-      <p class="leading-relaxed mb-6">
-        I build data pipelines using tools like Apache Kafka, Airflow, and Spark to handle both real-time and batch data processing. My main goal is to ensure that data flows smoothly from source to destination with minimal latency and maximum accuracy. Whether it's supporting analytics, machine learning workflows, or day-to-day business operations, I make sure the pipelines are efficient and reliable. Monitoring and alerting are essential to keeping the systems running smoothly and ensuring real-time data is processed without bottlenecks.
-      </p>
-      <h4 class="font-bold text-lg mb-3">Data Warehousing</h4>
-      <p class="leading-relaxed mb-6">
-        I have hands-on experience designing and managing data warehouses using platforms like AWS Redshift and Azure Synapse. My work involves creating efficient schemas, optimizing queries for performance, and ensuring the data is structured to support both transactional and analytical workloads. I keep a close eye on performance metrics and usage patterns, making sure that queries are running efficiently and that data storage is cost-optimized for the long term.
-      </p>
-      <h4 class="font-bold text-lg mb-3">Data Governance & Quality</h4>
-      <p class="leading-relaxed mb-6">
-        Maintaining trust in data-driven decisions starts with data quality and governance. I implement data governance frameworks to ensure that data is secure, high-quality, and accessible throughout the pipeline. This includes defining data standards, applying access controls, and setting up quality checks to catch issues early. Continuous monitoring is essential to ensure compliance with governance policies and to maintain data integrity at every stage of the process.
+        My machine learning work sits at the intersection of research and long-running production systems. I am interested in how models behave when deployed to real workflows, especially in environments where timing, throughput, and asset size all influence outcomes.
       </p>
     `,
   },
   {
-    id: 'security-modal',
-    category: 'Security',
-    iconName: 'fa6-solid:shield-halved',
+    id: 'hardware-embedded-modal',
+    category: 'Hardware & Embedded Systems',
+    iconName: 'fa6-solid:microchip',
     content: `
+      <div class="flex justify-center mb-6">
+        <img src="/src/assets/images/shawn-embedded-systems.png" alt="Hardware & Embedded Systems" class="max-w-full h-auto max-h-[500px]" />
+      </div>
       <p class="leading-relaxed mb-6">
-        Security has always been in the fabric of my work, whether I'm building cloud software, deploying machine learning models, or managing media and data engineering pipelines. I've designed and implemented security strategies that protect sensitive data across various systems, ensuring compliance with industry standards like HIPAA and PCI-DSS. From configuring secure cloud architectures to managing vulnerability assessments and incident response, my goal is always to keep systems secure, reliable, and compliant. Continuous security monitoring has been key to identifying and responding to potential threats proactively.
+        I work with hardware at both the board and system levels. On the board side, I restore electronics, repair PCBs, and study how appliances and embedded devices behave internally. This often involves disassembling hardware, replacing components, tracing signal paths, and confirming that the device behaves as expected. Working at this level makes it easier to understand the limits the original software was written around and how the platform reacts under real conditions.
       </p>
-      <h4 class="font-bold text-lg mb-3">Application Security</h4>
       <p class="leading-relaxed mb-6">
-        Ensuring security is embedded in the software development process is a key part of my work, starting from the earliest stages of building software. I incorporate security best practices into the codebase, such as secure coding standards, dependency management, and continuous vulnerability assessment. A key aspect of this is generating and maintaining a Software Bill of Materials (SBOM) to ensure full visibility into the open-source components and dependencies used within the software. This helps identify potential risks, such as outdated or vulnerable libraries, before they reach production.
+        I also maintain a full server rack in my home lab. It's set up to run the kinds of distributed workloads I've supported professionally, with enough variability to reveal how clusters respond as services shift, fail, or compete for resources. Having direct access to the hardware helps when evaluating how changes propagate through a system or when testing behavior that's difficult to reproduce in managed environments.
       </p>
       <p class="leading-relaxed mb-6">
-        I also use security in the CI/CD process to ensure that code is thoroughly tested and vetted before deployment. Throughout the pipeline, I use tools like Snyk and Veracode to ensure that security checks are automated and performed early in the development cycle.
+        In addition to repairs and system testing, I build hardware projects when they support what I'm working on or when the design itself raises interesting problems. One example is the full-sized arcade cabinet I assembled and wired myself, integrating modern components, custom software, and a complete emulation stack. Projects like this are a practical way to explore how physical layout, electronics, input hardware, and software timing interact.
       </p>
-      <h4 class="font-bold text-lg mb-3">Cloud Security</h4>
       <p class="leading-relaxed mb-6">
-        Securing cloud environments is one of the core aspects of my work. I focus on practices like role-based access control (RBAC), encryption (at-rest, in-use, and in-transit), and multi-factor authentication (MFA) to protect resources in AWS and Azure environments. I've implemented security measures like IAM roles, key management systems, and secure networking configurations, ensuring that cloud resources are both secure and compliant with industry regulations. Using DataDog and AWS CloudTrail, I'm able to detect potential security incidents early and respond quickly to mitigate them.
+        Working across both board-level and server-level systems gives me a clearer view of how software interacts with the platform underneath it. That perspective shapes how I design and support the systems I work with, whether they run on small embedded devices or across larger service environments.
       </p>
-      <h4 class="font-bold text-lg mb-3">Network Security</h4>
+    `,
+  },
+  {
+    id: 'gaming-modal',
+    category: 'Gaming',
+    iconName: 'fa6-solid:gamepad',
+    content: `
+      <div class="flex justify-center mb-6">
+        <img src="/src/assets/images/shawn-gaming.png" alt="Gaming" class="max-w-full h-auto max-h-[500px]" />
+      </div>
       <p class="leading-relaxed mb-6">
-        In terms of network security, I've designed secure network architectures using VPCs, firewalls, and VPNs to ensure data remains protected in transit. My focus has been on zero-trust network principles, where no entity is trusted by default. By setting up continuous monitoring, I ensure that any threats are detected early and mitigated before they escalate. Whether it's securing real-time video streams or ensuring data pipelines are protected, network security plays a critical role in my work across various domains.
+        Gaming was my first real gateway into technology. I spent a lot of time with systems like the Nintendo and Super Nintendo, PlayStation, and the original Xbox, and I eventually wanted to understand more than what was happening on the screen. That curiosity pushed me to look into how games stored their data, how consoles managed resources, and why certain behaviors emerged under pressure. It was the first time I found myself digging into technical details to understand how things worked.
       </p>
-      <h4 class="font-bold text-lg mb-3">Vulnerability Management & Compliance</h4>
       <p class="leading-relaxed mb-6">
-        Managing vulnerabilities and ensuring compliance with standards like NIST, FedRAMP, and SOC 2 has been a big part of my work, especially in regulated industries like government, finance, and healthcare. I've used tools like Snyk, Veracode, and AWS Inspector to identify and remediate security risks in both cloud-based applications and machine learning pipelines. Continuous vulnerability scanning and real-time monitoring have been essential for keeping systems secure and compliant, ensuring rapid response to potential threats as they arise.
+        I still enjoy gaming the same way I did when I was growing up. Video games are familiar and nostalgic, and I look forward to them in my downtime.
+      </p>
+      <p class="leading-relaxed mb-6">
+        My interest eventually grew into a set of side projects that I work on for my own curiosity. I use both open- and closed-source tools to study file formats, examine asset structures, and understand how earlier engines approached memory and performance. I also spend time restoring older consoles and repairing hardware when something fails. These projects give me a chance to explore the systems behind the games I enjoy without treating them as professional work.
+      </p>
+      <p class="leading-relaxed mb-6">
+        I also like building the setups I play on. I built a full-sized arcade cabinet in my home office because I was motivated by a combination of nostalgia and a love for hands-on work. Several restored consoles and custom configurations in my lab came from the same place. They are simply extensions of a hobby that has stayed with me for years.
+      </p>
+      <p class="leading-relaxed mb-6">
+        Gaming remains a passion, a hobby, and a technical outlet. It is also where my interest in technology first began, long before I knew it would become a career.
       </p>
     `,
   },
