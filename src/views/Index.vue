@@ -6,7 +6,7 @@
     >
       <img src="/src/assets/images/shawn-astronaut.svg" class="w-full h-full dark:shadow-none" alt="Astronaut" />
     </div>
-    <h1 class="text-3xl font-bold mb-2 text-base-content">Welcome to My Portfolio</h1>
+    <h1 class="text-3xl font-bold mb-2 text-base-content">Welcome to My Universe</h1>
     <p class="text-lg mb-6 text-base-content">Built in Vue.js</p>
 
     <a href="https://github.com/shawnkhoffman/shawnkhoffman.github.io" target="_blank" rel="noopener noreferrer"
