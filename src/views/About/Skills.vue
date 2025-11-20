@@ -42,6 +42,12 @@
 import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import Modal from '@/components/common/Modal.vue';
+import softwareEngineeringImg from '@/assets/images/shawn-software-engineering.png';
+import cloudInfrastructureImg from '@/assets/images/shawn-cloud-infrastructure.png';
+import mediaSystemsImg from '@/assets/images/shawn-media-systems.png';
+import machineLearningImg from '@/assets/images/shawn-machine-learning.png';
+import embeddedSystemsImg from '@/assets/images/shawn-embedded-systems.png';
+import gamingImg from '@/assets/images/shawn-gaming.png';
 
 interface ModalData {
   id: string;
@@ -62,7 +68,7 @@ const modals: ModalData[] = [
     iconName: 'fa6-solid:code',
     content: `
       <div class="flex justify-center mb-6">
-        <img src="/src/assets/images/shawn-software-engineering.png" alt="Software Engineering" class="max-w-full h-auto max-h-[500px]" />
+        <img src="${softwareEngineeringImg}" alt="Software Engineering" class="max-w-full h-auto max-h-[500px]" />
       </div>
       <p class="leading-relaxed mb-6">
         My journey in software began in the early days of the web, building small sites on GeoCities and Tripod to see how pages were assembled. By high school, I was using Dreamweaver, which pushed me toward understanding how larger systems fit together and why some approaches hold up better as they grow. That early curiosity set the direction for the work I do today.
@@ -90,7 +96,7 @@ const modals: ModalData[] = [
     iconName: 'fa6-solid:cloud',
     content: `
       <div class="flex justify-center mb-6">
-        <img src="/src/assets/images/shawn-cloud-infrastructure.png" alt="Cloud Infrastructure" class="max-w-full h-auto max-h-[500px]" />
+        <img src="${cloudInfrastructureImg}" alt="Cloud Infrastructure" class="max-w-full h-auto max-h-[500px]" />
       </div>
       <p class="leading-relaxed mb-6">
         Most of my cloud work supports the systems behind video processing and delivery. These workloads behave differently from typical web services. Transcoding causes sharp, uneven spikes in CPU and memory usage. GPU stages introduce their own patterns, including large data transfers, device-level scheduling, and performance that varies with how work is grouped. Ingest pipelines run continuously and can back up when upstream sources change pace. Quality checks and packaging steps depend on stable environmental behavior, because slowdowns or timing drift can affect the final output.
@@ -115,7 +121,7 @@ const modals: ModalData[] = [
     iconName: 'fa6-solid:video',
     content: `
       <div class="flex justify-center mb-6">
-        <img src="/src/assets/images/shawn-media-systems.png" alt="Media Systems" class="max-w-full h-auto max-h-[500px]" />
+        <img src="${mediaSystemsImg}" alt="Media Systems" class="max-w-full h-auto max-h-[500px]" />
       </div>
       <p class="leading-relaxed mb-6">
         My work in media technology centers on the systems that move video from its source through the stages required for processing and delivery. These pipelines involve several steps, and each step depends on timing, order, and predictable behavior. A slight shift early in the workflow often appears much later, so I pay attention to how each stage influences the next.
@@ -140,7 +146,7 @@ const modals: ModalData[] = [
     iconName: 'fa6-solid:brain',
     content: `
       <div class="flex justify-center mb-6">
-        <img src="/src/assets/images/shawn-machine-learning.png" alt="Machine Learning" class="max-w-full h-auto max-h-[500px]" />
+        <img src="${machineLearningImg}" alt="Machine Learning" class="max-w-full h-auto max-h-[500px]" />
       </div>
       <p class="leading-relaxed mb-6">
         Most of my work with machine learning has been tied to media systems. I have worked with models for video analysis, content understanding, recommendation workflows, and film production tasks. These problems involve significant assets, uneven workloads, and real timing constraints, so the focus is usually on how the model fits into the larger system rather than on the model itself.
@@ -165,7 +171,7 @@ const modals: ModalData[] = [
     iconName: 'fa6-solid:microchip',
     content: `
       <div class="flex justify-center mb-6">
-        <img src="/src/assets/images/shawn-embedded-systems.png" alt="Hardware & Embedded Systems" class="max-w-full h-auto max-h-[500px]" />
+        <img src="${embeddedSystemsImg}" alt="Hardware & Embedded Systems" class="max-w-full h-auto max-h-[500px]" />
       </div>
       <p class="leading-relaxed mb-6">
         I work with hardware at both the board and system levels. On the board side, I restore electronics, repair PCBs, and study how appliances and embedded devices behave internally. This often involves disassembling hardware, replacing components, tracing signal paths, and confirming that the device behaves as expected. Working at this level makes it easier to understand the limits the original software was written around and how the platform reacts under real conditions.
@@ -187,7 +193,7 @@ const modals: ModalData[] = [
     iconName: 'fa6-solid:gamepad',
     content: `
       <div class="flex justify-center mb-6">
-        <img src="/src/assets/images/shawn-gaming.png" alt="Gaming" class="max-w-full h-auto max-h-[500px]" />
+        <img src="${gamingImg}" alt="Gaming" class="max-w-full h-auto max-h-[500px]" />
       </div>
       <p class="leading-relaxed mb-6">
         Gaming was my first real gateway into technology. I spent a lot of time with systems like the Nintendo and Super Nintendo, PlayStation, and the original Xbox, and I eventually wanted to understand more than what was happening on the screen. That curiosity pushed me to look into how games stored their data, how consoles managed resources, and why certain behaviors emerged under pressure. It was the first time I found myself digging into technical details to understand how things worked.
