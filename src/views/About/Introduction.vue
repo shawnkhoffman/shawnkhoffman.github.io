@@ -8,8 +8,11 @@
     </div>
     <p class="text-lg">
       Hi, I'm Shawn!<br />
-      I'm a software and systems engineer specializing in high-performance backend platforms, media streaming infrastructure, and large-scale cloud architectures.<br />
-      My work centers on building reliable distributed systems, optimizing video and real-time media pipelines, and delivering production-grade AI/ML workflows. I also bring hands-on expertise in hardware and embedded systems, giving me a full-stack perspective that spans from low-level devices to global cloud platforms.
+      I build AI-powered media products and video streaming platforms.<br />
+      <br />
+      My work spans backend services, cloud-native media systems, playback and delivery infrastructure, workflow automation, observability tools, and production-grade AI/ML platforms for streaming, studio, entertainment, and gaming environments. <br />
+      <br />
+      I also bring hands-on experience in hardware and embedded systems, giving me a full-stack perspective from low-level devices to global cloud platforms.
     </p>
   </section>
 </template>
